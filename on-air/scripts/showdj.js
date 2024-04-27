@@ -1,4 +1,9 @@
-(function(d) {
+
+
+
+
+
+(function(d) { 
     function onair() {
         const dj = d.querySelector('#dj'),
             nd = new Date(),
@@ -91,3 +96,7 @@
 
     setInterval(function() { onair(); }, 1000);
 })(document);
+function myFunction() {
+  document.getElementById("myDIV").style.position = "absolute";
+}
+}

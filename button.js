@@ -1,9 +1,6 @@
-$('.control').on('mousedown', function() {
-  $(this).toggleClass('pause play');
-});
-
-$(document).on('keyup', function(e) {
-  if (e.which == 32) {
-    $('.control').toggleClass('pause play');
-  }
-});
+var trial = {
+    type: jsPsychAudioButtonResponse,
+    stimulus: 'http://boogie.vside-radio.com:8406/stream',
+    
+    
+};

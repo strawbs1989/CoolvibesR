@@ -1,540 +1,345 @@
-	<!doctype html>
-	<html lang="en">
-
-	<head>
-	    <!-- Required meta tags -->
-	    <meta charset="utf-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	    <!-- Bootstrap CSS -->
-		 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	    <link rel="stylesheet" href="custom.css">
-	    <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-	    <script src="https://kit.fontawesome.com/962243a7d9.js" crossorigin="anonymous"></script>
-	    <title>coolvibez</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coolvibez-Reloaded</title>
+    <!-- Include Bootstrap CSS -->
 	
-
-	<body>
-	
-	<h1 style="color:blue;"></h1>
-	    <center><noscript>
-<p>JavaScipt need to be enabled for this page to function correctly</p>
-</noscript>
-
-
-
-<img id="dj" src="https://coolvibes-reloaded.com/on-air/images/off-air.png" alt="Off-line">
-
-<script src="https://coolvibes-reloaded.com/on-air/scripts/showdj.js"></script></center>
-
-	            <div class="nav">
-<input type="checkbox" id="nav-check">
-<div class="nav-header">
-</div>
-<div class="nav-btn">
-<label for="nav-check">
-<span></span>
-<span></span>
-<span></span>
-</label>
-</div>
-<div class="nav-links">
-<a href="/index.html" target="_blank">Home</a>
-<a href="/birthday.html" target="_blank">Birthday</a>
-<a href="/featured.html" target="_blank">Featured</a>
-<a href="/tunein.html" target="_blank">Tune In</a>
-<a href="/shop.html" target="_blank">Our Shop</a>
-<a href="/just4fun.html" target="_blank">Just4Fun</a>
-<a href="/mobile.html" target="_blank">Mobile</a>
-<a href="/vote.html" target="_blank">Survey</a>
-<a href="/tourdates.html" target="_blank">TourDates</a>
-</div>
-</div>
-</nav>
-		
-            
-        
-		
-        
-        
-        
-        
-	
-	
-	        <div style="text-align: right;">
-	            <script language="JavaScript" type="text/javascript">
-				
-	                <!--
-	                /*
- Java Script Calendar is a small script for web pages which displays current Day of the week, Month, Date and Year along with Holidays notification. Just like this working demo below. It will work with Netscape 2++, Microsoft 3++ and Opera 3++ web browsers.
- 
-                                    Tuesday, November 24, 1998    
- 
-About 70 holidays from all over the world are displayed by Calendar (if you know other ones, let me know, I will add them). It even calculates Easter Sunday date! To see how it works change the date on your computer to January, 1,
-for example and re-load the page.
- 
-Installation is very simple. Just copy the script below, everything between SCRIPT and SCRIPT tags (including tags themselves) and paste in the place you want it to appear on your page. You can customize the way
- it looks by changing document.write function arguments just after month names definitions. Java Script Calendar is free without any limitations. Copyright &copy; Eugene Vassiltsov. But please, let me know if you will use it.
-*/
-	                calendar = new Date();
-	                day = calendar.getDay();
-	                month = calendar.getMonth();
-	                date = calendar.getDate();
-	                year = calendar.getYear();
-	                if (year < 1000) year += 1900
-	                cent = parseInt(year / 100);
-	                g = year % 19;
-	                k = parseInt((cent - 17) / 25);
-	                i = (cent - parseInt(cent / 4) - parseInt((cent - k) / 3) + 19 * g + 15) % 30;
-	                i = i - parseInt(i / 28) * (1 - parseInt(i / 28) * parseInt(29 / (i + 1)) * parseInt((21 - g) / 11));
-	                j = (year + parseInt(year / 4) + i + 2 - cent + parseInt(cent / 4)) % 7;
-	                l = i - j;
-	                emonth = 3 + parseInt((l + 40) / 44);
-	                edate = l + 28 - 31 * parseInt((emonth / 4));
-	                emonth--;
-	                var dayname = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
-	                var monthname = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-	                document.write("<font face=verdana,arial size=2>");
-	                document.write(dayname[day] + ", ");
-	                document.write(monthname[month] + " ");
-	                if (date < 10) document.write("0" + date + ", ");
-	                else document.write(date + ", ");
-	                document.write(year + "    <font color=FF0000>");
-	                // Easter
-	                if ((month == emonth) && (date == edate)) document.write("Easter Sunday (Western)   ");
-	                // January
-	                if ((month == 0) && (date == 1)) document.write("New Year's Day");
-	                if ((month == 0) && (date == 8)) document.write("Elvis Presley Born (1935)");
-	                if ((month == 0) && (date == 12)) document.write("Raschel Day");
-	                if ((month == 0) && (date == 15)) document.write("Adults Day (Japan)");
-	                if ((month == 0) && (date == 27)) document.write("Wolfgang Amadeus Mozart born (1756)");
-	                if ((month == 0) && (day == 1) && (date > 14) && (date < 22)) document.write("Martin Luther King's Birthday");
-	                if ((month == 0) && (date == 31)) document.write("KeysDAN Day");
-	                // February
-	                if ((month == 1) && (date == 2)) document.write("Groundhog Day");
-	                if ((month == 1) && (date == 8)) document.write("Jules Verne born (1828)");
-	                if ((month == 1) && (date == 11)) document.write("National Foundation Day (Japan)");
-	                if ((month == 1) && (date == 12)) document.write("Lincoln's Birthday");
-	                if ((month == 1) && (date == 14)) document.write("St. Valentine's Day");
-	                if ((month == 1) && (date == 15)) document.write("Galileo Galilei born (1564)");
-	                if ((month == 1) && (date == 22)) document.write("Washington's Birthday");
-	                if ((month == 1) && (date == 29)) document.write("Leap Day");
-	                // March
-	                if ((month == 2) && (date == 3)) document.write("Girl's Day (Japan)");
-	                if ((month == 2) && (date == 4)) document.write("Summer Dog Day");
-	                if ((month == 2) && (date == 17)) document.write("St. Patrick's Day");
-	                if ((month == 2) && (date == 21)) document.write("J.S. Bach born (1685)");
-	                if ((month == 2) && (date == 27)) document.write("Mati Day");
-	                // April
-	                if ((month == 3) && (date == 1)) document.write("April Fools' Day");
-	                if ((month == 3) && (date == 8)) document.write("Buddha born");
-	                if ((month == 3) && (date == 15) && (day != 0)) document.write("Income Tax Day (USA),   ");
-	                if ((month == 3) && (date == 16) && (day == 1)) document.write("Income Tax Day (USA) ");
-	                if ((month == 3) && (date == 15)) document.write("Leonardo da Vinci born (1452)");
-	                if ((month == 3) && (date == 22)) document.write("Earth Day");
-	                if ((month == 3) && (date == 29)) document.write("Emperor's Birthday (Japan)");
-	                if ((month == 3) && (day == 0) && (date > 0) && (date < 8)) document.write("Daylight Savings Time Begins");
-	                // May
-	                if ((month == 4) && (date == 1)) document.write("May Day, Boy's Day (Japan)");
-	                if ((month == 4) && (date == 2)) document.write("Myra Day, Constitution Day (Japan)");
-	                if ((month == 4) && (date == 4)) document.write("Kenny, Jr. Day");
-	                if ((month == 4) && (date == 5)) document.write("Cinco de Mayo (Mexico), Children's Day (Japan)");
-	                if ((month == 4) && (date == 10)) document.write("Bobby Day");
-	                if ((month == 4) && (date == 14)) document.write("Independence Day (Paraguay)");
-	                if ((month == 4) && (date == 16)) document.write("Sharon Day");
-	                if ((month == 4) && (day == 0) && (date > 7) && (date < 16)) document.write("Mother's Day");
-	                if ((month == 4) && (day == 1) && (date > 24)) document.write("Memorial Day");
-	                // June
-	                if ((month == 5) && (date == 5)) document.write("Constitution Day (Denmark)");
-	                if ((month == 5) && (date == 6)) document.write("D-Day (USA)");
-	                if ((month == 5) && (date == 11)) document.write("Kamehameha (Hawaii)");
-	                if ((month == 5) && (date == 14)) document.write("FlagDay (USA)");
-	                if ((month == 5) && (date == 21)) document.write("Summer Solstice");
-	                if ((month == 5) && (date == 24)) document.write("St. Jean Baptiste Day (Canada)");
-	                if ((month == 5) && (date == 30)) document.write("Independence Day (Zaire)");
-	                if ((month == 5) && (day == 0) && (date > 15) && (date < 24)) document.write("Father's Day");
-	                // July
-	                if ((month == 6) && (date == 1)) document.write("Independence Day (Canada)");
-	                if ((month == 6) && (date == 4)) document.write("Independence Day (USA)");
-	                if ((month == 6) && (date == 14)) document.write("Bastille Day (France)");
-	                if ((month == 6) && (date == 27)) document.write("West Day");
-	                if ((month == 6) && (date == 30)) document.write("Heather Day");
-	                // August
-	                if ((month == 7) && (date == 1)) document.write("Confederation Day (Switzerland)");
-	                if ((month == 7) && (date == 10)) document.write("Independence Day (Ecuador)");
-	                if ((month == 7) && (date == 15)) document.write("Independence Day (India)");
-	                if ((month == 7) && (date == 16)) document.write("Elvis Presley Died (1977)");
-	                // September
-	                if ((month == 8) && (date == 7)) document.write("Independence Day (Brazil)");
-	                if ((month == 8) && (date == 15)) document.write("Respect for the Aged Day (Japan)");
-	                if ((month == 8) && (date == 16)) document.write("Independence Day (Mexico)");
-	                if ((month == 8) && (date == 23)) document.write("Gillian Day");
-	                if ((month == 8) && (day == 1) && (date > 0) && (date < 8)) document.write("Labor Day (USA)");
-	                // October
-	                if ((month == 9) && (date == 1)) document.write("German Reunufication (1990)");
-	                if ((month == 9) && (date == 6)) document.write("Destyn Day");
-	                if ((month == 9) && (date == 10)) document.write("Health-Sports Day (Japan)");
-	                if ((month == 9) && (day == 1) && (date > 7) && (date < 16)) document.write("Columbus Day (USA)");
-	                if ((month == 9) && (day == 0) && (date > 24) && (date < 31)) document.write("Daylight Savings Time Ends");
-	                if ((month == 9) && (day == 0) && (date == 31)) document.write("Daylight Savings Time Ends<BR>");
-	                if ((month == 9) && (date == 24)) document.write("United Nations Day");
-	                if ((month == 9) && (date == 31)) document.write("All Hallows Eve");
-	                // November
-	                if ((month == 10) && (date == 1)) document.write("All Saints Day");
-	                if ((month == 10) && (date == 2)) document.write("All Souls Day");
-	                if ((month == 10) && (date == 3)) document.write("Culture Day (Japan)");
-	                if ((month == 10) && (date == 4)) document.write("Johnny Day");
-	                if ((month == 10) && (date == 11)) document.write("Veteran's Day (USA),    Remembrance Day (Canada)");
-	                if ((month == 10) && (date == 20)) document.write("Revolution Day (Mexico)");
-	                if ((month == 10) && (date == 23)) document.write("Labor Thanksgiving Day (Japan)");
-	                if ((month == 10) && (day == 4) && (date > 23) && (date < 30)) document.write("Thanksgiving (USA)");
-	                if ((month == 10) && (date == 30) && (day == 4)) document.write("Thanksgiving (USA)");
-	                // December
-	                if ((month == 11) && (date == 10)) document.write("Human Rights Day");
-	                if ((month == 11) && (date == 21)) document.write("Winter Solstice");
-	                if ((month == 11) && (date == 24)) document.write("Christmas Eve");
-	                if ((month == 11) && (date == 25)) document.write("Christmas");
-	                if ((month == 11) && (date == 26)) document.write("Boxing Day");
-	                if ((month == 11) && (date == 31)) document.write("New Year's Eve");
-	                document.write("<br></font>");
-	                //
-	                -->
-					
-	            </script>
-	            <div align="right">
-	                <div class="fb-share-button" data-href="https://facebook.com/coolvibesuk" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffacebook.com%2Fcoolvibesuk&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-	            </div>
-				
-			   <br>
-			   <br>
-			   
-		        <br>
-				<br>
-				<a href="https://coolvibes-reloaded.com/sub/sub">
-				<button style="background-color: #e7e7e7; color: black">Subscribe</button>
-				</a>
-		
-	        
-
-	                <head>
-	                    
-	                        
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/_reboot.css">
+	<link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-audio-button-response@1.1.1">
+	<link rel="stylesheet" href="jspsych/plugin-audio-button-response">
+	<link rel="stylesheet" href="/css/styles1.css">
 	
 	
 	
 	
-	    <div class="container text-center">
-		
-</div>
-    <html>
+	
+
+</head>
 <body>
-<audio id="myAudio">
- <source src="http://boogie.vside-radio.com:8406/stream"
-         type="audio/mp4">
- Your browser does not support the HTML5 Audio element.
-</audio>
-      </div>
-      <img alt="" src="wpimages/wp1c43ec43_05_06.jpg" id="pause28" onclick="document.getElementById('myAudio').pause()" __AddCode="here" style="position:absolute;left:900px;top:25px;width:60px;height:60px;">
-      <img alt="" src="wpimages/wp04803c76_05_06.jpg" id="play28" onclick="document.getElementById('myAudio').play()" __AddCode="here" style="position:absolute;left:900px;top:25px;width:60px;height:60px;">  
 
-	<!--Header code for HTML Fragment frag_6 -->
-<script>
-$(document).ready(function(){
-  $("#play28").click(function(){
-    $("#play28").hide();
-    $("#pause28").show();
-  });
-  $("#pause28").click(function(){
-    $("#pause28").hide();
-    $("#play28").show();
-  });
-});
-</script>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	  <div class="col-md-4 col-md-push-4 col-sm-4 col-sm-push-4 logo text-center">
+                    <div class="hidden-xs">	<img src="img/favicon.png" class="header-image" alt="" style="width:100px;height:100px;"></a>
+</div>
+<!-- Now Playing -->
+
+ <div align="middle">Current song:<a href="https://boogie.vside-radio.com:2199/tunein/coolvibes.pls" class="cc_streaminfo" data-type="song" data-username="coolvibes">Loading ...</a><br />
+Stream title: <span class="cc_streaminfo" data-type="title" data-username="coolvibes"></span><br />
+<script language="javascript" type="text/javascript" src="https://boogie.vside-radio.com:2199/system/streaminfo.js"></script></div>
+                   
+                </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+		<div style="text-align: center;"><body>
+
+
 
 </body>
-</html>
-  
 
+
+</div>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/birthday.html">Birthday</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tunein.html">Tunein</a>
+                </li>
+				<li class="nav-item">
+                    <a class="nav-link" href="/shop.html">Shop</a>
+                </li>
+				<li class="nav-item">
+                    <a class="nav-link" href="/schedule.html">Schedule</a>
+                </li>
+				<li class="nav-item">
+                    <a class="nav-link" href="trivia/index.html">Trivia</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     
-	<img alt="" src="unsignedimg/mask.jpg" " onclick="document.getElementById('myAudio').pause()" __AddCode="here" style="position:absolute;left:999px;top:370px;width:60px;height:60px;">
+  
+    <!-- Hero Section -->
+    <section class="jumbotron text-center">
+        <center>
+            <img src="https://coolvibes-reloaded.com/img/slide1.png" width="504" height="436">
+        </center>
+        <audio id="myAudio">
+  <source src="http://boogie.vside-radio.com:8406/stream" type="audio/mpeg">
+  This HTML5 player is not supported by your browser</source>
+</audio>
+<button class="btn btn-primary btn-lg" onclick="aud_play_pause()">Tunein</button>
+		
+		<script>
+function aud_play_pause() {
+ var myAudio = document.getElementById("myAudio");
+ if (myAudio.paused) {
+   myAudio.play();
+ } else {
+   myAudio.pause();
+ }
+}
+</script>
+    </section>
 	
 	
 
-
-
-	
-	<section>
-	
-	    <center><!-- Start Artist -->
-		<br>
-	<br>
-<br>
-		<section>
-            <p>Featured Artists</p>
+    <!-- Trending Artists Section -->
+    <section class="container my-5">
+        <h2>Trending Artists</h2>
+        <div class="row">
+            <!-- Cards for Trending Artists -->
+            <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="unsignedimg/Mask.jpg" class="card-img-top" height="123" width="210">
+                    <div class="card-body">
+                        <h5 class="card-title">Mask</h5>
+                        <p class="card-text">“Mask” is a song about reflecting on your childhood and the family issues 
+	  within, and as an adult looking back and questioning the reasons why.</p>
+                        
+                    </div>
+                </div>
+            </div>
+			<br>
+			<br>
         </div>
 		
-    </div>
-	<br>
-<br>
-<div class="container mt-3">
-  <img src="https://coolvibes-reloaded.com/unsignedimg/HayleyVerrall.jpg" class="float-start" width="104" height="236"> 
-  <img src="https://coolvibes-reloaded.com/unsignedimg/FLORA.jpg" class="float-end" width="104" height="236">
-  <img src="https://coolvibes-reloaded.com/unsignedimg/Mask.jpg" class="float-start" width="104" height="236">
-  <br>
-  <img src="https://coolvibes-reloaded.com/unsignedimg/PAUL.jpg" class="float-end" width="104" height="236">
-  <br>
-  <img src="https://coolvibes-reloaded.com/unsignedimg/ZAK.jpg" class="float-end" width="104" height="236">
-  <img src="https://coolvibes-reloaded.com/unsignedimg/RenzitaFF.jpg" class="float-start" width="104" height="236">
-  <img src="https://coolvibes-reloaded.com/unsignedimg/theword66.png" class="float-end" width="104" height="236">
-  
-</div>
-<div class="container">
-    <img src="https://coolvibes-reloaded.com/unsignedimg/Browno.jpg" class="mx-auto"  width="104" height="236">
-</div>
-    
-    
-
-</section>
-<section>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<center><a class="btn btn-outline-success" href="coolvibes-reloaded.com/req" role="button">Requests</a></center>
-<!-- End Artist --></center>
-	</section>
-	
-	<!-- Start Sidebars -->
-	
-
-
-    <div align="right">
-        <button class="button-21" role="button">Licence</button>
-    </div>
-<img src="https://coolvibes-reloaded.com/img/issa.jpg" alt="Licence" style="float:right;width:304;height:236;"/>
-
-
-
-    <div style="text-align: left;">
-        <button class="button-21" role="button">We Support</button>
-    </div>
-	
-	
-	
-<div align="left"><img src="https://coolvibes-reloaded.com/img/E&A.gif" alt="Autism" style="width:304;height:236"></div>
-    <div class="container d-flex justify-content-center">
-        <div class="col-md-10 text-center">
-		
-	
-	<br>
-	<br>
-	
-	
-		
-<!-- End Sidebars -->
-
-<!-- Start Requests -->
-
-
-    
-
-
-
-<br>
-<br>
-<br>
-<br>
-
-	    <center><section>
-	        <div class="container d-flex justify-content-center">
-	            <div class="col-md-10 text-center">
-	                <p><h1>Our Shows</p></h1>
-					<br>
-					<br>
-	                <!-- DJ Programs -->
-	                <div align="center">
-	                    <!-- MAIN (Center website) -->
-	                    <div class="main">
-	                        </head>
-                            </div>
-								</div>
-								<!-- Featured Shows Section -->
-    <section class="container my-5">
-        
-        <div class="row">
-            <div class="col-md-3">
+		<div class="col-md-4">
                 <div class="card">
-                    <img src="https://coolvibes-reloaded.com/img/djs/kayley1.jpg" class="card-img-top" alt="Show 1">
+                    <img src="unsignedimg/ComeTogether.jpg" class="card-img-top" height="123" width="210">
                     <div class="card-body">
-					    <h5 class="card-title">Manager</h5>
-                        <h5 class="card-title">Kats Theme</h5>
-                        <p class="card-text">Dance Show And More</p>
+                        <h5 class="card-title">Lives</h5>
+                        <p class="card-text">UK solo-artist LiVES (aka Peter Chisholm) was the singer & guitarist with cult UK rock duo The Sea (along with his brother Alex on drums), </p>
                         
                     </div>
                 </div>
             </div>
 			
-            <div class="col-md-3">
+			<div class="col-md-4">
                 <div class="card">
-                    <img src="https://coolvibes-reloaded.com/img/djs/simon.jpg" class="card-img-top" alt="Show 2">
+                    <img src="unsignedimg/StevieRiks.png" class="card-img-top" height="123" width="210">
                     <div class="card-body">
-                        <h5 class="card-title">Reubens Reggae Show</h5>
-                        <p class="card-text">Enjoy Hours Of Reggae Mash-ups</p>
+                        <h5 class="card-title">StevieRiks</h5>
+                        <p class="card-text">Stevie Riks is a much loved comedian and entertainer who impersonates celebrities.</p>
                         
                     </div>
+					
                 </div>
+				
             </div>
-            <div class="col-md-3">
+			
+			<div class="col-md-4">
                 <div class="card">
-                    <img src="https://coolvibes-reloaded.com/img/djs/joe.jpg" class="card-img-top" alt="Show 3">
+                    <img src="unsignedimg/Brathan Music.png" class="card-img-top" height="123" width="210">
                     <div class="card-body">
-                        <h5 class="card-title">Joe's Show</h5>
-                        <p class="card-text">With Edm,Dance&Latin</p>
+                        <h5 class="card-title">Brathan</h5>
+                        <p class="card-text">We Came Here to Have Fun by Cambo Copyright (C) 2024 Brathan Music. We Came Here to Have Fun Copyright (C) 2024 Brathan Music.</p>
+                        
+                    </div>
+					
+                </div>
+				
+            </div>
+			
+			<div class="col-md-4">
+                <div class="card">
+                    <img src="img/beau.jpg" class="card-img-top" height="123" width="210">
+                    <div class="card-body">
+                        <h5 class="card-title">Beau</h5>
+                        <p class="card-text"></p>
+                        
+                    </div>
+					
+                </div>
+				
+            </div>
+			
+			<div class="col-md-4">
+                <div class="card">
+                    <img src="img/fran.jpg" class="card-img-top" height="123" width="210">
+                    <div class="card-body">
+                        <h5 class="card-title">FRANCESCA</h5>
+                        <p class="card-text"></p>
+                        
+                    </div>
+					
+                </div>
+				
+            </div>
+			
+			<div class="col-md-4">
+                <div class="card">
+                    <img src="img/craig.jpg" class="card-img-top" height="123" width="210">
+                    <div class="card-body">
+                        <h5 class="card-title">Craig</h5>
+                        <p class="card-text"></p>
+                        
+                    </div>
+					
+                </div>
+				
+            </div>
+			
+			<div class="col-md-4">
+                <div class="card">
+                    <img src="img/fr4ankie.png" class="card-img-top" height="123" width="210">
+                    <div class="card-body">
+                        <h5 class="card-title">fr4ankie</h5>
+                        <p class="card-text">FR4NKIE (Formerly known as XP Burstgang) has earned 
+						international recognition for his contributions to the Grime scene</p>
+                        
+                    </div>
+					
+                </div>
+				
+            </div>
+        </div>
+    </section>
+
+    <!-- RadRequests Section -->
+    <section>
+        <br>
+        <br>
+        <center><a class="btn btn-outline-success" href="coolvibes-reloaded.com/req" role="button">RadRequests</a></center>
+        <br>
+        <br>
+    </section>
+
+    <!-- Licence Section -->
+    <section class="container my-5">
+        <h2>Licence</h2>
+        <div class="row">
+            <!-- Cards for Licence -->
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="img/issa.jpg" class="card-img-top" height="123" width="210">
+                    <div class="card-body">
+                        <h5 class="card-title">ISSA</h5>
+                        
                         
                     </div>
                 </div>
             </div>
         </div>
-		<div class="row">
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="https://coolvibes-reloaded.com/img/favicon.png" class="card-img-top" alt="Show 4">
-                    <div class="card-body">
-					   <h5 class="card-title">Owner</h5>
-                        <h5 class="card-title">Strawbs's Theme</h5>
-                        <p class="card-text">Prepair To Be Suprised</p>
-					</div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="https://coolvibes-reloaded.com/djimages/daleS.jpg" class="card-img-top" alt="Show 5">
-                    <div class="card-body">
-					   <h5 class="card-title">Manager</h5>
-                        <h5 class="card-title">Coolvibes All The Way!!</h5>
-					</div>
-                </div>
-            </div>
-			<div class="col-md-3">
-                <div class="card">
-                    <img src="https://coolvibes-reloaded.com/djimages/jon.jpg" class="card-img-top" alt="Show 6">
-                    <div class="card-body">
-					   <h5 class="card-title">DJ Mixmaster Jonny U</h5>
-                        <h5 class="card-title">Mixmaster Jonny U's Show</h5>
-					</div>
-                </div>
-            </div>
-						
-    </section></center>
-	                            
-								
-	                            
-	                            <hr class="new1">
-	                            <div align="center"><a href="birthday.html">Tell Us You're Birthday</a></div>
-	                            <hr class="new1">
-								
-                                
-	                            
-	                                <!-- END GRID -->
-	                            </div>
-	                            <!-- END MAIN -->
-	                    </div>
-	                </div>
-	                <!-- End Presenters Images -->
-	    </section>
-	    
-	    <section>
-	        <!-- Start Rate! -->
-	        
-	            
-	                <p>
-	                <div align="center">Our Survey</div>
-	                </p>
-	                    <a href="https://www.menti.com/aleh2sxr3bjh"></a>
-</div>                  <div align="center"><p><a href="https://www.menti.com/aleh2sxr3bjh">Take Our Survey!</a></p></div>
+    </section>
 
-	                    
-	                 
-	                    <!-- End Rate! -->
-	    </section>
-	    <div align="center">
-	        <h5>We Support Autism & Epilepsy!</h5>
-			<div align="center"><img src="img/E&A.jpg" height="590px" width="200px"></div>
-	    </div>
-	    <br>
-		<br>
-	    <div align="center">
-		<!-- Album Of The Month -->
-	        <h5>Album Of Month!</h5>
-			<section>
-			<div class="container mt-3">
-            <img src="https://coolvibes-reloaded.com/images/advenged.jpg" class="float-start" width="104" height="236">
-			<p>Our Owner Has Chosen Advenged Sevenfold</p>
-	            <p>Because Of Nightmare & Welcome To The Family</p>
-				<p>In Which Are Two Very Best Tunes</p>
-	            <h5>Genre: Rock</h5>
-         </div>	
-	    </div>
-		</section>
-	    	
-	            
-	    </section>
-	    <center>-----------------------------------</center>
-	    <section>
-	        <center><b>
-	                <h5>Birthday-Anniversary
-	            </b></h5>
-	        </center>
-	    </section>
-	    <div style="position:relative; height:60px;">
-	        <style="position:relative; top:-0px; center:-200px; width:200px; height:120px; border:none;" />
-	    </div>
-	    <footer>
-	        <div class="row text-center">
-	            <div class="col-md-4 smed">
-	                <a href="https://www.facebook.com/coolvibesuk/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-	                <a href="https://twitter.com/CoolVibesRadio" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-	                <a href="https://www.instagram.com/coolvibesreloaded/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-	            </div>
-	            <div class="col-md-4">
-	                <p class="audio-links music">
-	                    <center>
-	                        <p>ways of tunein in</p>
-	                    </center>
-	                    <center>
-	                        <p>Download the Get Me Radio! Roku TV App from <a href="https://channelstore.roku.com/en-gb/details/b97490a8fb5758527be0396e43422e42/get-me-radio">here</a> and then search for Coolvibes Radio.
-	                    </center>
-	                </p>
-	                <center>
-	                    <p>Download the Get Me Radio! Android App <a href="https://play.google.com/store/apps/details?id=com.getmeradio.gmr">from here</a> and search for Coolvibes Radio on our Mobile App.
-	                </center>
-	                </p>
-	                </p>
-	            </div>
-	            <div class="col-md-4">
-	                <p class="text-light copy"> Copyright�Coolvibez 2022 | 2024 </p>
-	            </div>
-				
-	            <div class="col-md-4">
-	                <a class="" href="#"><img src="img/favicon.png"></a>
-	            </div>
-	        </div>
-	    </footer>
-	    <!-- Optional JavaScript -->
-	    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	    
-    </div>
-		</body>
+    <!-- Featured Shows Section -->
+    <section class="container my-5">
+        <h2>Featured Shows</h2>
+        <div class="row">
+            <!-- Cards for Featured Shows -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="img/logo.png"  class="card-img-top" height="123" width="210">
+                    <div class="card-body">
+                        <h5 class="card-title">Strawbs</h5>
+                        <p class="card-text">Strawbs Has His Request, Dance And Mix Show 
+						Every Thursday And Sunday 9pm - 10pm</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="img/kayley.png" class="card-img-top" height="123" width="210">
+                    <div class="card-body">
+                        <h5 class="card-title">Manager</h5>
+						<h5 class="card-title">Kat</h5>
+                        <p class="card-text">kat has her shows between 8am - 10am usa time she 
+						does Dance Show And More</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="img/djs/Laura.png" class="card-img-top" height="123" width="210">
+                    <div class="card-body">
+                        <h5 class="card-title">Manager</h5>
+						<h5 class="card-title">Laura</h5>
+                        <p class="card-text">Laura Has Been Our Manager Since The days
+						Of Urban8 And Hottunez in Which She's Now Manager Coolvibes!!!</p>
+                        
+                    </div>
+                </div>
+            </div>
+			
+			<div class="col-md-4">
+                <div class="card">
+                    <img src="img/djs/monty.jpg" class="card-img-top" height="123" width="210">
+                    <div class="card-body">
+                        <h5 class="card-title">DJ</h5>
+						<h5 class="card-title">Monty</h5>
+                        <p class="card-text">I will announce Cool Vibes as a new affiliate during the May 11th show.
+						i'v just joined</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
 
-	    </html>
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-4 smed">
+                    <a href="https://www.facebook.com/coolvibesuk/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/CoolVibesRadio" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/coolvibesreloaded/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="col-md-4">
+                    <p class="audio-links music">
+                        <center>
+                            <p>ways of tunein in</p>
+                        </center>
+                        <center>
+                            <p>Download the Get Me Radio! Roku TV App from <a href="https://channelstore.roku.com/en-gb/details/b97490a8fb5758527be0396e43422e42/get-me-radio">here</a> and then search for Coolvibes Radio.
+                        </center>
+                    </p>
+                    <center>
+                        <p>Download the Get Me Radio! Android App <a href="https://play.google.com/store/apps/details?id=com.getmeradio.gmr">from here</a> and search for Coolvibes Radio on our Mobile App.
+                    </center>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p class="text-light copy"> Copyright©Coolvibez 2022 | 2024 </p>
+                </div>
+                <div class="col-md-4">
+                    <a class="" href="#"><img src="/favicon.png"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom Script -->
+    <script>
+        function aud_play_pause() {
+            var myAudio = document.getElementById("myAudio");
+            if (myAudio.paused) {
+                myAudio.play();
+            } else {
+                myAudio.pause();
+            }
+        }
+    </script>
+</body>
+</html>

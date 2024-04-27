@@ -1,0 +1,80 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+.navbar {
+    background-color: #fff;
+}
+
+
+.bg-primary {
+	background-color: #fff;
+}
+
+.navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff;
+}
+
+.jumbotron {
+    background-color: #000;
+}
+
+.card {
+    margin-bottom: 30px;
+	border: 2px solid pink;
+	border-radius: 5px;
+    padding: 5px;
+	
+}
+
+/* Footer Styles */
+footer {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.footer-links {
+    margin-top: 20px;
+}
+
+/* Card Styles */
+.card-title {
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+.card-img-top {
+    border-radius: 5px;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-outline-success {
+    color: #28a745;
+    border-color: #28a745;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .logo {
+        text-align: center;
+    }
+
+    .header-image {
+        margin-top: 10px;
+    }
+}

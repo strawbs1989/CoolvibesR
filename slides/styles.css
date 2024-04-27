@@ -1,0 +1,34 @@
+.slideshow {
+    width: 300px; /* Adjust width as needed */
+    height: 200px; /* Adjust height as needed */
+    overflow: hidden;
+    position: absolute;
+	top: 900px;
+	left: 900px;
+	
+}
+
+.slideshow img {
+    position: relative;
+    top: 0;
+    left: 10px;
+    width: 100%;
+    animation: slideUp 16s infinite linear; /* Adjust animation duration as needed */
+}
+
+.slideshow img:nth-child(2) {
+    animation-delay: 5s; /* Delay for the second image */
+}
+
+.slideshow img:nth-child(3) {
+    animation-delay: 10s; /* Delay for the third image */
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(200px); /* Start from bottom */
+    }
+    100% {
+        transform: translateY(-600px); /* Move all the way to the top (three times the height of the container to accommodate for the number of images) */
+    }
+}
