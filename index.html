@@ -27,7 +27,10 @@
 </div>
 <!-- Now Playing -->
 
- <span class="cc_streaminfo" data-type="song" data-username="coolvibes">Loading ...</span>
+ Current song: <a href="https://boogie.vside-radio.com/tunein/coolvibes.pls" class="cc_streaminfo" data-type="song" data-username="coolvibes">Loading ...</a><br />
+Stream title: <span class="cc_streaminfo" data-type="title" data-username="coolvibes"></span><br />
+Station time: <span class="cc_streaminfo" data-type="date" data-username="coolvibes"></span> <span class="cc_streaminfo" data-type="time" data-username="coolvibes"></span><br />
+Album image:<br /><img class="cc_streaminfo" data-type="trackimageurl" data-username="coolvibes" /><br /><a href="#" class="cc_streaminfo" data-type="trackbuyurl" data-username="coolvibes">Buy this album</a><br />
 
 
                    
@@ -38,7 +41,7 @@
 		<div style="text-align: center;"><body>
 
 
-<script language="javascript" type="text/javascript" src="https://boogie.vside-radio.com/system/streaminfo.js"></script>
+
 </body>
 
 
@@ -330,16 +333,6 @@ function aud_play_pause() {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- Custom Script -->
-    <script>
-        function aud_play_pause() {
-            var myAudio = document.getElementById("myAudio");
-            if (myAudio.paused) {
-                myAudio.play();
-            } else {
-                myAudio.pause();
-            }
-        }
-    </script>
+ 
 </body>
 </html>
