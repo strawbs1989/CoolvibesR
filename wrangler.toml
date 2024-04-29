@@ -2,7 +2,7 @@ name = "coolvibes"
 pages_build_output_dir = "/main"
 [[kv_namespaces]]
 binding = "KV"
-id = "574f7e0b3710496ebd90364a51f4f026"
+id = "9fd4d9c6-a443-421e-ac7a-31238a652a8b"
 
 [vars]
 API_KEY = "1370203d08c8ff9d2f2b5dea27e3f76ecd058"
