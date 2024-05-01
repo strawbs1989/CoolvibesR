@@ -6,47 +6,27 @@
 	<meta http-equiv="Content-Security-Policy" content="default-src https:">
     <title>Coolvibez-Reloaded</title>
     <!-- Include Bootstrap CSS -->
-	
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/_reboot.css">
 	<link rel="stylesheet" href="https://coolvibes-reloaded.com/css/styles1.css">
-</head>	
-	
-	
-
-	
-
+</head>
 
 <body>
-
-
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	  <div class="col-md-4 col-md-push-4 col-sm-4 col-sm-push-4 logo text-center">
-      <a><div class="hidden-xs">	<img src="https://coolvibes-reloaded.com/img/logo1.png" class="header-image" style="width:233px;height:153px;">
-</div></a>
-
- <!-- Display Current Song, Stream Title, and Station Time -->
-    <span class="cc_streaminfo" data-type="song" data-username="coolvibes">Loading ...</span>
-    
-
-<!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v19.0" nonce="FFJJDnZD"></script><div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="" data-action="" data-size="" data-share="false"></div>
-<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="" data-action="" data-size="" data-share="false"></div>
-                   
+        <div class="col-md-4 col-md-push-4 col-sm-4 col-sm-push-4 logo text-center">
+            <a href="#">
+                <div class="hidden-xs">
+                    <img src="https://coolvibes-reloaded.com/img/logo1.png" class="header-image" style="width:233px;height:153px;">
                 </div>
+            </a>
+            <!-- Display Current Song, Stream Title, and Station Time -->
+            <span class="cc_streaminfo" data-type="song" data-username="coolvibes">Loading ...</span>
+        </div>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-		<div style="text-align: center;">
-        
-
-
-</body>
-
-
-</div>
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
@@ -59,155 +39,143 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/tunein.html">Podcast</a>
                 </li>
-				<li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="/shop.html">Shop</a>
                 </li>
-				<li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="/schedule.html">Schedule</a>
                 </li>
-				<li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="trivia/index.html">Trivia</a>
                 </li>
             </ul>
         </div>
     </nav>
     
-  
     <!-- Hero Section -->
     <section class="jumbotron text-center">
         <center>
             <img src="https://coolvibes-reloaded.com/img/slide1.png" width="504" height="436">
         </center>
         <audio id="myAudio">
-  <source src="http://boogie.vside-radio.com:8406/stream" type="audio/mpeg">
-  This HTML5 player is not supported by your browser
-</audio>
-<button class="btn btn-primary btn-lg" onclick="aud_play_pause()">Tunein</button>
+            <source src="http://boogie.vside-radio.com:8406/stream" type="audio/mpeg">
+            This HTML5 player is not supported by your browser
+        </audio></source>
+        <button class="btn btn-primary btn-lg" onclick="aud_play_pause()">Tunein</button>
 		
 		<script>
-function aud_play_pause() {
- var myAudio = document.getElementById("myAudio");
- if (myAudio.paused) {
-   myAudio.play();
- } else {
-   myAudio.pause();
- }
-}
-</script>
+            function aud_play_pause() {
+                var myAudio = document.getElementById("myAudio");
+                if (myAudio.paused) {
+                    myAudio.play();
+                } else {
+                    myAudio.pause();
+                }
+            }
+        </script>
     </section>
 	
-	
-
     <!-- Trending Artists Section -->
     <section class="container my-5">
         <h2>Trending Artists</h2>
         <div class="row">
             <!-- Cards for Trending Artists -->
-            <div class="row">
             <div class="col-md-4">
                 <div class="card">
                     <img src="unsignedimg/Mask.jpg" class="card-img-top" height="123" width="210">
                     <div class="card-body">
                         <h5 class="card-title">Mask</h5>
-                        <p class="card-text">“Mask” is a song about reflecting on your childhood and the family issues 
-	  within, and as an adult looking back and questioning the reasons why.</p>
-                        
+                        <p class="card-text">“Mask” is a song about reflecting on your childhood and the family issues within, and as an adult looking back and questioning the reasons why.</p>
                     </div>
                 </div>
             </div>
-			<br>
-			<br>
-        </div>
-		
-		<div class="col-md-4">
+
+            <div class="col-md-4">
                 <div class="card">
                     <img src="unsignedimg/ComeTogether.jpg" class="card-img-top" height="123" width="210">
                     <div class="card-body">
                         <h5 class="card-title">Lives</h5>
-                        <p class="card-text">UK solo-artist LiVES (aka Peter Chisholm) was the singer & guitarist with cult UK rock duo The Sea (along with his brother Alex on drums), </p>
-                        
+                        <p class="card-text">UK solo-artist LiVES (aka Peter Chisholm) was the singer & guitarist with cult UK rock duo The Sea (along with his brother Alex on drums).</p>
                     </div>
                 </div>
             </div>
-			
-			<div class="col-md-4">
+
+            <div class="col-md-4">
                 <div class="card">
                     <img src="unsignedimg/StevieRiks.png" class="card-img-top" height="123" width="210">
                     <div class="card-body">
                         <h5 class="card-title">StevieRiks</h5>
                         <p class="card-text">Stevie Riks is a much loved comedian and entertainer who impersonates celebrities.</p>
-                        
                     </div>
-					
                 </div>
-				
             </div>
-			
-			<div class="col-md-4">
-                <div class="card">
-                    <img src="unsignedimg/Brathan Music.png" class="card-img-top" height="123" width="210">
-                    <div class="card-body">
-                        <h5 class="card-title">Brathan</h5>
-                        <p class="card-text">We Came Here to Have Fun by Cambo Copyright (C) 2024 Brathan Music. We Came Here to Have Fun Copyright (C) 2024 Brathan Music.</p>
-                        
-                    </div>
-					
-                </div>
-				
-            </div>
-			
-			<div class="col-md-4">
-                <div class="card">
-                    <img src="img/beau.jpg" class="card-img-top" height="123" width="210">
-                    <div class="card-body">
-                        <h5 class="card-title">Beau</h5>
-                        <p class="card-text"></p>
-                        
-                    </div>
-					
-                </div>
-				
-            </div>
-			
-			<div class="col-md-4">
-                <div class="card">
-                    <img src="img/fran.jpg" class="card-img-top" height="123" width="210">
-                    <div class="card-body">
-                        <h5 class="card-title">FRANCESCA</h5>
-                        <p class="card-text"></p>
-                        
-                    </div>
-					
-                </div>
-				
-            </div>
-			
-			<div class="col-md-4">
-                <div class="card">
-                    <img src="img/craig.jpg" class="card-img-top" height="123" width="210">
-                    <div class="card-body">
-                        <h5 class="card-title">Craig</h5>
-                        <p class="card-text"></p>
-                        
-                    </div>
-					
-                </div>
-				
-            </div>
-			
-			<div class="col-md-4">
-                <div class="card">
-                    <img src="img/fr4ankie.png" class="card-img-top" height="123" width="210">
-                    <div class="card-body">
-                        <h5 class="card-title">fr4ankie</h5>
-                        <p class="card-text">FR4NKIE (Formerly known as XP Burstgang) has earned 
-						international recognition for his contributions to the Grime scene</p>
-                        
-                    </div>
-					
-                </div>
-				
-            </div>
+
+            <div class="col-md-4">
+<div class="card">
+<img src="unsignedimg/ComeTogether.jpg" class="card-img-top" height="123" width="210">
+<div class="card-body">
+<h5 class="card-title">Lives</h5>
+<p class="card-text">UK solo-artist LiVES (aka Peter Chisholm) was the singer & guitarist with cult UK rock duo The Sea (along with his brother Alex on drums), </p>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card">
+<img src="unsignedimg/StevieRiks.png" class="card-img-top" height="123" width="210">
+<div class="card-body">
+<h5 class="card-title">StevieRiks</h5>
+<p class="card-text">Stevie Riks is a much loved comedian and entertainer who impersonates celebrities.</p>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card">
+<img src="unsignedimg/Brathan Music.png" class="card-img-top" height="123" width="210">
+<div class="card-body">
+<h5 class="card-title">Brathan</h5>
+<p class="card-text">We Came Here to Have Fun by Cambo Copyright (C) 2024 Brathan Music. We Came Here to Have Fun Copyright (C) 2024 Brathan Music.</p>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card">
+<img src="img/beau.jpg" class="card-img-top" height="123" width="210">
+<div class="card-body">
+<h5 class="card-title">Beau</h5>
+<p class="card-text"></p>
+          </div>
+      </div>
+   </div>
+<div class="col-md-4">
+<div class="card">
+<img src="img/fran.jpg" class="card-img-top" height="123" width="210">
+<div class="card-body">
+<h5 class="card-title">FRANCESCA</h5>
+<p class="card-text"></p>
+          </div>
+      </div>
+   </div>
+   
+<div class="col-md-4">
+<div class="card">
+<img src="img/craig.jpg" class="card-img-top" height="123" width="210">
+<div class="card-body">
+<h5 class="card-title">Craig</h5>
+<p class="card-text"></p>
+          </div>
+      </div>
+   </div>
+   
+<div class="col-md-4">
+<div class="card">
+<img src="img/fr4ankie.png" class="card-img-top" height="123" width="210">
+<div class="card-body">
+<h5 class="card-title">fr4ankie</h5>
+<p class="card-text">FR4NKIE (Formerly known as XP Burstgang) has earned
+international recognition for his contributions to the Grime scene</p>
+           </div>
+      </div>
+   </div>
         </div>
     </section>
 
@@ -225,17 +193,17 @@ function aud_play_pause() {
         <h2>Licence</h2>
         <div class="row">
             <!-- Cards for Licence -->
-            
             <div class="col-md-4">
                 <div class="card">
                     <img src="img/issa.jpg" class="card-img-top" height="123" width="210">
                     <div class="card-body">
                         <h5 class="card-title">ISSA</h5>
-                        
-                        
+                        <!-- Add any additional content here -->
                     </div>
                 </div>
             </div>
+
+            <!-- Add more licence cards here as needed -->
         </div>
     </section>
 
@@ -245,55 +213,52 @@ function aud_play_pause() {
         <div class="row">
             <!-- Cards for Featured Shows -->
             <div class="col-md-4">
-                <div class="card">
-                    <img src="img/logo.png"  class="card-img-top" height="123" width="210">
-                    <div class="card-body">
-                        <h5 class="card-title">Strawbs</h5>
-                        <p class="card-text">Strawbs Has His Request, Dance And Mix Show 
-						Every Thursday And Sunday 9pm - 10pm</p>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="img/kayley.png" class="card-img-top" height="123" width="210">
-                    <div class="card-body">
-                        <h5 class="card-title">Manager</h5>
-						<h5 class="card-title">Kat</h5>
-                        <p class="card-text">kat has her shows between 8am - 10am usa time she 
-						does Dance Show And More</p>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="img/djs/Laura.png" class="card-img-top" height="123" width="210">
-                    <div class="card-body">
-                        <h5 class="card-title">Manager</h5>
-						<h5 class="card-title">Laura</h5>
-                        <p class="card-text">Laura Has Been Our Manager Since The days
-						Of Urban8 And Hottunez in Which She's Now Manager Coolvibes!!!</p>
-                        
-                    </div>
-                </div>
-            </div>
-			
-			<div class="col-md-4">
-                <div class="card">
-                    <img src="img/djs/monty.jpg" class="card-img-top" height="123" width="210">
-                    <div class="card-body">
-                        <h5 class="card-title">DJ</h5>
-						<h5 class="card-title">Monty</h5>
-                        <p class="card-text">I will announce Cool Vibes as a new affiliate during the May 11th show.
-						i'v just joined</p>
-                        
-                    </div>
-                </div>
-            </div>
+<div class="card">
+<img src="img/logo.png" class="card-img-top" height="123" width="210">
+<div class="card-body">
+<h5 class="card-title">Strawbs</h5>
+<p class="card-text">Strawbs Has His Request, Dance And Mix Show
+Every Thursday And Sunday 9pm - 10pm</p>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card">
+<img src="img/kayley.png" class="card-img-top" height="123" width="210">
+<div class="card-body">
+<h5 class="card-title">Manager</h5>
+<h5 class="card-title">Kat</h5>
+<p class="card-text">kat has her shows between 8am - 10am usa time she
+does Dance Show And More</p>
+          </div>
+       </div>
+     </div>
+<div class="col-md-4">
+<div class="card">
+<img src="img/djs/Laura.png" class="card-img-top" height="123" width="210">
+<div class="card-body">
+<h5 class="card-title">Manager</h5>
+<h5 class="card-title">Laura</h5>
+<p class="card-text">Laura Has Been Our Manager Since The days
+Of Urban8 And Hottunez in Which She's Now Manager Coolvibes!!!</p>
+     </div>
         </div>
-        
+     </div>
+<div class="col-md-4">
+<div class="card">
+<img src="img/djs/monty.jpg" class="card-img-top" height="123" width="210">
+<div class="card-body">
+<h5 class="card-title">DJ</h5>
+<h5 class="card-title">Monty</h5>
+<p class="card-text">I will announce Cool Vibes as a new affiliate during the May 11th show.
+i'v just joined</p>
+       </div>
+         </div>
+     </div>
+</div>
+
+            <!-- Add more featured shows cards here as needed -->
+        </div>
     </section>
 
     <!-- Footer -->
@@ -301,29 +266,26 @@ function aud_play_pause() {
         <div class="container">
             <div class="row text-center">
                 <div class="col-md-4 smed">
-                    <a href="https://www.facebook.com/coolvibesuk/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://twitter.com/CoolVibesRadio" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/coolvibesreloaded/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/coolvibesuk/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/CoolVibesRadio" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/coolvibesreloaded/" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
                 <div class="col-md-4">
                     <p class="audio-links music">
                         <center>
-                            <p>ways of tunein in</p>
+                            <p>Ways of Tunein in</p>
                         </center>
                         <center>
-                            <p>Download the Get Me Radio! Roku TV App from <a href="https://channelstore.roku.com/en-gb/details/b97490a8fb5758527be0396e43422e42/get-me-radio">here</a> and then search for Coolvibes Radio.
+                            <p>Download the Get Me Radio! Roku TV App from <a href="https://channelstore.roku.com/en-gb/details/b97490a8fb5758527be0396e43422e42/get-me-radio">here</a> and then search for Coolvibes Radio.</p>
                         </center>
-                    </p>
-                    <center>
-                        <p>Download the Get Me Radio! Android App <a href="https://play.google.com/store/apps/details?id=com.getmeradio.gmr">from here</a> and search for Coolvibes Radio on our Mobile App.
-                    </center>
+                        <center>
+                            <p>Download the Get Me Radio! Android App <a href="https://play.google.com/store/apps/details?id=com.getmeradio.gmr">from here</a> and search for Coolvibes Radio on our Mobile App.</p>
+                        </center>
                     </p>
                 </div>
                 <div class="col-md-4">
                     <p class="text-light copy"> Copyright©Coolvibez 2022 | 2024 </p>
-                </div>
-                <div class="col-md-4">
-                    <a class="" href="#"><img src="/favicon.png"></a>
+                    <a href="#"><img src="/favicon.png"></a>
                 </div>
             </div>
         </div>
@@ -333,10 +295,7 @@ function aud_play_pause() {
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<!-- Include Now Playing -->
-	<script language="javascript" type="text/javascript" src="https://boogie.vside-radio.com/system/streaminfo.js"></script>
-
- 
+    <!-- Include Now Playing -->
+    <script language="javascript" type="text/javascript" src="https://boogie.vside-radio.com/system/streaminfo.js"></script>
 </body>
-</head>
 </html>
