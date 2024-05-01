@@ -1,1 +1,6 @@
-coolvibes-reloaded.com
+$ echo 'coolvibes-reloaded.com' > CNAME
+$ git add .
+$ git commit -m 'Add a custom domain'
+...
+$ git push
+...
