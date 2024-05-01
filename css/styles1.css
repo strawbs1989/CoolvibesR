@@ -12,21 +12,6 @@ body {
 	
 }
 
-.header-image {
-    margin-top: 10px;
-}   height: 80px;
-
-.c-logo {
-	width: 100%;
-    max-height: 150px;
-    display: inline-block;
-    vertical-align: middle;
-    background: url(https://coolvibes-reloaded.com/img/favicon.png) left center no-repeat;
-    background-size: contain;
-    margin-top: 1.25rem;
-    margin-bottom: 1.25rem;
-}
-
 .bg-primary {
     background: linear-gradient(to bottom, #000000 0%, #ff3399 100%);
 	
@@ -99,6 +84,7 @@ footer {
 
     .header-image {
         margin-top: 10px;
+		height: 90px;
     }
 }
 
