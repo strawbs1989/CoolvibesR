@@ -64,7 +64,29 @@ Stream title: <span class="cc_streaminfo" data-type="title" data-username="coolv
         <center>
             <img src="https://coolvibes-reloaded.com/img/slide1.png" width="504" height="436">
         </center>
-        <div class="cc_player" data-username="coolvibes" data-size="sm" data-style="light">Loading ...</div>
+        <button id="ASong" onClick="playPause()">
+  <audio
+    src="http://boogie.vside-radio.com:8406/stream"
+    autoplay
+    loop
+  ></audio>
+  Song
+</button>
+
+<script>
+  var aud = document.getElementById("ASong").children[0];
+  var isPlaying = false;
+  aud.pause();
+
+  function playPause() {
+    if (isPlaying) {
+      aud.pause();
+    } else {
+      aud.play();
+    }
+    isPlaying = !isPlaying;
+  }
+</script>
 
 		
 		
