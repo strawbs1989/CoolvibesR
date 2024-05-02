@@ -8,7 +8,7 @@
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/styles1.css">
-	<script src="https://coolvibes-reloaded.com/audio.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="css/player.css">
 	
 </head>
 
@@ -62,22 +62,30 @@ Stream title: <span class="cc_streaminfo" data-type="title" data-username="coolv
         <center>
             <img src="https://coolvibes-reloaded.com/img/slide1.png" width="504" height="436">
         </center>
-        <audio id="myAudio" src="http://boogie.vside-radio.com:8406/stream" type="audio/mpeg">
-    This HTML5 player is not supported by your browser
-</audio>
-<button class="btn btn-primary btn-lg" onclick="aud_play_pause()">Tunein</button>
+        <button id="ASong" onClick="playPause()">
+  <audio
+    src="http://boogie.vside-radio.com:8406/stream"
+    autoplay
+    loop
+  ></audio>
+  Song
+</button>
 
 <script>
-    var audio = document.getElementById("myAudio");
+  var aud = document.getElementById("ASong").children[0];
+  var isPlaying = false;
+  aud.pause();
 
-    function aud_play_pause() {
-        if (audio.paused) {
-            audio.play();
-        } else {
-            audio.pause();
-        }
+  function playPause() {
+    if (isPlaying) {
+      aud.pause();
+    } else {
+      aud.play();
     }
+    isPlaying = !isPlaying;
+  }
 </script>
+
 		
 		
     </section>
