@@ -12,13 +12,11 @@ body {
 	
 }
 
-.section {
-	display: block;
-	width: 1000px;
-	height: 100px;
-	background: grey;
-	
-}
+.grey-background {
+     background-color: #f8f9fa; 
+     padding: 20px; 
+     margin-bottom: 30px; 
+        }
 
 .bg-primary {
     background: linear-gradient(to bottom, #000000 0%, #ff3399 100%);
@@ -40,8 +38,8 @@ body {
 .card {
     margin-bottom: 20px;
 	background-color: transparent;
-	border-color: white;
-	color: white;
+	border-color: black;
+	color: #501eaf;
 	
 }
 
