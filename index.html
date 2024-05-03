@@ -7,9 +7,16 @@
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/styles1.css">
+    <style>
+        /* Add custom styles for the grey background sections */
+        .grey-background {
+            background-color: #f8f9fa; /* Adjust the color as needed */
+            padding: 20px; /* Adjust padding as needed */
+            margin-bottom: 30px; /* Adjust margin as needed */
+        }
+    </style>
 </head>
 <body>
-
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="col-md-4 col-md-push-4 col-sm-4 col-sm-push-4 logo text-center">
@@ -18,11 +25,7 @@
                     <img src="img/favicon.png" class="header-image" width="90px" height="90px">
                 </div>
             </a>
-            <!-- Display StreamInfo -->
-            <p>Current song: <a href="https://boogie.vside-radio.com/tunein/coolvibes.pls" class="cc_streaminfo" data-type="song" data-username="coolvibes">Loading ...</a><br />
-Stream title: <span class="cc_streaminfo" data-type="title" data-username="coolvibes"></span><br />
-
-</p>
+            
 			
         </div>
 
@@ -53,41 +56,30 @@ Stream title: <span class="cc_streaminfo" data-type="title" data-username="coolv
             </ul>
         </div>
     </nav>
-    
+
     <!-- Hero Section -->
-    <section class="jumbotron text-center">
-        <center>
+    <center>
             <img src="https://coolvibes-reloaded.com/img/slide1.png" width="504" height="436">
         </center>
-        </section>
-		
-<!-- Custom Facebook Like Button Section -->
-<section>
+
+    <!-- Custom Facebook Like Button Section -->
     <center><button id="custom-like-button" class="btn btn-primary">
         Like Coolvibes on Facebook
     </button></center>
-</section>
-<!-- Audio Player Section -->
-<section>
-<center><audio>
+
+    <!-- Audio Player Section -->
+    <center><audio>
     <source src="https://144.76.182.36:8058/stream">
     Your browser does not support the audio element.
 </audio></center>
-</section>
-<!-- Audio Player -->
 
-
-
-		
-		
- 
-	
     <!-- Trending Artists Section -->
-    <section class="container my-5">
-        <h2>Trending Artists</h2>
-        <div class="row">
-            <!-- Cards for Trending Artists -->
-            <div class="col-md-4">
+    <section class="grey-background">
+        <div class="container">
+            <h2>Trending Artists</h2>
+            <div class="row">
+                <!-- Cards for Trending Artists -->
+                <div class="col-md-4">
                 <div class="card">
                     <img src="unsignedimg/Mask.jpg" class="card-img-top" height="123" width="210">
                     <div class="card-body">
@@ -184,42 +176,27 @@ international recognition for his contributions to the Grime scene</p>
       </div>
    </div>
         </div>
+            </div>
+        </div>
     </section>
 
     <!-- RadRequests Section -->
-    <section>
-        <br>
-        <br>
-        <center><a class="btn btn-outline-success" href="https://coolvibes-reloaded.com/req" role="button">RadRequests</a></center>
-        <br>
-        <br>
-    </section>
-
-    <!-- Licence Section -->
-    <section class="container my-5">
-        <h2>Licence</h2>
-        <div class="row">
-            <!-- Cards for Licence -->
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="img/issa.jpg" class="card-img-top" height="123" width="210">
-                    <div class="card-body">
-                        <h5 class="card-title">ISSA</h5>
-                        <!-- Add any additional content here -->
-                    </div>
-                </div>
+    <section class="grey-background">
+        <div class="container">
+            <h2>RadRequests</h2>
+            <div class="row">
+                <!-- Add your RadRequests content here -->
+                <center><a class="btn btn-outline-success" href="https://coolvibes-reloaded.com/req" role="button">RadRequests</a></center>
             </div>
-
-            <!-- Add more licence cards here as needed -->
         </div>
     </section>
 
     <!-- Featured Shows Section -->
-    <section class="container my-5">
-        <h2>Featured Shows</h2>
-        <div class="row">
-            <!-- Cards for Featured Shows -->
-            <div class="col-md-4">
+    <section class="grey-background">
+        <div class="container">
+            <h2>Featured Shows</h2>
+            <div class="row">
+                <div class="col-md-4">
 <div class="card">
 <img src="img/favicon.png" class="card-img-top" height="123" width="210">
 <div class="card-body">
@@ -263,8 +240,7 @@ i'v just joined</p>
          </div>
      </div>
 </div>
-
-            <!-- Add more featured shows cards here as needed -->
+            </div>
         </div>
     </section>
 
@@ -312,8 +288,5 @@ i'v just joined</p>
             });
         });
     </script>
-
-	
-	
 </body>
 </html>
