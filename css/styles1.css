@@ -20,13 +20,7 @@ body {
 	
 }
 
-.o-content-block {
-    margin-bottom: 1.25rem;
-    background: #000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 1.25rem;
-    border-radius: 4px;
-}
+
 
 .bg-primary {
     background: linear-gradient(to bottom, #000000 0%, #ff3399 100%);
