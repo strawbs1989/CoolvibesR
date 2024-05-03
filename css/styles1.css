@@ -1,7 +1,7 @@
 /* Global Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+    background-color: #000;
     color: #343a40;
 }
 
@@ -12,7 +12,13 @@ body {
 	
 }
 
-
+.section {
+	display: block;
+	width: 1000px;
+	height: 100px;
+	background: grey;
+	
+}
 
 .bg-primary {
     background: linear-gradient(to bottom, #000000 0%, #ff3399 100%);
@@ -34,8 +40,8 @@ body {
 .card {
     margin-bottom: 20px;
 	background-color: transparent;
-	border-color: black;
-	color: #501eaf;
+	border-color: white;
+	color: white;
 	
 }
 
