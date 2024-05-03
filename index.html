@@ -60,8 +60,10 @@ Stream title: <span class="cc_streaminfo" data-type="title" data-username="coolv
             <img src="https://coolvibes-reloaded.com/img/slide1.png" width="504" height="436">
         </center>
  
-<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffacebook.com%2Fcoolvibesuk&width=450&layout=button_count&action=like&size=large&share=false&height=35&appId=" width="450" height="35" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-
+<!-- Custom Facebook Like Button Section -->
+    <button id="custom-like-button" class="btn btn-primary">
+        Like Coolvibes on Facebook
+    </button>
 
 <!-- Audio Player Section -->
 <!-- HTML5 Player -->
@@ -298,7 +300,16 @@ i'v just joined</p>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	
+	<!-- Custom JavaScript for Facebook Like Button -->
+    <script>
+        $(document).ready(function() {
+            $('#custom-like-button').click(function() {
+                // Handle like action using Facebook's API
+                // You need to implement this functionality using Facebook API
+                alert('Like action will be handled here');
+            });
+        });
+    </script>
 
 	
 	
