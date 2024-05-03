@@ -12,6 +12,12 @@ body {
 	
 }
 
+.audio-player {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
 .bg-primary {
     background: linear-gradient(to bottom, #000000 0%, #ff3399 100%);
 	
