@@ -12,7 +12,9 @@ body {
 	
 }
 
-
+.content-block {
+	background-color: #000;
+}
 
 .bg-primary {
     background: linear-gradient(to bottom, #000000 0%, #ff3399 100%);
