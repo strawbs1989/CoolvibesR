@@ -52,6 +52,34 @@ h2 {
 	
 }
 
+/* Request Content */
+.content-block {
+    width: 300px; /* Adjust width as needed */
+    border: 1px solid #ccc; /* Optional: Add border for visual appeal */
+    padding: 10px; /* Optional: Add padding for spacing */
+    margin-bottom: 20px; /* Optional: Add margin to separate blocks */
+	background-color: #000;
+}
+
+.content-block img {
+    max-width: 100%;
+    height: auto;
+}
+
+.content-block h2 {
+    margin-top: 0;
+}
+
+.content-block p {
+    margin-bottom: 0;
+}
+
+.content-block a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
 /* Footer Styles */
 footer {
     background: linear-gradient(to top, #000000 0%, #ff3399 100%);
