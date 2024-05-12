@@ -1,37 +1,28 @@
-/* Remove default audio player styles */
+/* Style the audio player */
 audio {
-  display: block;
   width: 100%;
-  margin-bottom: 10px;
 }
 
-/* Style the audio player controls */
-audio::-webkit-media-controls-panel {
-  background-color: #f8f9fa; /* Light gray background */
-  color: #212529; /* Dark text color */
-  border-radius: 5px; /* Rounded corners */
-  padding: 10px; /* Add padding */
+/* Hide default controls for browsers that support the audio element */
+audio::-webkit-media-controls-panel,
+audio::-webkit-media-controls {
+  display: none !important;
 }
 
-audio::-webkit-media-controls-play-button {
-  background-color: #007bff; /* Blue play button */
+/* Style the play/pause button */
+audio + button {
+  display: block;
+  width: 100px;
+  height: 40px;
+  margin: 10px auto;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-audio::-webkit-media-controls-volume-slider {
-  width: 80%; /* Set volume slider width */
-}
-
-audio::-webkit-media-controls-timeline {
-  height: 5px; /* Set timeline height */
-  background-color: #ccc; /* Gray background */
-}
-
-audio::-webkit-media-controls-current-time-display,
-audio::-webkit-media-controls-time-remaining-display {
-  font-size: 12px; /* Set time display font size */
-}
-
-/* Hide download button */
-audio::-webkit-media-controls-enclosure {
-  display: none;
+/* Style the play/pause button on hover */
+audio + button:hover {
+  background-color: #0056b3;
 }
