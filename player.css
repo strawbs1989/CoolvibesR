@@ -1,28 +1,17 @@
 /* Style the audio player */
 audio {
   width: 100%;
+  margin-bottom: 10px;
 }
 
-/* Hide default controls for browsers that support the audio element */
-audio::-webkit-media-controls-panel,
-audio::-webkit-media-controls {
-  display: none !important;
-}
-
-/* Style the play/pause button */
-audio + button {
+/* Style the audio player source */
+audio source {
   display: block;
-  width: 100px;
-  height: 40px;
-  margin: 10px auto;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
-/* Style the play/pause button on hover */
-audio + button:hover {
-  background-color: #0056b3;
+/* Style the audio player when controls are not supported */
+audio + p {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
 }
