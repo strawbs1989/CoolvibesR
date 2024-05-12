@@ -1,17 +1,7 @@
-/* Style the audio player */
-audio {
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-/* Style the audio player source */
+/* Reset default margins and paddings */
+audio,
 audio source {
-  display: block;
+  margin: 0;
+  padding: 0;
 }
 
-/* Style the audio player when controls are not supported */
-audio + p {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  color: #333;
-}
