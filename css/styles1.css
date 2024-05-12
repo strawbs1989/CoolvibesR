@@ -61,6 +61,15 @@ h2 {
 	background-color: #000;
 }
 
+/* Social Content */
+.social-icons.top {
+    position: absolute;
+    top: 20px; /* Adjust the top position as needed */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Move left by half of its width to center it */
+}
+
+
 .content-block img {
     max-width: 100%;
     height: auto;
