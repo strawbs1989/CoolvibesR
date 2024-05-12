@@ -67,7 +67,9 @@ h2 {
     top: 20px; /* Adjust the top position as needed */
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Move left by half of its width to center it */
+    z-index: 999; /* Ensure the icon appears on top of other content */
 }
+
 
 
 .content-block img {
