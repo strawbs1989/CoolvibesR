@@ -1,4 +1,37 @@
-#play-pause-button{
-  font-size: 50px;
-  cursor: pointer;
+/* Remove default audio player styles */
+audio {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Style the audio player controls */
+audio::-webkit-media-controls-panel {
+  background-color: #f8f9fa; /* Light gray background */
+  color: #212529; /* Dark text color */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px; /* Add padding */
+}
+
+audio::-webkit-media-controls-play-button {
+  background-color: #007bff; /* Blue play button */
+}
+
+audio::-webkit-media-controls-volume-slider {
+  width: 80%; /* Set volume slider width */
+}
+
+audio::-webkit-media-controls-timeline {
+  height: 5px; /* Set timeline height */
+  background-color: #ccc; /* Gray background */
+}
+
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+  font-size: 12px; /* Set time display font size */
+}
+
+/* Hide download button */
+audio::-webkit-media-controls-enclosure {
+  display: none;
 }
