@@ -69,6 +69,14 @@ h2 {
     transform: translateX(-50%); /* Move left by half of its width to center it */
     z-index: 999; /* Ensure the icon appears on top of other content */
 }
+.social-icons-container {
+    text-align: center; /* Center align the social icons */
+}
+
+.social-icons {
+    display: inline-block; /* Display the icons next to each other */
+    margin: 0 10px; /* Add margin between the icons */
+}
 
 
 
