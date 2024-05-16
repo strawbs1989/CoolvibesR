@@ -1,156 +1,136 @@
-<!DOCTYPE html>
+
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coolvibez-Reloaded</title>
-    <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/styles1.css">
-	<link rel="stylesheet" type="text/css" href="player.css">
-
+    <title>Coolvibes-Reloaded</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles1.css">
+	<link rel="stylesheet" href="css/card.css">
+    
 </head>
+
 <body>
 
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="col-md-4 col-md-push-4 col-sm-4 col-sm-push-4 logo text-center">
-            <a class="navbar-brand" >
-                <div class="hide-xs">
-                    <img src="img/favicon.png" class="header-image" width="90px" height="90px">
-                </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="img/favicon.png" class="header-image" width="90" height="90" alt="Logo">
             </a>
-            
-			
-        </div>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/birthday.html">Birthday</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/tunein.html">Podcast</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/shop.html">Shop</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/schedule.html">Schedule</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/trivia.html">Trivia</a>
-                </li>
-            </ul>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+				<li class="nav-item active">
+                        <a class="nav-link" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/trivia.html">Trivia</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shop.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/birthday.html">Birthday</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">DJs</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
-    
-    <!-- Centered Image with Facebook Icon -->
-<section class="jumbotron text-center">
-    <div class="social-icons-container">
-    <div class="social-icons center">
-        <a href="https://facebook.com/coolvibesuk" target="_blank">
-            <img src="https://coolvibes-reloaded.com/socialicons/facebook.jpeg" alt="Facebook" width="50" height="50" />
-        </a>
-    </div>
-    <div class="social-icons center">
-        <a href="https://twitter.com/CoolVibesRadio" target="_blank">
-            <img src="https://coolvibes-reloaded.com/socialicons/twitter.jpeg" alt="Twitter" width="50" height="50" />
-        </a>
-    </div>
-</div>
 
-	
-    <img src="https://coolvibes-reloaded.com/img/slide1.png" width="504" height="436">
-</section>
-
-
-		
-<section>
-    <center>
-        <button id="custom-like-button" class="btn btn-primary">
-            Like Coolvibes on Facebook
-        </button>
-    </center>
-</section>
-
-<section>
-    <center>
-        <audio controls>
-            <source src="http://boogie.vside-radio.com:8406/stream" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </center>
-</section>
-
-
-
-
-		
-		
- 
-	
-    <!-- Trending Artists Section -->
-    <section class="container my-5">
-        <h2>Trending Artists</h2>
+    <!-- Jumbotron -->
+    <section class="jumbotron jumbotron-fluid bg-primary text-white">
+        <div class="container">
+            <center><img src="https://coolvibes-reloaded.com/img/slide1.png" width="504" height="436"
+                    class="img-fluid" alt="Slide Image"></center>
+					<center><a href="https://coolvibes-reloaded.com/schedule.html" target="_blank">DJ Schedule</a></center>
+            <center>
+                <audio controls>
+                    <source src="http://boogie.vside-radio.com:8406/stream" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </center>
+        </div>
+    </section>
+    <!-- Request Section -->
+	<center><iframe src="/requests/display_requests.php"></iframe></center>
+    <!-- Social Icons -->
+    <section class="container mb-4">
+        <div class="text-center">
+            <a href="https://facebook.com/coolvibesuk" target="_blank" class="btn btn-primary mr-2"><i
+                    class="fab fa-facebook-f"></i> Like</a>
+            <a href="https://twitter.com/CoolVibesRadio" target="_blank" class="btn btn-info"><i
+                    class="fab fa-twitter"></i> Tweet</a>
+					<a href="https://coolvibes-reloaded.com/req" target="_blank" class="btn btn-info"><i
+                    class="fa fa-headphones"></i> RadRequests</a>
+					
+					
+        </div>
+    </section>
+<!-- Feature Boxes -->
+    <section class="container mb-4">
         <div class="row">
-            <!-- Cards for Trending Artists -->
+            
             <div class="col-md-4">
-                <div class="card">
-                    <img src="unsignedimg/Mask.jpg" class="card-img-top" height="123" width="210">
-                    <div class="card-body">
-                        <h5 class="card-title">Mask</h5>
-                        <p class="card-text">“Mask” is a song about reflecting on your childhood and the family issues within, and as an adult looking back and questioning the reasons why.</p>
-                    </div>
+                <div class="feature-box">
+                    <center><a href="https://coolvibes-reloaded.com/fun" target="_blank"><i
+                    class="fa fa-headphones"></i> listener stories</center></a>
+					
                 </div>
             </div>
-
             <div class="col-md-4">
-                <div class="card">
-                    <img src="unsignedimg/ComeTogether.jpg" class="card-img-top" height="123" width="210">
-                    <div class="card-body">
-                        <h5 class="card-title">Lives</h5>
-                        <p class="card-text">UK solo-artist LiVES (aka Peter Chisholm) was the singer & guitarist with cult UK rock duo The Sea (along with his brother Alex on drums).</p>
-                    </div>
+                
+            </div>
+        </div>
+    </section>
+    <!-- Trending Artists Section -->
+    <section class="container">
+    <h2 class="text-center mb-4">Trending Artists</h2>
+    <div class="row">
+        <!-- Cards for Trending Artists -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="unsignedimg/Mask.jpg" class="card-img-top mx-auto d-block" height="123" width="210">
+                <div class="card-body">
+                    <h5 class="card-title">Mask</h5>
+                    <p class="card-text">“Mask” is a song about reflecting on your childhood and the family
+                        issues within, and as an adult looking back and questioning the reasons why.</p>
                 </div>
             </div>
-
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="unsignedimg/StevieRiks.png" class="card-img-top" height="123" width="210">
-                    <div class="card-body">
-                        <h5 class="card-title">StevieRiks</h5>
-                        <p class="card-text">Stevie Riks is a much loved comedian and entertainer who impersonates celebrities.</p>
-                    </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="unsignedimg/ComeTogether.jpg" class="card-img-top mx-auto d-block" height="40" width="210">
+                <div class="card-body">
+                    <h5 class="card-title">Lives</h5>
+                    <p class="card-text">UK solo-artist LiVES (aka Peter Chisholm) was the singer & guitarist with cult UK rock duo The Sea (along with his brother Alex on drums).</p>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-4">
-<div class="card">
-<img src="unsignedimg/ComeTogether.jpg" class="card-img-top" height="123" width="210">
-<div class="card-body">
-<h5 class="card-title">Lives</h5>
-<p class="card-text">UK solo-artist LiVES (aka Peter Chisholm) was the singer & guitarist with cult UK rock duo The Sea (along with his brother Alex on drums), </p>
-</div>
-</div>
-</div>
-<div class="col-md-4">
-<div class="card">
-<img src="unsignedimg/StevieRiks.png" class="card-img-top" height="123" width="210">
-<div class="card-body">
-<h5 class="card-title">StevieRiks</h5>
-<p class="card-text">Stevie Riks is a much loved comedian and entertainer who impersonates celebrities.</p>
-</div>
-</div>
-</div>
-<div class="col-md-4">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="unsignedimg/StevieRiks.png" class="card-img-top mx-auto d-block" height="123" width="210">
+                <div class="card-body">
+                    <h5 class="card-title">StevieRiks</h5>
+                    <p class="card-text">Stevie Riks is a much loved comedian and entertainer who impersonates celebrities.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
 <div class="card">
 <img src="unsignedimg/Brathan Music.png" class="card-img-top" height="123" width="210">
 <div class="card-body">
@@ -199,117 +179,66 @@ international recognition for his contributions to the Grime scene</p>
       </div>
    </div>
         </div>
-    </section>
-    <center><h2>RadRequests</h2></center>
-    <!-- RadRequests Section -->
-    <center><div class="content-block">
-	<p style="color:pink;"> Request & Shoutout</p>
-    <a href="https://coolvibes-reloaded.com/req" target="_blank">
-        <img src="images/request.jpeg" alt="Image" height="140" width="140">
-            
-			</a>
-			</div></center>
-            
-	
+        </div>
 
-    <!-- Licence Section -->
-    <section class="container my-5">
-        <h2>Licence</h2>
-        <div class="row">
-            <!-- Cards for Licence -->
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="img/issa.jpg" class="card-img-top" height="123" width="210">
-                    <div class="card-body">
-                        <h5 class="card-title">ISSA</h5>
-                        <!-- Add any additional content here -->
-                    </div>
+    </div>
+</section>
+
+	
+	<!-- Staff Section -->
+<section class="container my-5">
+    <h2 class="text-center">Staff</h2>
+    <div class="row">
+        <!-- Cards for Staff -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="img/favicon.png" class="card-img-top" height="80" width="40">
+                <div class="card-body">
+                    <h5 class="card-title">Strawbs - Owner</h5>
+                    <p class="card-text">Strawbs Has His Request, Dance And Mix Show Every Thursday And Sunday 9pm - 10pm</p>
                 </div>
             </div>
-
-            <!-- Add more licence cards here as needed -->
         </div>
-    </section>
-
-    <!-- Featured Shows Section -->
-    <section class="container my-5">
-        <h2>Featured Shows</h2>
-        <div class="row">
-            <!-- Cards for Featured Shows -->
-            <div class="col-md-4">
-<div class="card">
-<img src="img/favicon.png" class="card-img-top" height="123" width="210">
-<div class="card-body">
-<h5 class="card-title">Strawbs</h5>
-<p class="card-text">Strawbs Has His Request, Dance And Mix Show
-Every Thursday And Sunday 9pm - 10pm</p>
-</div>
-</div>
-</div>
-<div class="col-md-4">
-<div class="card">
-<img src="img/kayley.png" class="card-img-top" height="123" width="210">
-<div class="card-body">
-<h5 class="card-title">Manager</h5>
-<h5 class="card-title">Kat</h5>
-<p class="card-text">kat has her shows between 8am - 10am usa time she
-does Dance Show And More</p>
-          </div>
-       </div>
-     </div>
-<div class="col-md-4">
-<div class="card">
-<img src="img/djs/Laura.png" class="card-img-top" height="123" width="210">
-<div class="card-body">
-<h5 class="card-title">Manager</h5>
-<h5 class="card-title">Laura</h5>
-<p class="card-text">Laura Has Been Our Manager Since The days
-Of Urban8 And Hottunez in Which She's Now Manager Coolvibes!!!</p>
-     </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="img/kayley.png" class="card-img-top" height="80" width="140">
+                <div class="card-body">
+                    <h5 class="card-title">Kat Usa - Manager</h5>
+                    <p class="card-text">Kat has her shows between 8am - 10am USA time she does Dance Show And More</p>
+                </div>
+            </div>
         </div>
-     </div>
-<div class="col-md-4">
-<div class="card">
-<img src="img/djs/monty.jpg" class="card-img-top" height="123" width="210">
-<div class="card-body">
-<h5 class="card-title">DJ</h5>
-<h5 class="card-title">Monty</h5>
-<p class="card-text">I will announce Cool Vibes as a new affiliate during the May 11th show.
-i'v just joined</p>
-       </div>
-         </div>
-     </div>
-</div>
-
-            <!-- Add more featured shows cards here as needed -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="img/djs/Laura.png" class="card-img-top" height="80" width="40">
+                <div class="card-body">
+                    <h5 class="card-title">Laura Uk - Manager</h5>
+                    <p class="card-text">Laura Has Been Our Manager Since The days Of Urban8 And Hottunez in Which She's Now Manager Coolvibes!!!</p>
+                </div>
+            </div>
         </div>
-    </section>
+		</section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3">
+    <footer class="footer">
         <div class="container">
-            <div class="row text-center">
-                <div class="col-md-4 smed">
-                    <a href="https://www.facebook.com/coolvibesuk/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://twitter.com/CoolVibesRadio" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/coolvibesreloaded/" target="_blank"><i class="fab fa-instagram"></i></a>
-                </div>
+            <div class="row">
                 <div class="col-md-4">
-                    <p class="audio-links music">
-                        <center>
-                            <p>Ways of Tunein in</p>
-                        </center>
-                        <center>
-                            <p>Download the Get Me Radio! Roku TV App from <a href="https://channelstore.roku.com/en-gb/details/b97490a8fb5758527be0396e43422e42/get-me-radio">here</a> and then search for Coolvibes Radio.</p>
-                        </center>
-                        <center>
-                            <p>Download the Get Me Radio! Android App <a href="https://play.google.com/store/apps/details?id=com.getmeradio.gmr">from here</a> and search for Coolvibes Radio on our Mobile App.</p>
-                        </center>
-                    </p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/coolvibesuk/" target="_blank" class="footer-icons"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/CoolVibesRadio" target="_blank" class="footer-icons"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/coolvibesreloaded/" target="_blank" class="footer-icons"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
+                <div class="col-md-4 text-center">
+    <p class="footer-text">Ways of Tunein in</p>
+    <p>Download the Get Me Radio! Roku TV App from <a href="https://channelstore.roku.com/en-gb/details/b97490a8fb5758527be0396e43422e42/get-me-radio">here</a> and then search for Coolvibes Radio.</p>
+    <p>Download the Get Me Radio! Android App <a href="https://play.google.com/store/apps/details?id=com.getmeradio.gmr">from here</a> and search for Coolvibes Radio on our Mobile App.</p>
+</div>
+
                 <div class="col-md-4">
-                    <p class="text-light copy"> Copyright©Coolvibez 2022 | 2024 </p>
-                    <a href="#"><img src="/favicon.png"></a>
+                    <p class="footer-text">Copyright©Coolvibez 2022 | 2024</p>
+                    <a href="#"><img src="/favicon.png" alt="Logo" class="footer-icons"></a>
                 </div>
             </div>
         </div>
@@ -319,7 +248,7 @@ i'v just joined</p>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<!-- Custom JavaScript for Facebook Like Button -->
+    <!-- Custom JavaScript for Facebook Like Button -->
     <script>
         $(document).ready(function() {
             $('#custom-like-button').click(function() {
@@ -329,8 +258,6 @@ i'v just joined</p>
             });
         });
     </script>
-
-	
-	
 </body>
+
 </html>
