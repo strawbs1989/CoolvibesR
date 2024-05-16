@@ -1,6 +1,6 @@
 <?php
 // Read requests from the flat file
-$file = '/requests/requests.txt';
+$file = 'requests/requests.txt';
 $requests = file_get_contents($file);
 
 // Display requests
