@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html');
 // Read requests from the flat file
 $file = 'requests/requests.txt';
 $requests = file_get_contents($file);
