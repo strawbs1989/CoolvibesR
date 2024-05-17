@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Song Request Form</title>
+    <script>
+        function validateForm() {
+            const toField = document.getElementById('email');
+            const toValue = toField.value;
+
+            const lowercasePattern = /^[a-z]{4,8}$/;
+            if (!lowercasePattern.test(toValue)) {
+                alert("The 'To' field must be lowercase and 4-8 characters in length.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+<form action="success.php" method="post" onsubmit="return validateForm()">
+    <label for="from">From:</label><br>
+    <input type="text" name="from" id="from"><br>
+    
+    <label for="email">To:</label><br>
+    <input type="text" name="email" id="email"><br>
+    <p>To must be lowercase and 4-8 characters in length.</p>
+    
+    <label for="djs">Choose A DJ:</label><br>
+    <select name="djs" id="djs" required>
+        <option value="dj kat">Classic Kat</option>
+        <option value="dj strawbs">Strawbs</option>
+        <option value="dj dale">Dale</option>
+        <option value="dj jon">Jon</option>
+        <option value="dj simon">Simon</option>
+        <option value="dj twist">Christina</option>
+    </select><br><br>
+    
+    <label for="message">Message:</label><br>
+    <input type="text" name="message" id="message" required /><br>
+    
+    <label for="songrequest">Song Request:</label><br>
+    <input type="text" name="songrequest" placeholder="Ex: Plan B - She Said" id="songrequest" required /><br><br>
+    
+    <input type="hidden" name="redirect" value="https://coolvibes-reloaded.com/requests/test/success">
+    
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
+
