@@ -1,9 +1,5 @@
 
-<html>
-<head>
-    <title>Request Successful</title>
-</head>
-<body>
+
 
 <?php
     // Fetch form data
@@ -21,5 +17,3 @@
 <p>Message: <?php echo $message; ?></p>
 <p>Song Request: <?php echo $songRequest; ?></p>
 
-</body>
-</html>
