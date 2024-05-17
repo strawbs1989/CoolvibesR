@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html');
 // Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
