@@ -1,29 +1,26 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Song Request Form</title>
-    <script>
-        function validateForm() {
-            const toField = document.getElementById('email');
-            const toValue = toField.value;
-
-            const lowercasePattern = /^[a-z]{4,8}$/;
-            if (!lowercasePattern.test(toValue)) {
-                alert("The 'To' field must be lowercase and 4-8 characters in length.");
-                return false;
-            }
-            return true;
-        }
-    </script>
+<meta charset="UTF-8">
+	
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coolvibes | Requests</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles1.css">
+    <link rel="stylesheet" type="text/css" href="re/style.css">
 </head>
 <body>
 
-<form action="https://coolvibes-reloaded.com/re/success.php" method="post" onsubmit="return validateForm()">
+<form onsubmit="handleSubmit(event)">
     <label for="from">From:</label><br>
-    <input type="text" name="from" id="from"><br>
+    <input type="text" name="from" id="from" required><br>
     
     <label for="email">To:</label><br>
-    <input type="text" name="email" id="email"><br>
+    <input type="text" name="email" id="email" required><br>
     <p>To must be lowercase and 4-8 characters in length.</p>
     
     <label for="djs">Choose A DJ:</label><br>
@@ -42,11 +39,9 @@
     <label for="songrequest">Song Request:</label><br>
     <input type="text" name="songrequest" placeholder="Ex: Plan B - She Said" id="songrequest" required /><br><br>
     
-    
-    
     <button type="submit">Submit</button>
 </form>
 
+<script src="script.js"></script>
 </body>
 </html>
-
