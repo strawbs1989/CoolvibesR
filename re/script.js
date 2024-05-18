@@ -1,8 +1,12 @@
 function validateForm() {
-    const toField = document.getElementById('email');
+    const toField = document.getElementById('name');
     const toValue = toField.value;
 
-    
+    const lowercasePattern = /^[a-z]{4,8}$/;
+    if (!lowercasePattern.test(toValue)) {
+        alert("The 'To' field must be lowercase and 4-8 characters in length.");
+        return false;
+    }
     return true;
 }
 
@@ -40,7 +44,7 @@ async function handleSubmit(event) {
 
 async function fetchRequests() {
     try {
-        const response = await fetch('/re/request.json');
+        const response = await fetch('/re/requests.json');
         const requests = await response.json();
         const requestList = document.getElementById('requestList');
 
@@ -48,7 +52,7 @@ async function fetchRequests() {
 
         requests.forEach(request => {
             const listItem = document.createElement('li');
-            listItem.textContent = `From: ${request.from}, To: ${request.email}, DJ: ${request.djs}, Message: ${request.message}, Song: ${request.songrequest}`;
+            listItem.textContent = `From: ${request.from}, To: ${request.name}, DJ: ${request.djs}, Message: ${request.message}, Song: ${request.songrequest}`;
             requestList.appendChild(listItem);
         });
     } catch (error) {
