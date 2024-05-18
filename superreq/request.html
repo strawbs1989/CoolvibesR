@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>Requested Songs</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-	<script src="script.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="/superreq/style.css">
+	<script src="/superreq/script.js" defer></script>
 </head>
 <body>
 
@@ -13,7 +13,7 @@
 <script>
     async function fetchRequests() {
         try {
-            const response = await fetch('/re/request.json');
+            const response = await fetch('/superreq/request.json');
             const requests = await response.json();
             const requestList = document.getElementById('requestList');
 

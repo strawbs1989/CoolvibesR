@@ -23,7 +23,7 @@ async function handleSubmit(event) {
     const json = JSON.stringify(object);
 
     try {
-        const response = await fetch('/re/saverequest.php', {
+        const response = await fetch('/superreq/saverequest.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ async function handleSubmit(event) {
         });
 
         if (response.ok) {
-            window.location.href = '/re/success.html';
+            window.location.href = '/superreq/success.html';
         } else {
             alert('There was a problem with your submission. Please try again.');
         }
@@ -44,7 +44,7 @@ async function handleSubmit(event) {
 
 async function fetchRequests() {
     try {
-        const response = await fetch('/re/requests.json');
+        const response = await fetch('/superreq/requests.json');
         const requests = await response.json();
         const requestList = document.getElementById('requestList');
 
