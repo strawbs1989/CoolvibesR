@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coolvibes | Requests</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/re/style.css">
+</head>
+<body>
+<img src="https://coolvibes-reloaded.com/img/favicon.png" width="100px" height="100px">
+<center><form id="requestForm" onsubmit="handleSubmit(event)">
+    <label for="from">From:</label><br>
+    <input type="text" name="from" id="from" required><br>
+    
+    <label for="name">To:</label><br>
+    <input type="text" name="name" id="name" required><br>
+    <p>To must be lowercase and 4-8 characters in length.</p>
+    
+    <label for="djs">Choose A DJ:</label><br>
+    <select name="djs" id="djs" required>
+        <option value="dj kat">Classic Kat</option>
+        <option value="dj strawbs">Strawbs</option>
+        <option value="dj dale">Dale</option>
+        <option value="dj jon">Jon</option>
+        <option value="dj simon">Simon</option>
+        <option value="dj twist">Christina</option>
+    </select><br><br>
+    
+    <label for="message">Message:</label><br>
+    <input type="text" name="message" id="message" required /><br>
+    
+    <label for="songrequest">Song Request:</label><br>
+    <input type="text" name="songrequest" placeholder="Ex: Plan B - She Said" id="songrequest" required /><br><br>
+    
+    <button type="submit">Submit</button>
+</form></center>
+
+<h2>Current Song Requests</h2>
+<ul id="requestList"></ul>
+
+<script src="/re/script.js"></script>
+</body>
+</html>
