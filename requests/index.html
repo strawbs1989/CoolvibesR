@@ -7,8 +7,8 @@
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" rel="stylesheet">
-<link href="https://coolvibes-reloaded.com/requests/test/style.css" rel="stylesheet">
-<form action="https://api.web3forms.com/submit" method="POST" action="https://coolvibes-reloaded.com/requests/test/index.html">
+<link href="https://coolvibes-reloaded.com/requests/style.css" rel="stylesheet">
+<form action="https://api.web3forms.com/submit" method="POST" action="https://coolvibes-reloaded.com/requests/req.php">
 <input type="hidden" name="access_key" value="b2a9ce58-7ae1-41ee-9dac-cfddde70ae5d">
 <img src="https://coolvibes-reloaded.com/img/favicon.png" width="100px" height="100px">
  
@@ -33,7 +33,7 @@
   
   <br>
   <label for="text">To:</label><br>
-  <input type="text" name="to" id="to" pattern="[a-z]{4,8}" />
+  <input type="text" name="to" id="to" pattern="[a-z]{4,9}" />
   <p>To must be lowercase and 4-8 characters in length.</p>
   
   <br>
@@ -59,11 +59,10 @@
   <br><br>
 					
 					
-    <input type="hidden" name="redirect" value="https://coolvibes-reloaded.com/requests/test/success">
+    <input type="hidden" name="redirect" value="https://coolvibes-reloaded.com/requests/success">
     <button class class="g-recaptcha" 
         data-sitekey="6LcA63opAAAAANBsf6780sjjZwWU1Vijf38Xc5iG" 
         data-callback='onSubmit' data-action='submit'>Request It</button>
-		
 	    <script>
    function onSubmit(token) {
      document.getElementById("req").submit();
