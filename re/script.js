@@ -23,7 +23,7 @@ async function handleSubmit(event) {
     const json = JSON.stringify(object);
 
     try {
-        const response = await fetch('save_request.php', {
+        const response = await fetch('/re/saverequest.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ async function handleSubmit(event) {
         });
 
         if (response.ok) {
-            window.location.href = 'success.html';
+            window.location.href = '/re/success.html';
         } else {
             alert('There was a problem with your submission. Please try again.');
         }
@@ -42,7 +42,27 @@ async function handleSubmit(event) {
     }
 }
 
+async function fetchRequests() {
+    try {
+        const response = await fetch('/re/request.json');
+        const requests = await response.json();
+        const requestList = document.getElementById('requestList');
+
+        requestList.innerHTML = '';  // Clear existing content
+
+        requests.forEach(request => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `From: ${request.from}, To: ${request.email}, DJ: ${request.djs}, Message: ${request.message}, Song: ${request.songrequest}`;
+            requestList.appendChild(listItem);
+        });
+    } catch (error) {
+        console.error('Error fetching requests:', error);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
     form.addEventListener('submit', handleSubmit);
+
+    fetchRequests();  // Fetch requests when the page loads
 });
