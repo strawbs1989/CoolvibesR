@@ -44,7 +44,7 @@ async function handleSubmit(event) {
 
 async function fetchRequests() {
     try {
-        const response = await fetch('/re/request.json');
+        const response = await fetch('/re/requests.json');
         const requests = await response.json();
         const requestList = document.getElementById('requestList');
 
