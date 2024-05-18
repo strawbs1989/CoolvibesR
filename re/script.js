@@ -4,7 +4,7 @@ function validateForm() {
 
     ////////const lowercasePattern = /^[a-z]{4,8}$/;
     if (!lowercasePattern.test(toValue)) {
-        alert("The 'To' field must be lowercase and 4-8 characters in length.");
+        
         return false;
     }
     return true;
