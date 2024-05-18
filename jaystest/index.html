@@ -1,43 +1,20 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Song Request Form</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
+
 <body>
-    <img src="https://coolvibes-reloaded.com/img/favicon.png" width="100px" height="100px">
-    <center>
-        <form action="https://formspree.io/f/xbjekwdp" method="POST">
-            <label for="from">From:</label><br>
-            <input type="text" name="from" id="from" required><br>
-            
-            <label for="name">To:</label><br>
-            <input type="text" name="name" id="name" pattern="[a-z]{4,9}" required><br>
-            <p>To must be lowercase and 4-9 characters in length.</p>
-            
-            <label for="djs">Choose A DJ:</label><br>
-            <select name="djs" id="djs" required>
-                <option value="dj kat">Classic Kat</option>
-                <option value="dj strawbs">Strawbs</option>
-                <option value="dj dale">Dale</option>
-                <option value="dj jon">Jon</option>
-                <option value="dj simon">Simon</option>
-                <option value="dj twist">Christina</option>
-            </select><br><br>
-            
-            <label for="message">Message:</label><br>
-            <input type="text" name="message" id="message" required><br>
-            
-            <label for="songrequest">Song Request:</label><br>
-            <input type="text" name="songrequest" placeholder="Ex: Plan B - She Said" id="songrequest" required><br><br>
-            
-            <input type="hidden" name="_redirect" value="https://coolvibes-reloaded.com/jaystest/success.html">
-            
-            <button type="submit">Submit</button>
-        </form>
-    </center>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+      Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
 </body>
+
 </html>
