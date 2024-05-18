@@ -1,12 +1,18 @@
 /* Apply basic styling to the form */
+body {
+	background: linear-gradient(to right, #0099ff 0%, #ff0000 100%);
+}
+
 form {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background: transparent
     border: 1px solid #ddd;
     border-radius: 5px;
+	color: white;
 }
+
 
 /* Style form labels */
 label {

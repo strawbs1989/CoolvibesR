@@ -23,7 +23,7 @@ async function handleSubmit(event) {
     const json = JSON.stringify(object);
 
     try {
-        const response = await fetch('https://formspree.io/f/mleqvkqk', {
+        const response = await fetch('save_request.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -41,3 +41,8 @@ async function handleSubmit(event) {
         alert('There was an error submitting the form. Please try again.');
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form');
+    form.addEventListener('submit', handleSubmit);
+});
