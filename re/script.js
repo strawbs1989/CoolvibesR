@@ -2,9 +2,9 @@ function validateForm() {
     const toField = document.getElementById('name');
     const toValue = toField.value;
 
-    ////////const lowercasePattern = /^[a-z]{4,8}$/;
+    const lowercasePattern = /^[a-z]{4,8}$/;
     if (!lowercasePattern.test(toValue)) {
-        
+        alert("The 'To' field must be lowercase and 4-8 characters in length.");
         return false;
     }
     return true;
@@ -44,7 +44,7 @@ async function handleSubmit(event) {
 
 async function fetchRequests() {
     try {
-        const response = await fetch('/re/requests.json');
+        const response = await fetch('/re/request.json');
         const requests = await response.json();
         const requestList = document.getElementById('requestList');
 
@@ -61,7 +61,7 @@ async function fetchRequests() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('form');
+    const form = document.getElementById('requestForm');
     form.addEventListener('submit', handleSubmit);
 
     fetchRequests();  // Fetch requests when the page loads

@@ -1,8 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="UTF-8">
-	
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coolvibes | Requests</title>
     <!-- Bootstrap CSS -->
@@ -14,12 +13,12 @@
 </head>
 <body>
 <img src="https://coolvibes-reloaded.com/img/favicon.png" width="100px" height="100px">
-<center><form onsubmit="handleSubmit(event)">
+<center><form id="requestForm" onsubmit="handleSubmit(event)">
     <label for="from">From:</label><br>
     <input type="text" name="from" id="from" required><br>
     
     <label for="name">To:</label><br>
-    <input type="text" name="name" id="name"><br>
+    <input type="text" name="name" id="name" required><br>
     <p>To must be lowercase and 4-8 characters in length.</p>
     
     <label for="djs">Choose A DJ:</label><br>
@@ -41,6 +40,9 @@
     <button type="submit">Submit</button>
 </form></center>
 
-<script src="script.js"></script>
+<h2>Current Song Requests</h2>
+<ul id="requestList"></ul>
+
+<script src="/re/script.js"></script>
 </body>
 </html>
