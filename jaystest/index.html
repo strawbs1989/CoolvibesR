@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Song Request Form</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <img src="https://coolvibes-reloaded.com/img/favicon.png" width="100px" height="100px">
     <center>
-        <form id="reqForm" action="saverequest.php" method="POST">
+        <form action="https://formspree.io/f/xbjekwdp" method="POST">
             <label for="from">From:</label><br>
             <input type="text" name="from" id="from" required><br>
             
@@ -28,10 +29,12 @@
             </select><br><br>
             
             <label for="message">Message:</label><br>
-            <input type="text" name="message" id="message" required /><br>
+            <input type="text" name="message" id="message" required><br>
             
             <label for="songrequest">Song Request:</label><br>
-            <input type="text" name="songrequest" placeholder="Ex: Plan B - She Said" id="songrequest" required /><br><br>
+            <input type="text" name="songrequest" placeholder="Ex: Plan B - She Said" id="songrequest" required><br><br>
+            
+            <input type="hidden" name="_redirect" value="https://coolvibes-reloaded.com/jaystest/success.html">
             
             <button type="submit">Submit</button>
         </form>
