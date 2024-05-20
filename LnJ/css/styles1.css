@@ -1,0 +1,301 @@
+/* Link Button */
+a:link, a:visited {
+  background-color: transparent;
+  color: black;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  
+}
+
+/* Audio */
+
+audio {
+	width: 300px;
+    height: 54px;
+    background-color: #e906b6;
+    color: #E91E63;
+    box-shadow: 1px -3px 4px 0px #2196F3;
+	
+}
+
+
+/* Custom styles */
+/* Center the social icons */
+.social-icons-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Add space between social icons */
+.social-icons.center {
+    margin: 0 10px;
+}
+
+/* Center the jumbotron content */
+.jumbotron-content {
+    margin-top: 30px;
+}
+
+/* Style the footer */
+footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.footer-icons {
+    font-size: 24px;
+    margin: 0 10px;
+    color: #fff;
+}
+
+.footer-text {
+    font-size: 14px;
+}
+
+/* Custom template styles */
+.jumbotron {
+    background-color: #f8f9fa;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.jumbotron h1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.jumbotron p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.feature-box {
+    background-color: transparent;
+    padding: 0px;
+    border-radius: 10px;
+    box-shadow: 1px -3px 4px 0px #2196F3;
+    margin-bottom: 30px;
+    width: 50%;
+}
+
+.feature-box h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.feature-box p {
+    font-size: 16px;
+    color: #666;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 50px 0;
+}
+
+.footer p {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.footer .social-icons {
+    margin-top: 20px;
+}
+
+.footer .social-icons a {
+    color: #fff;
+    font-size: 24px;
+    margin-right: 20px;
+}
+
+.footer .social-icons a:last-child {
+    margin-right: 0;
+}
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #343a40;
+}
+
+.navbar {
+    background-color: #000;
+    color: white;
+}
+
+.section {
+    display: block;
+    width: 1000px;
+    height: 100px;
+    background: grey;
+}
+
+.bg-primary {
+    background: linear-gradient(to bottom, #000000 0%, #ff3399 100%);
+}
+
+.navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff;
+}
+
+.jumbotron {
+    background-color: #fff;
+}
+
+.card {
+    margin-bottom: 20px;
+    background-color: transparent;
+    border-color: #900fe0;
+    color: #113bdd;
+	padding: 1.0rem;
+	box-shadow: 1px -3px 4px 0px #2196F3;
+}
+
+h2 {
+    color: #060606;
+}
+
+/* Request Content */
+.content-block {
+    width: 300px; /* Adjust width as needed */
+    border: 1px solid #ccc; /* Optional: Add border for visual appeal */
+    padding: 10px; /* Optional: Add padding for spacing */
+    margin-bottom: 20px; /* Optional: Add margin to separate blocks */
+    background-color: #000;
+}
+
+/* Social Content */
+.social-icons.top {
+    position: absolute;
+    top: 20px; /* Adjust the top position as needed */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Move left by half of its width to center it */
+    z-index: 999; /* Ensure the icon appears on top of other content */
+}
+
+.social-icons-container {
+    text-align: center; /* Center align the social icons */
+}
+
+.social-icons {
+    display: inline-block; /* Display the icons next to each other */
+    margin: 0 10px; /* Add margin between the icons */
+}
+
+.content-block img {
+    max-width: 100;
+    height: auto;
+}
+
+.content-block h2 {
+    margin-top: 0;
+}
+
+.content-block p {
+    margin-bottom: 0;
+}
+
+.content-block a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Footer Styles */
+footer {
+    background: linear-gradient(to top, #000000 0%, #ff3399 100%);
+    color: #ffffff;
+}
+
+.footer-links {
+    margin-top: 20px;
+}
+
+/* Card Styles */
+.card-title {
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+.card-img-top {
+    border-radius: 5px;
+	width: 80%;
+}   
+	
+.card-img {
+	flex-shrink: 0;
+    width: 10;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-outline-success {
+    color: #28a745;
+    border-color: #28a745;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .logo {
+        text-align: center;
+    }
+
+    .header-image {
+        margin-top: 10px;
+        height: 90px;
+    }
+}
+
+/* Trivia */
+
+.question {
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#result {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Birthday */
+
+
