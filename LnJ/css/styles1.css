@@ -299,3 +299,10 @@ button:hover {
 /* Birthday */
 
 
+/* Fluid */
+.img-fluid {
+    max-width: 100%;
+    height: 236;
+}
+
+
