@@ -298,30 +298,66 @@ button:hover {
 
 /* Schedule */
 
-#customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border: 2px solid black;
-  width: 900px;
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #000066;
+  text-align: left;
+  padding: 8px;
+}
+
+td {
   background: black;
-  
-}
-
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 10px;
   color: white;
+  padding: 9px;
+  border: 2px solid;
 }
-
-#customers tr:nth-child(even){background-color: #e60000;}
-
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-  padding-top: 22px;
-  padding-bottom: 12px;
-  text-align: center;
-  background-color: #e60000;
+th {
+  background: #e60000;
   color: white;
+  padding: 9px;
+  border: 2px solid;
 }
+
+body {
+  color: black;
+  border: 2px solid;
+  border-style: dotted;
+  border-width: 10%;
+  width: 60%;
+  margin: auto;
+}
+
+h4 {
+  color: gold;
+  background: black;
+  width: 500px;
+}
+
+header {
+  background-color: gold;
+  padding: 9px;
+  border: 2px solid;
+  width: 50%;
+  color: red;
+}
+
+.processing {
+  background-color: orange;
+}
+
+.djjoining {
+  background-color: grey;
+}
+
+.djjoined {
+  background-color: darkred;
+}
+
 
 
