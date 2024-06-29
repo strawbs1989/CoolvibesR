@@ -324,14 +324,7 @@ th {
   border: 2px solid;
 }
 
-body {
-  color: black;
-  border: 2px solid;
-  border-style: dotted;
-  border-width: 10%;
-  width: 60%;
-  margin: auto;
-}
+
 
 h4 {
   color: gold;
