@@ -13,15 +13,9 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles1.css">
 	<link rel="stylesheet" href="css/card.css">
-	<!-- Dependencies -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
-
-<!-- CSS -->
-<link rel="stylesheet" href="player/build/ableplayer.min.css" type="text/css"/>
-
-<!-- JavaScript -->
-<script src="player/build/ableplayer.min.js"></script>
+	<!-- JavaScript -->
+	<script type="text/javascript" src="audioplayer.js"></script>
+	
     
 </head>
 
@@ -66,18 +60,13 @@
             <center><img src="https://coolvibes-reloaded.com/img/slide1.jpg" width="504" height="436"
                     class="img-fluid" alt="Slide Image"></center>
 					<center><a href="https://coolvibes-reloaded.com/schedule" target="_blank">DJ Schedule</a></center>
-					
+				
             <center>
-                <audio controls>
-  <source src="	http://boogie.vside-radio.com:8406/stream
-" type="audio/mpeg" />
+                <audio controls preload="auto">
+  <source src="http://boogie.vside-radio.com:8406/stream" />
   
-  <!-- fallback for non-supporting browsers goes here -->
-  <p>
-    Your browser does not support HTML audio, but you can still
-    
-  </p>
-</audio>
+  <!-- now include flash fall back -->
+</audio>	
             </center>
         </div>
     </section>
