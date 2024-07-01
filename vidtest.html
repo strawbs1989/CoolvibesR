@@ -1,0 +1,130 @@
+<style>
+
+        html, body {
+            overflow-x: hidden;
+        }
+
+        #container {
+            padding: 0 20px 50px;
+        }
+        .error {
+            color: red;
+        }
+        a {
+            word-wrap: break-word;
+        }
+
+        code {
+            font-size: 0.8em;
+        }
+
+        #player2-container .mejs__time-buffering, #player2-container .mejs__time-current, #player2-container .mejs__time-handle,
+        #player2-container .mejs__time-loaded, #player2-container .mejs__time-hovered, #player2-container .mejs__time-marker, #player2-container .mejs__time-total {
+            height: 2px;
+        }
+
+        #player2-container .mejs__time-total {
+            margin-top: 9px;
+        }
+        #player2-container .mejs__time-handle {
+            left: -5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ffffff;
+            top: -5px;
+            cursor: pointer;
+            display: block;
+            position: absolute;
+            z-index: 2;
+            border: none;
+        }
+        #player2-container .mejs__time-handle-content {
+            top: 0;
+            left: 0;
+            width: 12px;
+            height: 12px;
+        }
+
+        .details {
+            margin-bottom: 24px;
+        }
+
+        .players {
+            max-width: 800px;
+        }
+    </style>
+
+
+<!-- VIDEOPLAYER -->
+        <div class="players" id="player1-container">
+
+            <h3>Video Player</h3>
+
+            <div class="media-wrapper">
+                <video id="player1" width="640" height="360" style="max-width:100%;" poster="http://www.mediaelementjs.com/images/big_buck_bunny.jpg" preload="none" controls playsinline webkit-playsinline>
+                    <source src="http://boogie.vside-radio.com:8406/stream?raw=true" type="video/mp4">
+                    <track srclang="de" kind="subtitles" src="german.vtt" label="German with lines">
+                    <track srclang="en" kind="subtitles" src="english.vtt" default>
+                    <track srclang="en" kind="chapters" src="english_chapters.vtt">
+                    <track srclang="de" kind="chapters" src="german_chapters.vtt">
+                </video>
+            </div>
+            <div class="myslides"></div>
+            <br>
+            <div>
+                <label>Sources <select name="sources">
+                    <option value="//github.com/mediaelement/mediaelement-files/blob/master/big_buck_bunny.mp4?raw=true">MP4</option>
+                    <option value="//upload.wikimedia.org/wikipedia/commons/2/22/Volcano_Lava_Sample.webm">WebM</option>
+                    <option value="https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8">HLS</option>
+                    <option value="https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd">M(PEG)-DASH</option>
+                    <option value="https://www.dailymotion.com/video/x11prnt">DailyMotion</option>
+                    <option value="https://www.youtube.com/watch?v=twYp6W6vt2U">YouTube</option>
+                    <option value="https://player.vimeo.com/video/108018156?title=0&amp;byline=0&amp;portrait=0&amp;badge=0">Vimeo</option>
+                    <option value="https://www.facebook.com/peopleareawesome/videos/1542174665831706/">Facebook</option>
+                    <option value="https://www.twitch.tv/videos/109010497">Twitch</option>
+                </select>
+                </label>
+            </div>
+            <br>
+            <div class="player-info">
+                <h4>Player information</h4>
+                <div id="player1-rendername">
+                    <p><strong>Source</strong>: <span class="src"><a href="https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/mp4/BigBuckBunny.mp4" target="_blank">https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/mp4/BigBuckBunny.mp4</a></span></p>
+                    <p><strong>Renderer</strong>: <span class="renderer">html5</span></p>
+                    <p class="error"></p>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <hr>
+
+        <!-- VIDEOPLAYER - MPEG-Dash (Source is initially set, to find problems which only happen on load) -->
+        <div class="players" id="player-dash-container">
+            <h3>Video Player - MPEG-Dash</h3>
+
+            <p>Videoplayer which has mpeg-dash as the only source, so it gets loaded initially to find problems
+            that only happens on load.</p>
+
+            <div class="media-wrapper">
+                <video id="player-dash" width="640" height="360" style="max-width:100%;" poster="http://www.mediaelementjs.com/images/big_buck_bunny.jpg" preload="none" controls playsinline webkit-playsinline>
+                    <source src="https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd" type="application/dash+xml">
+                    <track srclang="de" kind="subtitles" src="german.vtt" label="German with lines">
+                    <track srclang="en" kind="subtitles" src="english.vtt" default>
+                    <track srclang="en" kind="chapters" src="english_chapters.vtt">
+                    <track srclang="de" kind="chapters" src="german_chapters.vtt">
+                </video>
+            </div>
+            <div class="player-info">
+                <h4>Player information</h4>
+                <div id="player-dash-rendername">
+                    <p><strong>Source</strong>: <span class="src"><a href="https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd" target="_blank">https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd</a></span></p>
+                    <p><strong>Renderer</strong>: <span class="renderer">html5</span></p>
+                    <p class="error"></p>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <hr>
