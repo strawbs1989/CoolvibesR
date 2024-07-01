@@ -13,9 +13,8 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles1.css">
 	<link rel="stylesheet" href="css/card.css">
-	<link rel="stylesheet" href="player.css">
-	<!-- Custom Java -->
-    <script src="player.js"></script>
+	<link rel="stylesheet" href="/player.css">
+	
 	
 	
     
@@ -64,11 +63,20 @@
 			
 
             <center>
-                <div class="video-container">
-    <video id="myVideo" autoplay controls muted poster="https://coolvibes-reloaded.com/play.png">
-        <embed src="http://boogie.vside-radio.com:8406/stream" type="audio/mpeg">
-        Your browser does not support the video tag.
-    </video>
+                <!-- VIDEOPLAYER -->
+        <div class="players" id="player1-container">
+
+         
+
+            <div class="media-wrapper">
+                <video id="player1" width="640" height="360" style="max-width:100%;" poster="http://www.mediaelementjs.com/images/big_buck_bunny.jpg" preload="none" controls playsinline webkit-playsinline>
+                    <source src="http://boogie.vside-radio.com:8406/stream?raw=true" type="video/mp4">
+                    <track srclang="de" kind="subtitles" src="german.vtt" label="German with lines">
+                    <track srclang="en" kind="subtitles" src="english.vtt" default>
+                    <track srclang="en" kind="chapters" src="english_chapters.vtt">
+                    <track srclang="de" kind="chapters" src="german_chapters.vtt">
+                </video>
+            </div>
     
 </div> 
             </center>
