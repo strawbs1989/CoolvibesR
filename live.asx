@@ -1,6 +1,6 @@
 <ASX version ="3.0">
 <TITLE>Coolvibes</TITLE>
 <ENTRY>
-<REF HREF="http://boogie.vside-radio.com/tunein/coolvibes.asx" />
+<REF HREF="http://boogie.vside-radio.com:8406/stream" />
 </ENTRY>
 </ASX>
