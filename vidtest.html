@@ -6,62 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 
-<style>
-
-        html, body {
-            overflow-x: hidden;
-        }
-
-        #container {
-            padding: 0 20px 50px;
-        }
-        .error {
-            color: red;
-        }
-        a {
-            word-wrap: break-word;
-        }
-
-        code {
-            font-size: 0.8em;
-        }
-
-        #player2-container .mejs__time-buffering, #player2-container .mejs__time-current, #player2-container .mejs__time-handle,
-        #player2-container .mejs__time-loaded, #player2-container .mejs__time-hovered, #player2-container .mejs__time-marker, #player2-container .mejs__time-total {
-            height: 2px;
-        }
-
-        #player2-container .mejs__time-total {
-            margin-top: 9px;
-        }
-        #player2-container .mejs__time-handle {
-            left: -5px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ffffff;
-            top: -5px;
-            cursor: pointer;
-            display: block;
-            position: absolute;
-            z-index: 2;
-            border: none;
-        }
-        #player2-container .mejs__time-handle-content {
-            top: 0;
-            left: 0;
-            width: 12px;
-            height: 12px;
-        }
-
-        .details {
-            margin-bottom: 24px;
-        }
-
-        .players {
-            max-width: 800px;
-        }
-    </style>
 
 
 <!-- VIDEOPLAYER -->
@@ -69,10 +13,6 @@
 
          
 
-            <div class="media-wrapper">
-                <video id="my_video_1"  style="width:100%;height:100%;" controls="controls" width="100%" height="100%"
- preload="auto" poster="my_video_poster.png">
- <source src="http://boogie.vside-radio.com:8406/stream" type="audio/mpeg">
-</video>
+            <video controls="" autoplay="" name="media"><source src="http://boogie.vside-radio.com:8406/stream" type="audio/mpeg"></video>
             </div>
             
