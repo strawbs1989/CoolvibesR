@@ -1,7 +1,16 @@
-/* Reset default margins and paddings */
-audio,
-audio source {
-  margin: 0;
-  padding: 0;
+.video-container {
+    position: relative;
+    width: fit-content;
 }
 
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
