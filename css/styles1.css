@@ -340,16 +340,12 @@ header {
   color: red;
 }
 
-.processing {
-  background-color: orange;
-}
+/* Video */
 
-.djjoining {
-  background-color: grey;
-}
-
-.djjoined {
-  background-color: darkred;
+.videocontent {
+	width:80%;
+	max-width: 640px;
+	margin: 0 auto;
 }
 
 
