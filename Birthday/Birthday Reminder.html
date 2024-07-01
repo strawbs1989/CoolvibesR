@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Reminder</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="C:\Users\User\Downloads\Birthday Reminder\Birthday Reminder\reminder.css">
+	<link rel="stylesheet" href="C:\Users\User\Downloads\Birthday Reminder\Birthday Reminder\reminder.js">
+</head>
+<body>
+    <!-- Page header with the title "Birthday Reminder" -->
+    <h1>Birthday Reminder</h1>
+
+    <!-- Form for adding birthdays with input fields 
+    for name, date, and a button -->
+    <form id="birthdayForm">
+        <!-- Label for the name input field -->
+        <label for="name">Name:</label> 
+
+        <!-- Text input field for entering the name, 
+        required for form validation -->
+        <input type="text" id="name" required> 
+    
+        <!-- Label for the date input field -->
+        <label for="date">Date:</label>
+
+        <!-- Date input field for entering the birthdate, 
+        required for form validation -->
+        <input type="date" id="date" required> 
+    
+        <!-- Button for adding a birthday, triggers the 
+        addBirthday function on click -->
+        <button type="button" onclick="addBirthday()">Add Birthday</button> 
+    </form>
+
+    <!-- List element for displaying the birthday items -->
+    <ul id="birthdayList"></ul>
+
+
+    
+</body>
+</html>
