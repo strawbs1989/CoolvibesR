@@ -24,7 +24,7 @@ echo '<div class="alert alert-success">'.$Msg.'</div>';
 
 ?>
 <div class="card-body">
-<form action="requests/success.php" method="post">
+<form action="requests/success.php" method="get">
 <div>
         <label for="choose dj">Choose You're Requesting Dj:</label><br>
         <select name="choose dj" id="choose dj">

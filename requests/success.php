@@ -8,7 +8,7 @@ if(isset($_POST['btn-send']))
 	
 	if(empty($Your Name) || empty($Song/Artist) || empty($Msg))
 	{
-      header('location:request.php?error'); 
+      header('location:requests/request.php?error'); 
 	}
 	else
 	
@@ -17,14 +17,14 @@ if(isset($_POST['btn-send']))
 
     if(mail($to,$Msg,$Song/Artist,$Email))
 	{
-	header("location:request.php?success");	
+	header("location:requests/request.php?success");	
 	}
 	
 	}
 }
 else
 {
-   header("location:request.php");	
+   header("location:requests/request.php");	
 }
 ?>
 
