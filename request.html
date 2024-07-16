@@ -1,9 +1,48 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Request Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/emailstyle.css">
+  <!-- SweetAlert -->
+  <link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.min.css
+" rel="stylesheet">
+   </head>
 <body>
-
-
-
-<center><embed type="text/html" src="https://rich-sticky-seed.glitch.me/index.html"  width="500" height="600"></center>
-
+    <div class="container form-container">
+        <div class="form-header">
+          <img src="https://coolvibes-reloaded.com/images/button.png"  width="300px" height="40px">
+        </div>
+        <div class="form-body p-4">
+            <form id="songRequestForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="songartist">Song and Artist:</label>
+                    <input type="text" class="form-control" id="songartist" name="songartist" required>
+                </div>
+                <div class="form-group">
+                    <label for="dedication">Dedication:</label>
+                    <textarea class="form-control" id="dedication" name="dedication" rows="4" required></textarea>
+                </div>
+                <div class="form-footer text-center">
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
 </body>
 </html>
