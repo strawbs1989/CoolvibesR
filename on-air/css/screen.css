@@ -12,15 +12,15 @@ body {
     color: red;
  }
 #dj {
-   display: block;
-   width: 100%;
-   max-width: 30em;
-   height: auto;
-   margin: auto;
-   border:  1px solid #000;
-   box-shadow: 0.4em 0.4em 0.4em rgba(0, 0, 0, 0.3);
- }
- #dj[src="https://github.com/strawbs1989/coolvibes-reloaded/blob/main/images/off-air.png"] {
+    display: block;
+    width: 20%;
+    max-width: 30em;
+    height: auto;
+    margin: auto;
+    border: 1px solid #000;
+    box-shadow: 0.4em 0.4em 0.4em rgba(0, 0, 0, 0.3);
+}
+ #dj[src="https://coolvibes-reloaded.com/on-air/images/off-air.png"] {
    animation: fade  4s ease-in-out infinite;
  }
  @keyframes fade {
