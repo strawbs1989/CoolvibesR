@@ -1,14 +1,15 @@
-  body {
-            font-family: 'Poppins', Arial, sans-serif;
-            background-color: #000;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+.form-container {
+            text-align: center;
         }
-        .iframe-container {
+        h1 {
+            margin-bottom: 20px;
+        }
+		
+		body {
+  background-color: black;
+}
+
+.iframe-container {
             width: 100%;
             max-width: 800px;
             height: 600px;
@@ -18,21 +19,11 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 			background-color: #000;
         }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
 		
-		
-		.Uc2NEf {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-    background: #000;
+		h1 {
+  color: green;
 }
- }
+
+body {
+  color: green;
+}
