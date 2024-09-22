@@ -1,7 +1,7 @@
 function SubForm (){
 			$.ajax({
 				url:"https://api.apispreadsheets.com/data/7OySATKrFeiUEqMz/",
-				type:"post",
+				type:"get",
 				data:$("#myForm").serializeArray(),
 				success: function(){
 					alert("Form Data Submitted :)")
