@@ -17,11 +17,11 @@ fetch("https://api.apispreadsheets.com/data/7OySATKrFeiUEqMz/")
                 // Log the entire response to check the structure
                 console.log("Fetched data:", yourData);
 
-                // Proceed with rendering the data if it exists
+                // Loop over the data and check if Song Name, Your Name, Artist, and Shoutout fields exist
                 for (let i = 0; i < yourData.length; i++) {
                     let rowInfo = yourData[i];
-                    
-                    // Log the specific row to check its structure
+
+                    // Log each row's data to check what fields are available
                     console.log("Row data:", rowInfo);
 
                     let rowInfoDiv = document.createElement("div");
@@ -29,50 +29,48 @@ fetch("https://api.apispreadsheets.com/data/7OySATKrFeiUEqMz/")
 
                     // Create the element for "Your Name"
                     let rowName = document.createElement("h3");
-                    let rowNameNode = document.createTextNode("Your Name: " + rowInfo["Your Name"]);
+                    let rowNameNode = document.createTextNode("Your Name: " + (rowInfo["Your Name"] || "N/A"));
                     rowName.appendChild(rowNameNode);
                     rowName.classList.add("Name");
 
                     // Create the element for "Song Name"
                     let rowSong = document.createElement("h2");
-                    let rowSongNode = document.createTextNode("Song Name: " + rowInfo["Song Name"]);
+                    let rowSongNode = document.createTextNode("Song Name: " + (rowInfo["Song Name"] || "N/A"));
                     rowSong.appendChild(rowSongNode);
                     rowSong.classList.add("Song");
 
                     // Create the element for "Artist"
                     let rowArtist = document.createElement("h4");
-                    let rowArtistNode = document.createTextNode("Artist: " + rowInfo["Artist"]);
+                    let rowArtistNode = document.createTextNode("Artist: " + (rowInfo["Artist"] || "N/A"));
                     rowArtist.appendChild(rowArtistNode);
                     rowArtist.classList.add("Artist");
 
                     // Create the element for "Shoutout"
                     let rowLink = document.createElement("a");
-                    rowLink.setAttribute("href", rowInfo["Shoutout"]);
-                    rowLink.setAttribute("target", "_blank");
-                    let rowLinkNode = document.createTextNode("Shoutout: " + rowInfo["Shoutout"]);
+                    let rowLinkNode = document.createTextNode("Shoutout: " + (rowInfo["Shoutout"] || "N/A"));
                     rowLink.appendChild(rowLinkNode);
                     rowLink.classList.add("Shoutout");
 
-                    // Append all the created elements to the row container
+                    // Append all elements to the container
                     rowInfoDiv.appendChild(rowName);
                     rowInfoDiv.appendChild(rowSong);
                     rowInfoDiv.appendChild(rowArtist);
                     rowInfoDiv.appendChild(rowLink);
 
-                    // Finally, append the entire row to the parent element (allSongsElm)
+                    // Append the row to the parent element
                     allSongsElm.appendChild(rowInfoDiv);
                 }
 
-                // Update the visibility of the elements
+                // Hide loader, show song list
                 loaderElm.style.display = "none";
                 allSongsElm.style.display = "block";
                 errorMessageElm.style.display = "none";
             }).catch(err => {
-                console.log("Error processing JSON:", err);
+                console.log("Error parsing JSON:", err);
                 setErrorDisplay();
             });
         } else {
-            console.log("Error fetching data. Status code:", res.status);
+            console.log("Fetch error. Status:", res.status);
             setErrorDisplay();
         }
     })
