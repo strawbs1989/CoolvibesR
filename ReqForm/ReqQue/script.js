@@ -20,13 +20,13 @@ fetch("https://api.apispreadsheets.com/data/7OySATKrFeiUEqMz/").then(res => {
 
                 // Create the element for "Your Name"
                 let rowName = document.createElement("h3");
-                let rowNameNode = document.createTextNode("Your Name: " + rowInfo["Name"]);
+                let rowNameNode = document.createTextNode("Your Name: " + rowInfo["Your Name"]);
                 rowName.appendChild(rowNameNode);
                 rowName.classList.add("Name");
 
                 // Create the element for "Song Name"
                 let rowSong = document.createElement("h2");
-                let rowSongNode = document.createTextNode("Song Name: " + rowInfo["Song"]);
+                let rowSongNode = document.createTextNode("Song Name: " + rowInfo["Song Name"]);
                 rowSong.appendChild(rowSongNode);
                 rowSong.classList.add("Song");
 
@@ -36,13 +36,13 @@ fetch("https://api.apispreadsheets.com/data/7OySATKrFeiUEqMz/").then(res => {
                 rowArtist.appendChild(rowArtistNode);
                 rowArtist.classList.add("Artist");
 
-                // Create the element for "Shoutout/Link"
+                // Create the element for "Shoutout"
                 let rowLink = document.createElement("a");
-                rowLink.setAttribute("href", rowInfo["Link"]);
+                rowLink.setAttribute("href", rowInfo["Shoutout"]);
                 rowLink.setAttribute("target", "_blank");
-                let rowLinkNode = document.createTextNode("Shoutout: " + rowInfo["Link"]);
+                let rowLinkNode = document.createTextNode("Shoutout: " + rowInfo["Shoutout"]);
                 rowLink.appendChild(rowLinkNode);
-                rowLink.classList.add("Link");
+                rowLink.classList.add("Shoutout");
 
                 // Append all the created elements to the row container
                 rowInfoDiv.appendChild(rowName);
