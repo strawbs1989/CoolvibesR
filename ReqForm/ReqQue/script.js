@@ -19,6 +19,11 @@ let allSongsElm = document.getElementById("allSongs")
 						rowInfoDiv.classList.add("song-row")
 
 						let rowSong = document.createElement("h2")
+						let rowSongNode = document.createTextNode(rowInfo["Name"])
+						rowSong.appendChild(rowSongNode)
+						rowSong.classList.add("Song")
+						
+						let rowSong = document.createElement("h2")
 						let rowSongNode = document.createTextNode(rowInfo["Song"])
 						rowSong.appendChild(rowSongNode)
 						rowSong.classList.add("Song")
@@ -34,10 +39,19 @@ let allSongsElm = document.getElementById("allSongs")
 						let rowLinkNode = document.createTextNode(rowInfo["Link"])
 						rowLink.appendChild(rowLinkNode)
 						rowLink.classList.add("Link")
+						
+						let rowLink = document.createElement("a")
+						rowLink.setAttribute("href", rowInfo["Shoutout"])
+						rowLink.setAttribute("target","_blank")
+						let rowLinkNode = document.createTextNode(rowInfo["Shoutout"])
+						rowLink.appendChild(rowLinkNode)
+						rowLink.classList.add("Shoutout")
 
+						rowInfoDiv.appendChild(rowName)
 						rowInfoDiv.appendChild(rowSong)
 						rowInfoDiv.appendChild(rowArtist)
 						rowInfoDiv.appendChild(rowLink)
+						rowInfoDiv.appendChild(rowShoutout)
 						
 
 						allSongsElm.appendChild(rowInfoDiv)
