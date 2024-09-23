@@ -1,74 +1,101 @@
+@media only screen and (max-width: 414px ){
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-    body{
-        text-align: center;
-        background-color: #FA8BFF;
-        background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
-        font-family: 'Roboto', sans-serif;
-    }
-    input{
-        border-top: 1px;
-        border-left: none;
-        border-right:none;
-    }
-    #form{
-        background-color: white;
-        margin: 50px 350px 100px 350px;
-        padding: 40px 0 100px 0;
-        border-radius: 10px;
-        width: auto;
-        height: auto;
-    }
-    button{
-        background-color: #FA8BFF;
-        background-image: linear-gradient(90deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
-        border:none;
-        color: white;
-        padding:20px 0 20px 0;
-        border-radius: 20px;
-        width:75%;
-        height:75%;
-        text-align: center;
-        font-size:25px;
-        text-decoration: none;
+
+body {
+    text-align: center;
+    background-color: #FA8BFF;
+    background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Form container styling */
+#form {
+    background-color: white;
+    margin: 50px auto; /* Centers the form horizontally */
+    padding: 40px 20px; /* Adjusted padding for mobile devices */
+    border-radius: 10px;
+    max-width: 80%; /* Ensures form doesn't exceed 80% of screen width */
+    width: 500px; /* Set a max width for larger screens */
+    height: auto;
+}
+
+/* Input fields */
+input {
+    width: 100%; /* Takes full width of the container */
+    padding: 15px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    box-sizing: border-box; /* Includes padding in width */
+}
+
+/* Buttons */
+button {
+    background-color: #FA8BFF;
+    background-image: linear-gradient(90deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
+    border: none;
+    color: white;
+    padding: 15px;
+    border-radius: 20px;
+    width: 100%;
+    font-size: 18px; /* Reduced font size for better responsiveness */
+    text-decoration: none;
+}
+
+button:hover {
+    background-color: #FA8BFF;
+    background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
+}
+
+.writeInInputs {
+    margin-bottom: 20px;
+}
+
+.writeInInputs input {
+    width: 100%; /* Takes full width of the container */
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+
+.writeInInputs h3 {
+    text-align: left;
+    padding-left: 0; /* Adjusts alignment for smaller screens */
+}
+
+/* Break between button and input */
+#buttonBreak {
+    padding: 30px;
+}
+
+   	
+}
+
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    #form {
+        margin: 20px auto; /* Reduces margins on smaller screens */
+        padding: 30px;
+        max-width: 90%; /* Expands form width slightly */
     }
 
-    button:hover{
-        background-color: #FA8BFF;
-        background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
+    button {
+        font-size: 16px; /* Adjusts button font size for smaller devices */
+        padding: 12px;
+    }
+}
 
-    }
-    .writeInInputs{
-        padding-top:10px;   
-    }
-    .writeInInputs input{
-        width:75%;
-        border-top: 1px;
-        border-left: none;
-        border-right:none;
-        padding:15px;
-        text-align: left;
+@media (max-width: 480px) {
+    #form {
+        margin: 10px auto;
+        padding: 20px;
+        max-width: 95%; /* Almost full width on small devices */
     }
 
-    .writeInInputs h3{
-       text-align:left;
-       padding-left:12%;
-
+    button {
+        font-size: 14px; /* Further reduces button font size for mobile */
+        padding: 10px;
     }
-	.writeInInputs input{
-        width:75%;
-        border-top: 1px;
-        border-left: none;
-        border-right:none;
-        padding:15px;
-        text-align: left;
-    }
-
-    .writeInInputs h3{
-       text-align:left;
-       padding-left:12%;
-
-    }
-    #buttonBreak{
-        padding:75px;
-
-    }
+}
