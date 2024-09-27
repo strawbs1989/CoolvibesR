@@ -1,114 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-		<script src="https://coolvibes-reloaded.com/ReqForm/ReqQue/script.js"></script>
-		<link rel="stylesheet" href="https://coolvibes-reloaded.com/ReqForm/ReqQue/style.css">
-		
-		<!-- Custom Google font-->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
-	<title> Music Queue </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>Music Queue</title>
+
+    <!-- External Scripts and Styles -->
+    <script src="https://coolvibes-reloaded.com/ReqForm/ReqQue/script.js"></script>
+    <link rel="stylesheet" href="https://coolvibes-reloaded.com/ReqForm/ReqQue/style.css">
+
+    <!-- Custom Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
-	<div id="hero">
-		<h1>DJ Song Queue</h1>
-		
-	</div>	
+    <div id="hero">
+        <h1>DJ Song Queue</h1>
+    </div>  
 
-	<div id="display">
-		<div id="loader"> 
-			<h4> Loading</h4> 
-		</div>
-		<div id="allSongs">
-		</div>
-		<div id="errorMessage"> 
-			<h2> Failed to get data. Please refresh </h2>
-		</div>
-	</div>
-	<a href="https://coolvibes-reloaded.com/ReqForm/form.html" target="_blank" style="text-decoration: none; color:white;"> Fill out another song request </a> 
-	<footer>
-		<h4> Powered by <a href="https://www.apispreadsheets.com" target="_blank" style="text-decoration: none; color:white; text-align: center;"> API Spreadsheets </a> </h4>
-	</footer>
-	<script>
-		let allSongsElm = document.getElementById("allSongs")
-		let loaderElm = document.getElementById("loader")
-		let errorMessageElm = document.getElementById("errorMessage")
-		
-		function setErrorDisplay(){
-			loaderElm.style.display = "none"
-			allSongsElm.style.display = "none"
-			errorMessageElm.style.display = "block"
-		}
-			
-		fetch("https://api.apispreadsheets.com/data/12633/").then(res=>{
-			if (res.status === 200){
-				res.json().then(data=>{
-					const yourData = data["data"]
-					for(let i = 0; i < yourData.length; i++){
-						let rowInfo = yourData[i]
+    <div id="display">
+        <div id="loader">
+            <h4>Loading</h4>
+        </div>
+        <div id="allSongs"></div>
+        <div id="errorMessage" style="display: none;">
+            <h2>Failed to get data. Please refresh</h2>
+        </div>
+    </div>
 
-						let rowInfoDiv = document.createElement("div")
-						rowInfoDiv.classList.add("song-row")
+    <a href="https://coolvibes-reloaded.com/ReqForm/form.html" target="_blank" style="text-decoration: none; color:white;">Fill out another song request</a>
 
-					
-						let rowSong = document.createElement("h2")
-						let rowSongNode = document.createTextNode(rowInfo["Song"])
-						rowSong.appendChild(rowSongNode)
-						rowSong.classList.add("Song")
+    <footer>
+        <h4>Powered by <a href="https://www.apispreadsheets.com" target="_blank" style="text-decoration: none; color:white;">API Spreadsheets</a></h4>
+    </footer>
 
-						let rowArtist = document.createElement("h4")
-						let rowArtistNode = document.createTextNode(rowInfo["Artist"])
-						rowArtist.appendChild(rowArtistNode)
-						rowArtist.classList.add("Artist")
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let allSongsElm = document.getElementById("allSongs");
+            let loaderElm = document.getElementById("loader");
+            let errorMessageElm = document.getElementById("errorMessage");
 
-						let rowLink = document.createElement("a")
-						rowLink.setAttribute("href", rowInfo["Link"])
-						rowLink.setAttribute("target","_blank")
-						let rowLinkNode = document.createTextNode(rowInfo["Link"])
-						rowLink.appendChild(rowLinkNode)
-						rowLink.classList.add("Link")
+            function setErrorDisplay() {
+                loaderElm.style.display = "none";
+                allSongsElm.style.display = "none";
+                errorMessageElm.style.display = "block";
+            }
 
-						rowInfoDiv.appendChild(rowSong)
-						rowInfoDiv.appendChild(rowArtist)
-						rowInfoDiv.appendChild(rowLink)
-								
-						allSongsElm.appendChild(rowInfoDiv)
+            // Fetch from first API spreadsheet
+            fetch("https://api.apispreadsheets.com/data/7OySATKrFeiUEqMz/")
+                .then(res => {
+                    if (res.status === 200) {
+                        res.json().then(data => {
+                            const yourData = data["data"];
+                            yourData.forEach(rowInfo => {
+                                let rowInfoDiv = document.createElement("div");
+                                rowInfoDiv.classList.add("song-row");
 
-					}
-					
-					loaderElm.style.display = "none"
-					allSongsElm.style.display = "block"
-					errorMessageElm.style.display = "none"
+                                let rowSong = document.createElement("h2");
+                                rowSong.textContent = rowInfo["Song"];
+                                rowSong.classList.add("Song");
 
-				}).catch(err => {
-					setErrorDisplay()
-				})
-			}
-			else{
-				setErrorDisplay()
-			}
-		}).catch(err =>{
-			setErrorDisplay()
-		})
-	</script>
-	<script>
-fetch("https://api.apispreadsheets.com/data/7OySATKrFeiUEqMz/").then(res=>{
-	if (res.status === 200){
-		// SUCCESS
-		res.json().then(data=>{
-			const yourData = data
-		}).catch(err => console.log(err))
-	}
-	else{
-		// ERROR
-	}
-})
-</script>	
+                                let rowArtist = document.createElement("h4");
+                                rowArtist.textContent = rowInfo["Artist"];
+                                rowArtist.classList.add("Artist");
+
+                                let rowLink = document.createElement("a");
+                                rowLink.setAttribute("href", rowInfo["Link"]);
+                                rowLink.setAttribute("target", "_blank");
+                                rowLink.textContent = rowInfo["Link"];
+                                rowLink.classList.add("Link");
+
+                                rowInfoDiv.appendChild(rowSong);
+                                rowInfoDiv.appendChild(rowArtist);
+                                rowInfoDiv.appendChild(rowLink);
+                                
+                                allSongsElm.appendChild(rowInfoDiv);
+                            });
+
+                            loaderElm.style.display = "none";
+                            allSongsElm.style.display = "block";
+                        }).catch(err => {
+                            console.error("Error parsing JSON:", err);
+                            setErrorDisplay();
+                        });
+                    } else {
+                        setErrorDisplay();
+                    }
+                }).catch(err => {
+                    console.error("Error with fetch:", err);
+                    setErrorDisplay();
+                });
+
+            // Fetch from second API spreadsheet
+            fetch("https://api.apispreadsheets.com/data/7OySATKrFeiUEqMz/")
+                .then(res => {
+                    if (res.status === 200) {
+                        res.json().then(data => {
+                            console.log("Second fetch data:", data);
+                            // Handle second fetch data here if needed
+                        }).catch(err => {
+                            console.error("Error parsing second JSON:", err);
+                        });
+                    } else {
+                        console.error("Second fetch failed with status:", res.status);
+                    }
+                }).catch(err => {
+                    console.error("Error with second fetch:", err);
+                });
+        });
+		fetch("https://api.apispreadsheets.com/data/7OySATKrFeiUEqMz/").then(res=>{
+    if (res.status === 200){
+        // SUCCESS
+        res.json().then(data=>{
+            const yourData = data
+        }).catch(err => console.log(err))
+    }
+    else{
+// ERROR
+    </script>
 </body>
 </html>
