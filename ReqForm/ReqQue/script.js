@@ -61,5 +61,16 @@ let allSongsElm = document.getElementById("allSongs")
 					loaderElm.style.display = "none"
 					allSongsElm.style.display = "block"
 					errorMessageElm.style.display = "none"
+					
+					}).catch(err => {
+					setErrorDisplay()
+				})
+			}
+			else{
+				setErrorDisplay()
+			}
+		}).catch(err =>{
+			setErrorDisplay()
+		})
 		
 		

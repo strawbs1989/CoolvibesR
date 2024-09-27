@@ -28,6 +28,11 @@ body{
 	margin: auto;
 	margin-top: 40px;
    }
+   
+   @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 .Song{ 
 	display: inline-block;
 	padding-right: 10px;
