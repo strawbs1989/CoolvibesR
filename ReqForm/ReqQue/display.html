@@ -3,22 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    
     <title>Music Queue</title>
     
     <!-- External Scripts and Styles -->
-    <script src="https://coolvibes-reloaded.com/ReqForm/ReqQue/script.js"></script>
-	<script src="https://coolvibes-reloaded.com/ReqForm/ReqQue/display_fetch.js"></script>
-	<script src="https://coolvibes-reloaded.com/ReqForm/ReqQue/fetch.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
     <link rel="stylesheet" href="https://coolvibes-reloaded.com/ReqForm/ReqQue/style.css">
-
-    <!-- Custom Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
@@ -55,12 +45,18 @@
                 errorMessageElm.style.display = "block";
             }
 
-            // Fetch from first API spreadsheet
+            // Fetch song requests from the API
             fetch("https://api.apispreadsheets.com/data/7OySATKrFeiUEqMz/")
                 .then(res => {
                     if (res.status === 200) {
                         res.json().then(data => {
                             const yourData = data["data"];
+                            
+                            // Clear the loader and error message
+                            loaderElm.style.display = "none";
+                            errorMessageElm.style.display = "none";
+
+                            // Populate the song requests
                             yourData.forEach(rowInfo => {
                                 let rowInfoDiv = document.createElement("div");
                                 rowInfoDiv.classList.add("song-row");
@@ -74,20 +70,23 @@
                                 rowArtist.classList.add("Artist");
 
                                 let rowLink = document.createElement("a");
-                                rowLink.setAttribute("href", rowInfo["Link"]);
-                                rowLink.setAttribute("target", "_blank");
+                                rowLink.href = rowInfo["Link"];
+                                rowLink.target = "_blank";
                                 rowLink.textContent = rowInfo["Link"];
                                 rowLink.classList.add("Link");
 
+                                // Append elements to the div
                                 rowInfoDiv.appendChild(rowSong);
                                 rowInfoDiv.appendChild(rowArtist);
                                 rowInfoDiv.appendChild(rowLink);
                                 
+                                // Append the song row to the allSongs element
                                 allSongsElm.appendChild(rowInfoDiv);
                             });
 
-                            loaderElm.style.display = "none";
+                            // Display the song list
                             allSongsElm.style.display = "block";
+
                         }).catch(err => {
                             console.error("Error parsing JSON:", err);
                             setErrorDisplay();
@@ -99,33 +98,7 @@
                     console.error("Error with fetch:", err);
                     setErrorDisplay();
                 });
-
-            // Fetch from second API spreadsheet
-            fetch("https://api.apispreadsheets.com/data/7OySATKrFeiUEqMz/")
-                .then(res => {
-                    if (res.status === 200) {
-                        res.json().then(data => {
-                            console.log("Second fetch data:", data);
-                            // Handle second fetch data here if needed
-                        }).catch(err => {
-                            console.error("Error parsing second JSON:", err);
-                        });
-                    } else {
-                        console.error("Second fetch failed with status:", res.status);
-                    }
-                }).catch(err => {
-                    console.error("Error with second fetch:", err);
-                });
         });
-		fetch("https://api.apispreadsheets.com/data/7OySATKrFeiUEqMz/").then(res=>{
-    if (res.status === 200){
-        // SUCCESS
-        res.json().then(data=>{
-            const yourData = data
-        }).catch(err => console.log(err))
-    }
-    else{
-// ERROR
     </script>
 </body>
 </html>
