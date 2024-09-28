@@ -145,7 +145,7 @@ text-align: center;
 		}
 		function deleteRow(rowID) { 
 
-			fetch("https://api.apispreadsheets.com/data/12730/?query=deletefrom12730whereID="+ rowID.toString()).then(res=>{
+			fetch("https://api.apispreadsheets.com/data/7OySATKrFeiUEqMz/?query=deletefrom7OySATKrFeiUEqMzwhereID="+ rowID.toString()).then(res=>{
 				if (res.status === 200){
 
 					// SUCCESS
@@ -164,7 +164,7 @@ text-align: center;
 		function updateSongNotes(rowID){
 			const currValueOfNotes = document.getElementById("rowNotesField" + rowID.toString()).value
 
-			fetch("https://api.apispreadsheets.com/data/12730/", {
+			fetch("https://api.apispreadsheets.com/data/7OySATKrFeiUEqMz/", {
 				method: "POST",
 				body: JSON.stringify({"data": {"Notes": currValueOfNotes}, "query": "select*from12730whereID=" + rowID.toString()}),
 			}).then(res =>{
@@ -179,7 +179,7 @@ text-align: center;
 			})
 		}
 			
-		fetch("https://api.apispreadsheets.com/data/12633/").then(res=>{
+		fetch("https://api.apispreadsheets.com/data/7OySATKrFeiUEqMz/").then(res=>{
 			if (res.status === 200){
 				res.json().then(data=>{
 					const yourData = data["data"]
