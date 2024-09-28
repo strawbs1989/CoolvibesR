@@ -1,94 +1,132 @@
-let allSongsElm = document.getElementById("allSongs");
-let loaderElm = document.getElementById("loader");
-let errorMessageElm = document.getElementById("errorMessage");
+let allSongsElm = document.getElementById("allSongs")
+		let loaderElm = document.getElementById("loader")
+		let errorMessageElm = document.getElementById("errorMessage")
+		
+		function setErrorDisplay(){
+			loaderElm.style.display = "none"
+			allSongsElm.style.display = "none"
+			errorMessageElm.style.display = "block"
+		}
+		function deleteRow(rowID) { 
 
-function setErrorDisplay() {
-  loaderElm.style.display = "none";
-  allSongsElm.style.display = "none";
-  errorMessageElm.style.display = "block";
-}
+			fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/?query=deletefromqOnLkupOU7WkHLCDwhereID="+ rowID.toString()).then(res=>{
+				if (res.status === 200){
 
-// Fetching the data from the API
-fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/")
-  .then((res) => {
-    if (res.status === 200) {
-      return res.json(); // Parse the JSON response
-    } else {
-      console.error("Error fetching data: " + res.status);
-      setErrorDisplay();
-    }
-  })
-  .then((data) => {
-    if (!data || !data.data) {
-      console.error("No data received or data structure incorrect:", data);
-      setErrorDisplay();
-      return;
-    }
+					// SUCCESS
+					alert("Successfully Deleted")
+					location.reload();
+				}
+				else{
+					// ERROR
+					alert("Error Deleting!")
+				}
+			}).catch(err => {
+				alert("Error Deleting!")
+			})
+		}			
 
-    const yourData = data["data"];
+		function updateSongNotes(rowID){
+			const currValueOfNotes = document.getElementById("rowNotesField" + rowID.toString()).value
 
-    // Loop through the fetched data and create HTML elements to display
-    yourData.forEach((rowInfo) => {
-      let rowInfoDiv = document.createElement("div");
-      rowInfoDiv.classList.add("song-row");
+			fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/", {
+				method: "POST",
+				body: JSON.stringify({"data": {"Notes": currValueOfNotes}, "query": "select*fromqOnLkupOU7WkHLCDwhereID=" + rowID.toString()}),
+			}).then(res =>{
+				if (res.status === 201){
+					// SUCCESS
+					alert("Notes Updated")
+				}
+				else{
+					// ERROR
+					alert("Notes Not Updated")
+				}
+			})
+		}
+			
+		fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/").then(res=>{
+			if (res.status === 200){
+				res.json().then(data=>{
+					const yourData = data["data"]
+					for(let i = 0; i < yourData.length; i++){
+						let rowInfo = yourData[i]
 
-      // Name (submitter's name)
-      let rowName = document.createElement("h4");
-      let rowNameNode = document.createTextNode("Submitted by: " + (rowInfo["Name"] || "Unknown"));
-      rowName.appendChild(rowNameNode);
-      rowName.classList.add("Name");
+						let rowInfoDiv = document.createElement("div")
+						rowInfoDiv.classList.add("song-row")
 
-      // Song Name (check if "Song" field exists)
-      let rowSong = document.createElement("h2");
-      let songText = rowInfo["Song"] ? rowInfo["Song"] : "No song title available";
-      let rowSongNode = document.createTextNode(songText); // Use default text if "Song" is missing
-      rowSong.appendChild(rowSongNode);
-      rowSong.classList.add("Song");
+						let rowName = document.createElement("h4");
+                        let rowNameNode = document.createTextNode(rowInfo["Name"])
+                        rowName.appendChild(rowNameNode);
+                        rowName.classList.add("Name");
+						
+						let rowSong = document.createElement("h4")
+						let rowSongNode = document.createTextNode(rowInfo["Song"])
+						rowSong.appendChild(rowSongNode)
+						rowSong.classList.add("Song")
 
-      // Artist (check if "Artist" field exists)
-      let rowArtist = document.createElement("h4");
-      let artistText = rowInfo["Artist"] ? rowInfo["Artist"] : "Unknown artist";
-      let rowArtistNode = document.createTextNode("Artist: " + artistText);
-      rowArtist.appendChild(rowArtistNode);
-      rowArtist.classList.add("Artist");
+						let rowArtist = document.createElement("h4")
+						let rowArtistNode = document.createTextNode(rowInfo["Artist"])
+						rowArtist.appendChild(rowArtistNode)
+						rowArtist.classList.add("Artist")
 
-      // Shoutout (check if "Shoutout" field exists)
-      let rowShoutout = document.createElement("p");
-      let shoutoutText = rowInfo["Shoutout"] ? rowInfo["Shoutout"] : "No shoutout";
-      let rowShoutoutNode = document.createTextNode("Shoutout: " + shoutoutText);
-      rowShoutout.appendChild(rowShoutoutNode);
-      rowShoutout.classList.add("Shoutout");
+						let rowLink = document.createElement("a")
+						rowLink.setAttribute("href", rowInfo["Link"])
+						rowLink.setAttribute("target","_blank")
+						let rowLinkNode = document.createTextNode(rowInfo["Link"])
+						rowLink.appendChild(rowLinkNode)
+						rowLink.classList.add("Link")
+						
+						let rowShoutout = document.createElement("h4")
+						let rowShoutoutNode = document.createTextNode(rowInfo["Shoutout"])
+						rowShoutout.appendChild(rowShoutoutNode)
+						rowShoutout.classList.add("Shoutout")
 
-      // Link to song (check if "Link" field exists)
-      let rowLink = document.createElement("a");
-      if (rowInfo["Link"]) {
-        rowLink.setAttribute("href", rowInfo["Link"]);
-        rowLink.setAttribute("target", "_blank");
-        let rowLinkNode = document.createTextNode("Listen");
-        rowLink.appendChild(rowLinkNode);
-      } else {
-        let rowLinkNode = document.createTextNode("No link available");
-        rowLink.appendChild(rowLinkNode);
-      }
-      rowLink.classList.add("Link");
+						let rowDeleteButton = document.createElement("button")
+						rowDeleteButton.setAttribute("onclick", "deleteRow(" + (rowInfo['ID']).toString() + ")")
+						let rowDeleteButtonNode = document.createTextNode("Delete Song")
+						rowDeleteButton.appendChild(rowDeleteButtonNode)
+						rowDeleteButton.classList.add("deleteButton")
 
-      // Append the elements to the row div
-      rowInfoDiv.appendChild(rowName);      // Add the submitter's name
-      rowInfoDiv.appendChild(rowSong);      // Add the song name
-      rowInfoDiv.appendChild(rowArtist);    // Add the artist name
-      rowInfoDiv.appendChild(rowShoutout);  // Add the shoutout
-      rowInfoDiv.appendChild(rowLink);      // Add the song link
+						let rowNotesField = document.createElement("input")
+						rowNotesField.setAttribute("type", "text")
+						rowNotesField.setAttribute("id", "rowNotesField" + rowInfo['ID'].toString())
+						rowNotesField.setAttribute("value", rowInfo['Notes'])
+						rowNotesField.classList.add("rowNotesField")
+						
+						let rowNotesSaveBtn = document.createElement("button")
+						rowNotesSaveBtn.setAttribute("onclick", "updateSongNotes(" + rowInfo['ID'].toString() + ')')
 
-      // Add the row to the allSongs div
-      allSongsElm.appendChild(rowInfoDiv);
-    });
+						let rowNotesSaveBtnNode = document.createTextNode("Save Notes")
+						rowNotesSaveBtn.appendChild(rowNotesSaveBtnNode)
+						rowNotesSaveBtn.setAttribute("id", "rowNotesSaveBtn" + rowInfo['ID'].toString())
+						rowNotesSaveBtn.classList.add("rowNotesSaveBtn")
 
-    // Hide loader and show the list of songs
-    loaderElm.style.display = "none";
-    allSongsElm.style.display = "block";
-    errorMessageElm.style.display = "none";
-  })
-  .catch((err) => {
-    console.error("Error fetching data: ", err);
-    setErrorDisplay();
-  });
+						
+                        rowInfoDiv.appendChild(rowName)
+						rowInfoDiv.appendChild(rowSong)
+						rowInfoDiv.appendChild(rowArtist)
+						rowInfoDiv.appendChild(rowLink)
+                        rowInfoDiv.appendChild(rowShoutout)
+				
+						rowInfoDiv.appendChild(rowNotesField)
+						rowInfoDiv.appendChild(rowNotesSaveBtn)
+						rowInfoDiv.appendChild(rowDeleteButton)
+
+						
+						allSongsElm.appendChild(rowInfoDiv)
+
+					}
+					
+					loaderElm.style.display = "none"
+					allSongsElm.style.display = "block"
+					errorMessageElm.style.display = "none"
+
+				}).catch(err => {
+					setErrorDisplay()
+				})
+			}
+			else{
+				setErrorDisplay()
+			}
+		}).catch(err =>{
+			setErrorDisplay()
+		})
