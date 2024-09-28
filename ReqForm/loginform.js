@@ -5,40 +5,28 @@
   projectId: "loginform-7bbd8",
   storageBucket: "loginform-7bbd8.appspot.com",
   messagingSenderId: "405910961497",
-  appId: "1:405910961497:web:e7b56227b169c89af76048",
+  appId: "1:405910961497:web:e7b56227b169c89af76048"
   };
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 const auth = firebase.auth();
 
 
-function signIn() {
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
-
-  firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // Signed in
-      alert("Signed in successfully!");
-    })
-    .catch((error) => {
-      alert("Error: " + error.message);
-    });
-}
-
+function signIn(){
   var email = document.getElementById("email");
   var password = document.getElementById("password"); 
 
   const promise = auth.signInWithEmailAndPassword(email.value, password.value);
-  promise.then(() => location.replace(".https://coolvibes-reloaded.com/ReqForm/ReqQue/djqueue.html")).catch(e => alert(e.message));
+  promise.then(() => location.replace(".https://coolvibes-reloaded.com/ReqForm/ReqQue/djQueue.html")).catch(e => alert(e.message));
 
 
 };
 
 function signOut(){
   auth.signOut();
-  location.replace(".https://coolvibes-reloaded.com/ReqForm/loginform.html");
+  location.replace(".https://coolvibes-reloaded.com/ReqForm/login.html");
   alert("Signed Out")
 }
 
