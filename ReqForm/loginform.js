@@ -13,7 +13,23 @@
 const auth = firebase.auth();
 
 
-function signIn(){
+function signIn() {
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("password").value;
+
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Signed in successfully
+      var user = userCredential.user;
+      alert("Signed in successfully!");
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert("Error: " + errorMessage);
+    });
+}
+
   var email = document.getElementById("email");
   var password = document.getElementById("password"); 
 
