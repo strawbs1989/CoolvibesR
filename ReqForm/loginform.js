@@ -19,14 +19,11 @@ function signIn() {
 
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
-      // Signed in successfully
-      var user = userCredential.user;
+      // Signed in
       alert("Signed in successfully!");
     })
     .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      alert("Error: " + errorMessage);
+      alert("Error: " + error.message);
     });
 }
 
