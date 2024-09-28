@@ -15,15 +15,14 @@ function deleteRow(rowID) {
         alert("Successfully Deleted");
         location.reload();
       } else {
-        console.error("Error Deleting Row:", res.status);
         alert("Error Deleting!");
       }
     })
     .catch((err) => {
-      console.error("Error Deleting Row:", err);
       alert("Error Deleting!");
     });
 }
+
 
 function updateSongNotes(rowID) {
   const currValueOfNotes = document.getElementById("rowNotesField" + rowID.toString()).value;
@@ -53,7 +52,7 @@ function updateSongNotes(rowID) {
 }
 
 // Fetching the data from the spreadsheet
-fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/")
+fetch("https://api.apispreadsheets.com/data/1-Cf4e1JKN0VMg14vwr34DZRkPd50SraDMUMWsI7KBXE/")
   .then((res) => {
     if (res.status === 200) {
       console.log("Data fetched successfully.");
