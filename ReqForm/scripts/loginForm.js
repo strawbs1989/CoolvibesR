@@ -28,3 +28,4 @@ function signOut(){
   location.replace(".https://coolvibes-reloaded.com/ReqForm/login.html");
   alert("Signed Out")
 } 
+
