@@ -13,9 +13,27 @@ const analytics = getAnalytics(app);
 const auth = firebase.auth();
 
 
-window.signIn = function(){
-  var email = document.getElementById("email");
-  var password = document.getElementById("password"); 
+function signIn() {
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    
+    // Firebase Authentication logic for signing in
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+        // Signed in successfully
+        var user = userCredential.user;
+        console.log("Signed in as:", user.email);
+        // Redirect or perform actions upon successful login
+    })
+    .catch((error) => {
+        // Handle login errors
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.error("Error signing in:", errorMessage);
+        alert(errorMessage);
+    });
+}
+
 
   const promise = auth.signInWithEmailAndPassword(email.value, password.value);
   promise.then(() => location.replace(".https://coolvibes-reloaded.com/ReqForm/ReqQue/djQueue.html")).catch(e => alert(e.message));
