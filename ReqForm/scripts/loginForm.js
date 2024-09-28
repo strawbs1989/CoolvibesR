@@ -1,4 +1,4 @@
-// Your Firebase configuration
+
 var firebaseConfig = {
   apiKey: "AIzaSyAFW1oYgoucS_tFBFpl_m2bAP0FgMair5I",
   authDomain: "loginform-7bbd8.firebaseapp.com",

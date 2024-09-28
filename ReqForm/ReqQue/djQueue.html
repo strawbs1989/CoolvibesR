@@ -145,7 +145,7 @@ function setErrorDisplay() {
 }
 
 function deleteRow(rowID) {
-  fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/?query=deletefromqOnLkupOU7WkHLCDwhereID=" + rowID.toString())
+  fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD
     .then((res) => {
       if (res.status === 200) {
         // SUCCESS
