@@ -10,22 +10,21 @@ var firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
 
 // Sign In function
 function signIn() {
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;
 
-  auth
-    .signInWithEmailAndPassword(email, password)
-    .then(() => {
-      // Redirect to the DJ Queue page after successful sign in
-      location.replace("https://coolvibes-reloaded.com/ReqForm/ReqQue/djQueue.html");
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Successful login
+      console.log("User signed in");
+      window.location.replace("https://coolvibes-reloaded.com/ReqForm/ReqQue/djQueue.html");
     })
-    .catch((e) => {
-      // Alert error message
-      alert(e.message);
+    .catch((error) => {
+      var errorMessage = error.message;
+      alert("Error: " + errorMessage);
     });
 }
 
