@@ -181,15 +181,9 @@ text-align: center;
 			
 		fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/").then(res=>{
 	if (res.status === 200){
-		// SUCCESS
-		res.json().then(data=>{
-			const yourData = data
-		}).catch(err => console.log(err))
-	}
-	else{
-		// ERROR
-	}
-})
+		// SUCCESS{
+				res.json().then(data=>{
+					const yourData = data["data"]
 					for(let i = 0; i < yourData.length; i++){
 						let rowInfo = yourData[i]
 
