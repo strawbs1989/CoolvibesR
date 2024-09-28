@@ -26,52 +26,58 @@ fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/")
     }
 
     const yourData = data["data"];
-    
+
     // Loop through the fetched data and create HTML elements to display
     yourData.forEach((rowInfo) => {
       let rowInfoDiv = document.createElement("div");
       rowInfoDiv.classList.add("song-row");
 
-      // Your Name
+      // Name (submitter's name)
+      let rowName = document.createElement("h4");
+      let rowNameNode = document.createTextNode("Submitted by: " + (rowInfo["Name"] || "Unknown"));
+      rowName.appendChild(rowNameNode);
+      rowName.classList.add("Name");
+
+      // Song Name (check if "Song" field exists)
       let rowSong = document.createElement("h2");
-      let rowSongNode = document.createTextNode(rowInfo["Name"]);
-      rowSong.appendChild(rowSongNode);
-      rowSong.classList.add("Name");
-	  
-	  // Song Name
-      let rowSong = document.createElement("h2");
-      let rowSongNode = document.createTextNode(rowInfo["Song"]);
+      let songText = rowInfo["Song"] ? rowInfo["Song"] : "No song title available";
+      let rowSongNode = document.createTextNode(songText); // Use default text if "Song" is missing
       rowSong.appendChild(rowSongNode);
       rowSong.classList.add("Song");
 
-      // Artist
+      // Artist (check if "Artist" field exists)
       let rowArtist = document.createElement("h4");
-      let rowArtistNode = document.createTextNode("Artist: " + rowInfo["Artist"]);
+      let artistText = rowInfo["Artist"] ? rowInfo["Artist"] : "Unknown artist";
+      let rowArtistNode = document.createTextNode("Artist: " + artistText);
       rowArtist.appendChild(rowArtistNode);
       rowArtist.classList.add("Artist");
 
-      // Link to song
+      // Shoutout (check if "Shoutout" field exists)
+      let rowShoutout = document.createElement("p");
+      let shoutoutText = rowInfo["Shoutout"] ? rowInfo["Shoutout"] : "No shoutout";
+      let rowShoutoutNode = document.createTextNode("Shoutout: " + shoutoutText);
+      rowShoutout.appendChild(rowShoutoutNode);
+      rowShoutout.classList.add("Shoutout");
+
+      // Link to song (check if "Link" field exists)
       let rowLink = document.createElement("a");
-      rowLink.setAttribute("href", rowInfo["Link"]);
-      rowLink.setAttribute("target", "_blank");
-      let rowLinkNode = document.createTextNode("Listen");
-      rowLink.appendChild(rowLinkNode);
+      if (rowInfo["Link"]) {
+        rowLink.setAttribute("href", rowInfo["Link"]);
+        rowLink.setAttribute("target", "_blank");
+        let rowLinkNode = document.createTextNode("Listen");
+        rowLink.appendChild(rowLinkNode);
+      } else {
+        let rowLinkNode = document.createTextNode("No link available");
+        rowLink.appendChild(rowLinkNode);
+      }
       rowLink.classList.add("Link");
-	  
-	  // Shoutout
-      let rowLink = document.createElement("a");
-      rowLink.setAttribute("href", rowInfo["Shoutout"]);
-      rowLink.setAttribute("target", "_blank");
-      let rowLinkNode = document.createTextNode("Shoutout");
-      rowLink.appendChild(rowLinkNode);
-      rowLink.classList.add("Shoutout");
 
       // Append the elements to the row div
-      rowInfoDiv.appendChild(rowName);
-	  rowInfoDiv.appendChild(rowSong);
-      rowInfoDiv.appendChild(rowArtist);
-      rowInfoDiv.appendChild(rowLink);
-	  rowInfoDiv.appendChild(rowShoutout);
+      rowInfoDiv.appendChild(rowName);      // Add the submitter's name
+      rowInfoDiv.appendChild(rowSong);      // Add the song name
+      rowInfoDiv.appendChild(rowArtist);    // Add the artist name
+      rowInfoDiv.appendChild(rowShoutout);  // Add the shoutout
+      rowInfoDiv.appendChild(rowLink);      // Add the song link
 
       // Add the row to the allSongs div
       allSongsElm.appendChild(rowInfoDiv);
