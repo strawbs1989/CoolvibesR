@@ -1,29 +1,29 @@
-<!DOCTYPE html>
-<html> 
-<head>
-<title> Login Page </title>
-	<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
-	<script src="https://coolvibes-reloaded.com/ReqForm/scripts/loginForm.js"></script>
-	<link rel="stylesheet" href="https://coolvibes-reloaded.com/ReqForm/style.css">
-	</head>
-<body> 
-	<div id="form">
-		<h1> DJ Portal </h1>
-		<div id="header"> </div>
+<html>
+  <head>
+    <title>Login Page</title>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://coolvibes-reloaded.com/ReqForm/style.css"
+    />
+  </head>
+  <body>
+    <div id="form">
+      <h1>DJ Portal</h1>
+      <div id="header"></div>
 
-		<input type="email" placeholder="Enter Email" id="email"/>
-    	<input type="password" placeholder="Enter Password" id="password"/>
+      <input type="email" placeholder="Enter Email" id="email" />
+      <input type="password" placeholder="Enter Password" id="password" />
 
+      <button onclick="signIn()" id="signIn">Sign In</button>
+      <script src="https://coolvibes-reloaded.com/ReqForm/scripts/loginForm.js"></script>
 
-		<button onclick="signIn(https://coolvibes-reloaded.com/ReqForm/ReqQue/djQueue.html')" id="signIn">Sign In</button>
-                    <br/><br/> 
-
-		<a href="https://coolvibes-reloaded.com/ReqForm/ReqQue/display.html"> Check out the current queue </a> <br/><br/>
-    		<a href="https://coolvibes-reloaded.com/ReqForm/form.html"> Song Form  </a> 
-
-		</div>
-		
-		</body>
-		
-		</html> 
+      <a href="https://coolvibes-reloaded.com/ReqForm/ReqQue/display.html">
+        Check out the current queue
+      </a>
+      <br /><br />
+      <a href="https://coolvibes-reloaded.com/ReqForm/form.html"> Song Form </a>
+    </div>
+  </body>
+</html>
