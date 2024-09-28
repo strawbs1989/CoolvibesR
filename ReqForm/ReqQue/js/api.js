@@ -2,11 +2,17 @@ let allSongsElm = document.getElementById("allSongs")
 		let loaderElm = document.getElementById("loader")
 		let errorMessageElm = document.getElementById("errorMessage")
 		
-		function setErrorDisplay(){
-			loaderElm.style.display = "none"
-			allSongsElm.style.display = "none"
-			errorMessageElm.style.display = "block"
-		}
+		function setErrorDisplay() {
+    if (loaderElm) {
+        loaderElm.style.display = "none";
+    }
+    if (allSongsElm) {
+        allSongsElm.style.display = "none";
+    }
+    if (errorMessageElm) {
+        errorMessageElm.style.display = "block";
+    }
+}
 		function deleteRow(rowID) { 
 
 			fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/?query=deletefromqOnLkupOU7WkHLCDwhereID="+ rowID.toString()).then(res=>{
