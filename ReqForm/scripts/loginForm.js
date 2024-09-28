@@ -13,26 +13,22 @@ const analytics = getAnalytics(app);
 const auth = firebase.auth();
 
 
+// loginForm.js
 function signIn() {
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
-    
-    // Firebase Authentication logic for signing in
+
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
-        // Signed in successfully
         var user = userCredential.user;
-        console.log("Signed in as:", user.email);
-        // Redirect or perform actions upon successful login
+        console.log("Signed in:", user.email);
     })
     .catch((error) => {
-        // Handle login errors
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.error("Error signing in:", errorMessage);
-        alert(errorMessage);
+        console.error("Error during sign in:", error.message);
+        alert(error.message);
     });
 }
+
 
 
   const promise = auth.signInWithEmailAndPassword(email.value, password.value);
@@ -43,7 +39,7 @@ function signIn() {
 
 function signOut(){
   auth.signOut();
-  location.replace(".https://coolvibes-reloaded.com/ReqForm/login.html");
+  location.replace("https://coolvibes-reloaded.com/ReqForm/login.html");
   alert("Signed Out")
 } 
 
