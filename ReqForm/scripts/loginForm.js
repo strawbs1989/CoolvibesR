@@ -13,7 +13,7 @@ const analytics = getAnalytics(app);
 const auth = firebase.auth();
 
 
-function signIn(){
+window.signIn = function(){
   var email = document.getElementById("email");
   var password = document.getElementById("password"); 
 
