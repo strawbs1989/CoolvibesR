@@ -251,6 +251,10 @@ text-align: center;
 		}).catch(err =>{
 			setErrorDisplay()
 		})
+		.catch(err => {
+   console.error("Error fetching or parsing data: ", err);
+   setErrorDisplay();
+})
 	</script>	
 </body>
 </html>
