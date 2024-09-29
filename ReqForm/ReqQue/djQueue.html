@@ -164,7 +164,7 @@ text-align: center;
 		function updateSongNotes(rowID){
 			const currValueOfNotes = document.getElementById("rowNotesField" + rowID.toString()).value
 
-			fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/", {
+			fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/queueData", {
 				method: "POST",
 				body: JSON.stringify({"data": {"Notes": currValueOfNotes}, "query": "select*fromqOnLkupOU7WkHLCDwhereID=" + rowID.toString()}),
 			}).then(res =>{
@@ -179,7 +179,7 @@ text-align: center;
 			})
 		}
 			
-		fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/").then(res=>{
+		fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/queueData").then(res=>{
 			if (res.status === 200){
 				res.json().then(data=>{
 					const yourData = data["data"]
