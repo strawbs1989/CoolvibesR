@@ -2,24 +2,17 @@ let allSongsElm = document.getElementById("allSongs")
 		let loaderElm = document.getElementById("loader")
 		let errorMessageElm = document.getElementById("errorMessage")
 		
-		function setErrorDisplay() {
-    if (loaderElm) {
-        loaderElm.style.display = "none";
-    }
-    if (allSongsElm) {
-        allSongsElm.style.display = "none";
-    }
-    if (errorMessageElm) {
-        errorMessageElm.style.display = "block";
-    }
-}
+		function setErrorDisplay(){
+			loaderElm.style.display = "none"
+			allSongsElm.style.display = "none"
+			errorMessageElm.style.display = "block"
+		}
 		function deleteRow(rowID) { 
 
 			fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/?query=deletefromqOnLkupOU7WkHLCDwhereID="+ rowID.toString()).then(res=>{
 				if (res.status === 200){
-
-					// SUCCESS
-					alert("Successfully Deleted")
+		// SUCCESS
+	alert("Successfully Deleted")
 					location.reload();
 				}
 				else{
@@ -29,7 +22,9 @@ let allSongsElm = document.getElementById("allSongs")
 			}).catch(err => {
 				alert("Error Deleting!")
 			})
-		}			
+		}
+
+					
 
 		function updateSongNotes(rowID){
 			const currValueOfNotes = document.getElementById("rowNotesField" + rowID.toString()).value
@@ -59,12 +54,12 @@ let allSongsElm = document.getElementById("allSongs")
 						let rowInfoDiv = document.createElement("div")
 						rowInfoDiv.classList.add("song-row")
 
-						let rowName = document.createElement("h4");
-                        let rowNameNode = document.createTextNode(rowInfo["Name"])
-                        rowName.appendChild(rowNameNode);
-                        rowName.classList.add("Name");
+						let rowName = document.createElement("h2")
+						let rowNameNode = document.createTextNode(rowInfo["Name"])
+						rowName.appendChild(rowNameNode)
+						rowName.classList.add("Name")
 						
-						let rowSong = document.createElement("h4")
+						let rowSong = document.createElement("h2")
 						let rowSongNode = document.createTextNode(rowInfo["Song"])
 						rowSong.appendChild(rowSongNode)
 						rowSong.classList.add("Song")
@@ -111,7 +106,8 @@ let allSongsElm = document.getElementById("allSongs")
 						rowInfoDiv.appendChild(rowSong)
 						rowInfoDiv.appendChild(rowArtist)
 						rowInfoDiv.appendChild(rowLink)
-                        rowInfoDiv.appendChild(rowShoutout)
+						rowInfoDiv.appendChild(rowShoutout)
+                        rowInfoDiv.appendChild(rowDeleteButton)
 				
 						rowInfoDiv.appendChild(rowNotesField)
 						rowInfoDiv.appendChild(rowNotesSaveBtn)
