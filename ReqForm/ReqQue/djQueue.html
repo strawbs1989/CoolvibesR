@@ -179,7 +179,7 @@ text-align: center;
 			})
 		}
 			
-		fetch("https://www.apispreadsheets.com/table/qOnLkupOU7WkHLCD/").then(res=>{
+		fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/").then(res=>{
 			if (res.status === 200){
 				res.json().then(data=>{
 					const yourData = data["data"]
