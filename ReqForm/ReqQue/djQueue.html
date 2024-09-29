@@ -143,28 +143,12 @@ text-align: center;
 			allSongsElm.style.display = "none"
 			errorMessageElm.style.display = "block"
 		}
-		function deleteRow(rowID) { 
-
-			fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/?query=deletefromqOnLkupOU7WkHLCDwhereID="+ rowID.toString()).then(res=>{
-				if (res.status === 200){
-
-					// SUCCESS
-					alert("Successfully Deleted")
-					location.reload();
-				}
-				else{
-					// ERROR
-					alert("Error Deleting!")
-				}
-			}).catch(err => {
-				alert("Error Deleting!")
-			})
-		}			
+					
 
 		function updateSongNotes(rowID){
 			const currValueOfNotes = document.getElementById("rowNotesField" + rowID.toString()).value
 
-			fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/queueData", {
+			fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/", {
 				method: "POST",
 				body: JSON.stringify({"data": {"Notes": currValueOfNotes}, "query": "select*fromqOnLkupOU7WkHLCDwhereID=" + rowID.toString()}),
 			}).then(res =>{
@@ -179,7 +163,7 @@ text-align: center;
 			})
 		}
 			
-		fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/queueData").then(res=>{
+		fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/").then(res=>{
 			if (res.status === 200){
 				res.json().then(data=>{
 					const yourData = data["data"]
