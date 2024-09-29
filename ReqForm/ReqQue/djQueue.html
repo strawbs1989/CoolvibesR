@@ -147,9 +147,8 @@ text-align: center;
 
 			fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/?query=deletefromqOnLkupOU7WkHLCDwhereID="+ rowID.toString()).then(res=>{
 				if (res.status === 200){
-
-					// SUCCESS
-					alert("Successfully Deleted")
+		// SUCCESS
+	alert("Successfully Deleted")
 					location.reload();
 				}
 				else{
@@ -159,7 +158,9 @@ text-align: center;
 			}).catch(err => {
 				alert("Error Deleting!")
 			})
-		}			
+		}
+
+					
 
 		function updateSongNotes(rowID){
 			const currValueOfNotes = document.getElementById("rowNotesField" + rowID.toString()).value
@@ -242,7 +243,7 @@ text-align: center;
 						rowInfoDiv.appendChild(rowArtist)
 						rowInfoDiv.appendChild(rowLink)
 						rowInfoDiv.appendChild(rowShoutout)
-
+                        rowInfoDiv.appendChild(rowDeleteButton)
 				
 						rowInfoDiv.appendChild(rowNotesField)
 						rowInfoDiv.appendChild(rowNotesSaveBtn)
