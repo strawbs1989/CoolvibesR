@@ -116,7 +116,7 @@ text-align: center;
 <body>
 	<div id="hero">
 		<h1>Welcome to the Queue</h1>
-		<h4> This is how the queue currently looks. Delete any songs you need to. View the live queue <a href="https://coolvibes-reloaded.com/ReqForm/ReqQue/display.html" style="text-decoration: none; color:navy" target="_blank">here. </a> </h4>
+		<h4> This is how the queue currently looks. Delete any songs you need to. View the live queue <a href="https://coolvibes-reloaded.com/ReqForm/ReqForm/ReqQue/display.html" style="text-decoration: none; color:navy" target="_blank">here. </a> </h4>
 		<button onclick="signOut()" id="signOut"> Sign Out </button> <br/><br/>
 		
 	</div>	
@@ -143,7 +143,23 @@ text-align: center;
 			allSongsElm.style.display = "none"
 			errorMessageElm.style.display = "block"
 		}
-					
+		function deleteRow(rowID) { 
+
+			fetch("https://api.apispreadsheets.com/data/qOnLkupOU7WkHLCD/?query=deletefromqOnLkupOU7WkHLCDwhereID="+ rowID.toString()).then(res=>{
+				if (res.status === 200){
+
+					// SUCCESS
+					alert("Successfully Deleted")
+					location.reload();
+				}
+				else{
+					// ERROR
+					alert("Error Deleting!")
+				}
+			}).catch(err => {
+				alert("Error Deleting!")
+			})
+		}			
 
 		function updateSongNotes(rowID){
 			const currValueOfNotes = document.getElementById("rowNotesField" + rowID.toString()).value
@@ -251,10 +267,6 @@ text-align: center;
 		}).catch(err =>{
 			setErrorDisplay()
 		})
-		.catch(err => {
-   console.error("Error fetching or parsing data: ", err);
-   setErrorDisplay();
-})
 	</script>	
 </body>
 </html>
