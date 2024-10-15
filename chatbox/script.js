@@ -21,28 +21,28 @@
         const authContainer = document.getElementById('auth-container');
 
         loginBtn.onclick = async () => {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            try {
-                await auth.signInWithEmailAndPassword(username, password);
-                authContainer.style.display = 'none';
-                chatContainer.style.display = 'block';
-                loadMessages();
-            } catch (error) {
-                alert(error.message);
-            }
-        };
+    const email = document.getElementById('email').value;  // Changed from username to email
+    const password = document.getElementById('password').value;
+    try {
+        await auth.signInWithEmailAndPassword(email, password);
+        authContainer.style.display = 'none';
+        chatContainer.style.display = 'block';
+        loadMessages();
+    } catch (error) {
+        alert(error.message);
+    }
+};
 
         registerBtn.onclick = async () => {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            try {
-                await auth.createUserWithEmailAndPassword(username, password);
-                alert('User registered successfully!');
-            } catch (error) {
-                alert(error.message);
-            }
-        };
+    const email = document.getElementById('email').value;  // Changed from username to email
+    const password = document.getElementById('password').value;
+    try {
+        await auth.createUserWithEmailAndPassword(email, password);
+        alert('User registered successfully!');
+    } catch (error) {
+        alert(error.message);
+    }
+};
 
         sendMessage.onclick = async () => {
             const msg = document.getElementById('messageInput').value;
