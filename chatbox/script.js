@@ -39,7 +39,7 @@ registerBtn.onclick = async () => {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     try {
-        await auth.createUserWithEmailAndPassword(username, password);
+        await auth.createUserWithEmailAndPassword(username, password); // Use username in place of email
         alert('User registered successfully!');
     } catch (error) {
         alert(error.message);
