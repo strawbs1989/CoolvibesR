@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Chatbox</title>
     <link rel="stylesheet" href="https://coolvibes-reloaded.com/chatbox/style.css">
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+    <!-- Firebase JS SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
 </head>
 <body>
+    <center>
     <div id="auth-container">
-        <input id="email" placeholder="Email" />
+        <input id="email" type="email" placeholder="Email" />
         <input id="password" type="password" placeholder="Password" />
+
         <button id="loginBtn">Login</button>
         <button id="registerBtn">Register</button>
     </div>
@@ -22,8 +26,10 @@
         <button id="sendMessage">Send</button>
         <button id="logoutBtn">Logout</button>
     </div>
+    </center>
 
-    <!-- Make sure script.js is loaded at the end -->
+    <!-- Your script should come here, after the body -->
     <script src="https://coolvibes-reloaded.com/chatbox/script.js"></script>
+	
 </body>
 </html>
