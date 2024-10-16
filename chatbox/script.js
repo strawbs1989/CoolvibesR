@@ -39,28 +39,16 @@ window.onload = () => {
     const registerBtn = document.getElementById('registerBtn');
 
     registerBtn.onclick = async () => {
-        
+    try {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-
-        try {
-            await auth.createUserWithEmailAndPassword(email, password);
-            alert('User registered successfully!');
-        } catch (error) {
-            alert(error.message);
-        }
-    };
-};
-
-        // Use Firebase's built-in validation for proper email formats
         await auth.createUserWithEmailAndPassword(email, password);
         alert('User registered successfully!');
     } catch (error) {
-        alert(error.message);  // This will give detailed errors like "auth/invalid-email"
+        alert(error.message);
     }
 };
 
-// Send message function
 sendMessage.onclick = async () => {
     const msg = document.getElementById('messageInput').value;
     const user = auth.currentUser;
@@ -74,27 +62,23 @@ sendMessage.onclick = async () => {
     }
 };
 
-// Logout function
 logoutBtn.onclick = () => {
     auth.signOut();
     authContainer.style.display = 'block';
     chatContainer.style.display = 'none';
 };
 
-// Load messages function
 const loadMessages = () => {
-    db.collection('messages').orderBy('timestamp')
-        .onSnapshot(snapshot => {
-            const messagesDiv = document.getElementById('messages');
-            messagesDiv.innerHTML = '';
-            snapshot.forEach(doc => {
-                const data = doc.data();
-                messagesDiv.innerHTML += `<p><strong>${data.username}:</strong> ${data.message}</p>`;
-            });
+    db.collection('messages').orderBy('timestamp').onSnapshot(snapshot => {
+        const messagesDiv = document.getElementById('messages');
+        messagesDiv.innerHTML = '';
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            messagesDiv.innerHTML += `<p><strong>${data.username}:</strong> ${data.message}</p>`;
         });
+    });
 };
 
-// Check authentication state
 auth.onAuthStateChanged(user => {
     if (user) {
         authContainer.style.display = 'none';
