@@ -8,7 +8,8 @@
             appId: "1:561320100817:web:b611951f3787155df016f0",
         };
 
-        firebase.initializeApp(firebaseConfig);
+        // Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
@@ -19,24 +20,12 @@ const logoutBtn = document.getElementById('logoutBtn');
 const chatContainer = document.getElementById('chat-container');
 const authContainer = document.getElementById('auth-container');
 
-// Register new user
-registerBtn.onclick = async () => {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    try {
-        await auth.createUserWithEmailAndPassword(email, password);
-        alert('User registered successfully!');
-    } catch (error) {
-        alert(error.message);
-    }
-};
-
-// Login user
+// User login function
 loginBtn.onclick = async () => {
-    const email = document.getElementById('email').value;
+    const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     try {
-        await auth.signInWithEmailAndPassword(email, password);
+        await auth.signInWithEmailAndPassword(username, password);
         authContainer.style.display = 'none';
         chatContainer.style.display = 'block';
         loadMessages();
@@ -45,7 +34,19 @@ loginBtn.onclick = async () => {
     }
 };
 
-// Send a message
+// User registration function
+registerBtn.onclick = async () => {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    try {
+        await auth.createUserWithEmailAndPassword(username, password);
+        alert('User registered successfully!');
+    } catch (error) {
+        alert(error.message);
+    }
+};
+
+// Send message function
 sendMessage.onclick = async () => {
     const msg = document.getElementById('messageInput').value;
     const user = auth.currentUser;
@@ -59,14 +60,14 @@ sendMessage.onclick = async () => {
     }
 };
 
-// Logout user
+// Logout function
 logoutBtn.onclick = () => {
     auth.signOut();
     authContainer.style.display = 'block';
     chatContainer.style.display = 'none';
 };
 
-// Load messages from Firestore
+// Load messages function
 const loadMessages = () => {
     db.collection('messages').orderBy('timestamp')
         .onSnapshot(snapshot => {
@@ -79,7 +80,7 @@ const loadMessages = () => {
         });
 };
 
-// Handle auth state changes
+// Check authentication state
 auth.onAuthStateChanged(user => {
     if (user) {
         authContainer.style.display = 'none';
