@@ -62,6 +62,8 @@ window.onload = () => {
     };
 
     // On register button click
+	const defaultAvatarUrl = "https://example.com/default-avatar.png";
+	
     registerBtn.onclick = async () => {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
@@ -82,28 +84,43 @@ window.onload = () => {
         }
 
         try {
-            await auth.createUserWithEmailAndPassword(email, password);
-            showAlert('User registered successfully!');
-            document.getElementById('email').value = '';  // Clear fields
-            document.getElementById('password').value = '';
-        } catch (error) {
-            showAlert(error.message);
-        }
-    };
+        // Register user
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+
+        // Add default avatar to Firestore profile
+        await db.collection('users').doc(user.uid).set({
+            email: user.email,
+            avatar: defaultAvatarUrl // Default avatar
+        });
+
+        showAlert('User registered successfully!');
+        document.getElementById('email').value = '';  // Clear fields
+        document.getElementById('password').value = '';
+    } catch (error) {
+        showAlert(error.message);
+    }
+};
 
     // On send message button click
 sendMessage.onclick = async () => {
     const msg = document.getElementById('messageInput').value;
     const user = auth.currentUser;
     if (user && msg.trim()) {
+        // Fetch avatar from the user's profile in Firestore
+        const userProfile = await db.collection('users').doc(user.uid).get();
+        const avatarUrl = userProfile.data().avatar;
+
         await db.collection('messages').add({
             username: user.email,
+            avatar: avatarUrl,  // Include avatar in message
             message: msg,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp() // Ensure the timestamp is added
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
         });
+
         document.getElementById('messageInput').value = ''; // Clear the input field after sending message
     } else {
-        alert("Please enter a message to send.");
+        showAlert("Please enter a message to send.");
     }
 };
 
@@ -121,8 +138,12 @@ const loadMessages = () => {
         messagesDiv.innerHTML = ''; // Clear messages before loading new ones
         snapshot.forEach(doc => {
             const data = doc.data();
-            const timestamp = data.timestamp ? data.timestamp.toDate().toLocaleTimeString() : 'Unknown time';
-            messagesDiv.innerHTML += `<p><strong>${data.username}:</strong> ${data.message} <span style="color:gray; font-size:0.8em;">(${timestamp})</span></p>`;
+            messagesDiv.innerHTML += `
+                <div class="message">
+                    <img src="${data.avatar}" alt="Avatar" class="avatar">
+                    <p><strong>${data.username}:</strong> ${data.message}</p>
+                </div>
+            `;
         });
         messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the bottom
     });
