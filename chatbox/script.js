@@ -65,38 +65,37 @@ window.onload = () => {
 	const defaultAvatarUrl = "https://example.com/default-avatar.png";
 	
     registerBtn.onclick = async () => {
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-        if (!email || !password) {
-            showAlert("Please fill in both email and password.");
-            return;
-        }
+    if (!email || !password) {
+        showAlert("Please fill in both email and password.");
+        return;
+    }
 
-        if (!validateEmail(email)) {
-            showAlert("Please enter a valid email address.");
-            return;
-        }
+    if (!validateEmail(email)) {
+        showAlert("Please enter a valid email address.");
+        return;
+    }
 
-        if (password.length < 6) {
-            showAlert("Password must be at least 6 characters long.");
-            return;
-        }
+    if (password.length < 6) {
+        showAlert("Password must be at least 6 characters long.");
+        return;
+    }
 
-        try {
+    try {
         // Register user
         const userCredential = await auth.createUserWithEmailAndPassword(email, password);
         const user = userCredential.user;
 
-        // Add default avatar to Firestore profile
+        // Add an empty avatar URL initially
         await db.collection('users').doc(user.uid).set({
             email: user.email,
-            avatar: defaultAvatarUrl // Default avatar
+            avatar: ''
         });
 
-        showAlert('User registered successfully!');
-        document.getElementById('email').value = '';  // Clear fields
-        document.getElementById('password').value = '';
+        showAlert('User registered successfully! Now upload your avatar.');
+
     } catch (error) {
         showAlert(error.message);
     }
@@ -105,7 +104,43 @@ window.onload = () => {
     // On send message button click
 sendMessage.onclick = async () => {
     const msg = document.getElementById('messageInput').value;
+	const avatarInput = document.getElementById('avatarInput');
+const uploadAvatarBtn = document.getElementById('uploadAvatarBtn');
+let avatarUrl = '';
+
+uploadAvatarBtn.onclick = async () => {
+    const file = avatarInput.files[0];
+    if (!file) {
+        showAlert("Please select an avatar image.");
+        return;
+    }
     const user = auth.currentUser;
+    if (!user) {
+        showAlert("You need to be logged in to upload an avatar.");
+        return;
+    }
+
+    // Create a storage reference
+    const storageRef = firebase.storage().ref(`avatars/${user.uid}`);
+
+    try {
+        // Upload the file to Firebase Storage
+        const snapshot = await storageRef.put(file);
+
+        // Get the download URL of the uploaded image
+        avatarUrl = await snapshot.ref.getDownloadURL();
+
+        // Save the avatar URL to Firestore
+        await db.collection('users').doc(user.uid).update({
+            avatar: avatarUrl
+        });
+
+        showAlert("Avatar uploaded successfully!");
+
+    } catch (error) {
+        showAlert("Error uploading avatar: " + error.message);
+    }
+};
     if (user && msg.trim()) {
         // Fetch avatar from the user's profile in Firestore
         const userProfile = await db.collection('users').doc(user.uid).get();
@@ -138,9 +173,10 @@ const loadMessages = () => {
         messagesDiv.innerHTML = ''; // Clear messages before loading new ones
         snapshot.forEach(doc => {
             const data = doc.data();
+            const avatar = data.avatar ? data.avatar : "https://example.com/default-avatar.png"; // Fallback to default avatar if none uploaded
             messagesDiv.innerHTML += `
                 <div class="message">
-                    <img src="${data.avatar}" alt="Avatar" class="avatar">
+                    <img src="${avatar}" alt="Avatar" class="avatar">
                     <p><strong>${data.username}:</strong> ${data.message}</p>
                 </div>
             `;
@@ -148,6 +184,7 @@ const loadMessages = () => {
         messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the bottom
     });
 };
+
 
     // Handle auth state changes (user login/logout)
     auth.onAuthStateChanged(user => {
