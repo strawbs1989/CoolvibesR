@@ -62,9 +62,7 @@ window.onload = () => {
     };
 
     // On register button click
-	const defaultAvatarUrl = "https://example.com/default-avatar.png";
-	
-    registerBtn.onclick = async () => {
+registerBtn.onclick = async () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
@@ -95,19 +93,14 @@ window.onload = () => {
         });
 
         showAlert('User registered successfully! Now upload your avatar.');
+        document.getElementById('avatarForm').style.display = 'block'; // Show avatar upload form after registration
 
     } catch (error) {
         showAlert(error.message);
     }
 };
 
-    // On send message button click
-sendMessage.onclick = async () => {
-    const msg = document.getElementById('messageInput').value;
-	const avatarInput = document.getElementById('avatarInput');
-const uploadAvatarBtn = document.getElementById('uploadAvatarBtn');
-let avatarUrl = '';
-
+// Avatar Upload Handler
 uploadAvatarBtn.onclick = async () => {
     const file = avatarInput.files[0];
     if (!file) {
@@ -128,7 +121,7 @@ uploadAvatarBtn.onclick = async () => {
         const snapshot = await storageRef.put(file);
 
         // Get the download URL of the uploaded image
-        avatarUrl = await snapshot.ref.getDownloadURL();
+        const avatarUrl = await snapshot.ref.getDownloadURL();
 
         // Save the avatar URL to Firestore
         await db.collection('users').doc(user.uid).update({
@@ -141,10 +134,16 @@ uploadAvatarBtn.onclick = async () => {
         showAlert("Error uploading avatar: " + error.message);
     }
 };
+
+// On send message button click
+sendMessage.onclick = async () => {
+    const msg = document.getElementById('messageInput').value;
+    const user = auth.currentUser;
+
     if (user && msg.trim()) {
         // Fetch avatar from the user's profile in Firestore
         const userProfile = await db.collection('users').doc(user.uid).get();
-        const avatarUrl = userProfile.data().avatar;
+        const avatarUrl = userProfile.data().avatar || "https://example.com/default-avatar.png"; // Fallback URL
 
         await db.collection('messages').add({
             username: user.email,
@@ -157,44 +156,4 @@ uploadAvatarBtn.onclick = async () => {
     } else {
         showAlert("Please enter a message to send.");
     }
-};
-
-    // On logout button click
-    logoutBtn.onclick = () => {
-        auth.signOut();
-        authContainer.style.display = 'block';
-        chatContainer.style.display = 'none';
-    };
-
-    // Load and display messages from Firestore
-const loadMessages = () => {
-    db.collection('messages').orderBy('timestamp').onSnapshot(snapshot => {
-        const messagesDiv = document.getElementById('messages');
-        messagesDiv.innerHTML = ''; // Clear messages before loading new ones
-        snapshot.forEach(doc => {
-            const data = doc.data();
-            const avatar = data.avatar ? data.avatar : "https://example.com/default-avatar.png"; // Fallback to default avatar if none uploaded
-            messagesDiv.innerHTML += `
-                <div class="message">
-                    <img src="${avatar}" alt="Avatar" class="avatar">
-                    <p><strong>${data.username}:</strong> ${data.message}</p>
-                </div>
-            `;
-        });
-        messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the bottom
-    });
-};
-
-
-    // Handle auth state changes (user login/logout)
-    auth.onAuthStateChanged(user => {
-        if (user) {
-            authContainer.style.display = 'none';
-            chatContainer.style.display = 'block';
-            loadMessages(); // Load messages if user is logged in
-        } else {
-            authContainer.style.display = 'block';
-            chatContainer.style.display = 'none';
-        }
-    });
 };
