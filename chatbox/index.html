@@ -20,17 +20,23 @@
         <button id="registerBtn" type="button">Register</button>
     </form>
     
-    <!-- Avatar Upload Form -->
-    <form id="avatarForm" style="display:none;">
-        <input type="file" id="avatarInput" accept="image/*">
-        <button id="uploadAvatarBtn" type="button">Upload Avatar</button>
-    </form>
+    
 </div>
     <div id="chat-container" style="display:none;">
         <div id="messages" style="height: 300px; overflow-y: scroll;"></div>
-        <input id="messageInput" placeholder="Type a message..." />
-        <button id="sendMessage">Send</button>
-        <button id="logoutBtn">Logout</button>
+		
+        <!-- Avatar Upload Form -->
+    <form id="avatarForm">
+        <input type="file" id="avatarInput" accept="image/*">
+        <button id="uploadAvatarBtn" type="button">Upload Avatar</button>
+    </form>
+    
+    <!-- Chat message input -->
+    <input type="text" id="messageInput" placeholder="Type a message...">
+    <button id="sendMessage" type="button">Send</button>
+    
+    <button id="logoutBtn" type="button">Logout</button>
+</div>
     </div>
     </center>
 
