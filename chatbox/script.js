@@ -105,7 +105,7 @@ sendMessage.onclick = async () => {
     } else {
         alert("Please enter a message to send.");
     }
-};;
+};
 
     // On logout button click
     logoutBtn.onclick = () => {
