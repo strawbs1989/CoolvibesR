@@ -23,17 +23,41 @@ window.onload = () => {
     const chatContainer = document.getElementById('chat-container');
     const authContainer = document.getElementById('auth-container');
 
+    // Function to validate email format
+    const validateEmail = (email) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    };
+
+    // Function to display alert for validation issues
+    const showAlert = (message) => {
+        alert(message);
+    };
+
     // On login button click
     loginBtn.onclick = async () => {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
+
+        if (!email || !password) {
+            showAlert("Please fill in both email and password.");
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            showAlert("Please enter a valid email address.");
+            return;
+        }
+
         try {
             await auth.signInWithEmailAndPassword(email, password);
             authContainer.style.display = 'none';
             chatContainer.style.display = 'block';
             loadMessages(); // Load messages after login
+            document.getElementById('email').value = '';  // Clear fields
+            document.getElementById('password').value = '';
         } catch (error) {
-            alert(error.message);
+            showAlert(error.message);
         }
     };
 
@@ -41,11 +65,29 @@ window.onload = () => {
     registerBtn.onclick = async () => {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
+
+        if (!email || !password) {
+            showAlert("Please fill in both email and password.");
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            showAlert("Please enter a valid email address.");
+            return;
+        }
+
+        if (password.length < 6) {
+            showAlert("Password must be at least 6 characters long.");
+            return;
+        }
+
         try {
             await auth.createUserWithEmailAndPassword(email, password);
-            alert('User registered successfully!');
+            showAlert('User registered successfully!');
+            document.getElementById('email').value = '';  // Clear fields
+            document.getElementById('password').value = '';
         } catch (error) {
-            alert(error.message);
+            showAlert(error.message);
         }
     };
 
@@ -60,6 +102,8 @@ window.onload = () => {
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
             });
             document.getElementById('messageInput').value = ''; // Clear the input field after sending message
+        } else {
+            showAlert("Please enter a message to send.");
         }
     };
 
