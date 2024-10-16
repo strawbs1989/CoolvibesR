@@ -92,20 +92,20 @@ window.onload = () => {
     };
 
     // On send message button click
-    sendMessage.onclick = async () => {
-        const msg = document.getElementById('messageInput').value;
-        const user = auth.currentUser;
-        if (user && msg.trim()) {
-            await db.collection('messages').add({
-                username: user.email,
-                message: msg,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            });
-            document.getElementById('messageInput').value = ''; // Clear the input field after sending message
-        } else {
-            showAlert("Please enter a message to send.");
-        }
-    };
+sendMessage.onclick = async () => {
+    const msg = document.getElementById('messageInput').value;
+    const user = auth.currentUser;
+    if (user && msg.trim()) {
+        await db.collection('messages').add({
+            username: user.email,
+            message: msg,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp() // Ensure the timestamp is added
+        });
+        document.getElementById('messageInput').value = ''; // Clear the input field after sending message
+    } else {
+        alert("Please enter a message to send.");
+    }
+};;
 
     // On logout button click
     logoutBtn.onclick = () => {
@@ -115,17 +115,18 @@ window.onload = () => {
     };
 
     // Load and display messages from Firestore
-    const loadMessages = () => {
-        db.collection('messages').orderBy('timestamp').onSnapshot(snapshot => {
-            const messagesDiv = document.getElementById('messages');
-            messagesDiv.innerHTML = ''; // Clear messages before loading new ones
-            snapshot.forEach(doc => {
-                const data = doc.data();
-                messagesDiv.innerHTML += `<p><strong>${data.username}:</strong> ${data.message}</p>`;
-            });
-            messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the bottom
+const loadMessages = () => {
+    db.collection('messages').orderBy('timestamp').onSnapshot(snapshot => {
+        const messagesDiv = document.getElementById('messages');
+        messagesDiv.innerHTML = ''; // Clear messages before loading new ones
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            const timestamp = data.timestamp ? data.timestamp.toDate().toLocaleTimeString() : 'Unknown time';
+            messagesDiv.innerHTML += `<p><strong>${data.username}:</strong> ${data.message} <span style="color:gray; font-size:0.8em;">(${timestamp})</span></p>`;
         });
-    };
+        messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the bottom
+    });
+};
 
     // Handle auth state changes (user login/logout)
     auth.onAuthStateChanged(user => {
