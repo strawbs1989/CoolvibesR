@@ -36,13 +36,21 @@ loginBtn.onclick = async () => {
 
 // User registration function
 registerBtn.onclick = async () => {
-    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+
+    // Basic client-side validation
+    if (!email || !password) {
+        alert("Please fill out both fields.");
+        return;
+    }
+
     try {
-        await auth.createUserWithEmailAndPassword(username, password); // Use username in place of email
+        // Use Firebase's built-in validation for proper email formats
+        await auth.createUserWithEmailAndPassword(email, password);
         alert('User registered successfully!');
     } catch (error) {
-        alert(error.message);
+        alert(error.message);  // This will give detailed errors like "auth/invalid-email"
     }
 };
 
