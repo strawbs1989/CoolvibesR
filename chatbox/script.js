@@ -62,98 +62,99 @@ window.onload = () => {
     };
 
     // On register button click
-registerBtn.onclick = async () => {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    registerBtn.onclick = async () => {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
-    if (!email || !password) {
-        showAlert("Please fill in both email and password.");
-        return;
-    }
+        if (!email || !password) {
+            showAlert("Please fill in both email and password.");
+            return;
+        }
 
-    if (!validateEmail(email)) {
-        showAlert("Please enter a valid email address.");
-        return;
-    }
+        if (!validateEmail(email)) {
+            showAlert("Please enter a valid email address.");
+            return;
+        }
 
-    if (password.length < 6) {
-        showAlert("Password must be at least 6 characters long.");
-        return;
-    }
+        if (password.length < 6) {
+            showAlert("Password must be at least 6 characters long.");
+            return;
+        }
 
-    try {
-        // Register user
-        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-        const user = userCredential.user;
+        try {
+            // Register user
+            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+            const user = userCredential.user;
 
-        // Add an empty avatar URL initially
-        await db.collection('users').doc(user.uid).set({
-            email: user.email,
-            avatar: ''
-        });
+            // Add an empty avatar URL initially
+            await db.collection('users').doc(user.uid).set({
+                email: user.email,
+                avatar: ''
+            });
 
-        showAlert('User registered successfully! Now upload your avatar.');
-        document.getElementById('avatarForm').style.display = 'block'; // Show avatar upload form after registration
+            showAlert('User registered successfully! Now upload your avatar.');
+            document.getElementById('avatarForm').style.display = 'block'; // Show avatar upload form after registration
 
-    } catch (error) {
-        showAlert(error.message);
-    }
-};
+        } catch (error) {
+            showAlert(error.message);
+        }
+    };
 
-// Avatar Upload Handler
-uploadAvatarBtn.onclick = async () => {
-    const file = avatarInput.files[0];
-    if (!file) {
-        showAlert("Please select an avatar image.");
-        return;
-    }
-    const user = auth.currentUser;
-    if (!user) {
-        showAlert("You need to be logged in to upload an avatar.");
-        return;
-    }
+    // Avatar Upload Handler
+    uploadAvatarBtn.onclick = async () => {
+        const file = avatarInput.files[0];
+        if (!file) {
+            showAlert("Please select an avatar image.");
+            return;
+        }
+        const user = auth.currentUser;
+        if (!user) {
+            showAlert("You need to be logged in to upload an avatar.");
+            return;
+        }
 
-    // Create a storage reference
-    const storageRef = firebase.storage().ref(`avatars/${user.uid}`);
+        // Create a storage reference
+        const storageRef = firebase.storage().ref(`avatars/${user.uid}`);
 
-    try {
-        // Upload the file to Firebase Storage
-        const snapshot = await storageRef.put(file);
+        try {
+            // Upload the file to Firebase Storage
+            const snapshot = await storageRef.put(file);
 
-        // Get the download URL of the uploaded image
-        const avatarUrl = await snapshot.ref.getDownloadURL();
+            // Get the download URL of the uploaded image
+            const avatarUrl = await snapshot.ref.getDownloadURL();
 
-        // Save the avatar URL to Firestore
-        await db.collection('users').doc(user.uid).update({
-            avatar: avatarUrl
-        });
+            // Save the avatar URL to Firestore
+            await db.collection('users').doc(user.uid).update({
+                avatar: avatarUrl
+            });
 
-        showAlert("Avatar uploaded successfully!");
+            showAlert("Avatar uploaded successfully!");
 
-    } catch (error) {
-        showAlert("Error uploading avatar: " + error.message);
-    }
-};
+        } catch (error) {
+            showAlert("Error uploading avatar: " + error.message);
+        }
+    };
 
-// On send message button click
-sendMessage.onclick = async () => {
-    const msg = document.getElementById('messageInput').value;
-    const user = auth.currentUser;
+    // On send message button click
+    sendMessage.onclick = async () => {
+        const msg = document.getElementById('messageInput').value;
+        const user = auth.currentUser;
 
-    if (user && msg.trim()) {
-        // Fetch avatar from the user's profile in Firestore
-        const userProfile = await db.collection('users').doc(user.uid).get();
-        const avatarUrl = userProfile.data().avatar || "https://example.com/default-avatar.png"; // Fallback URL
+        if (user && msg.trim()) {
+            // Fetch avatar from the user's profile in Firestore
+            const userProfile = await db.collection('users').doc(user.uid).get();
+            const avatarUrl = userProfile.data().avatar || "https://example.com/default-avatar.png"; // Fallback URL
 
-        await db.collection('messages').add({
-            username: user.email,
-            avatar: avatarUrl,  // Include avatar in message
-            message: msg,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
+            await db.collection('messages').add({
+                username: user.email,
+                avatar: avatarUrl,  // Include avatar in message
+                message: msg,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
 
-        document.getElementById('messageInput').value = ''; // Clear the input field after sending message
-    } else {
-        showAlert("Please enter a message to send.");
-    }
+            document.getElementById('messageInput').value = ''; // Clear the input field after sending message
+        } else {
+            showAlert("Please enter a message to send.");
+        }
+    };
 };
