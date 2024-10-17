@@ -50,7 +50,14 @@ const authContainer = document.getElementById('auth-container');
         messagesSnapshot.forEach(doc => {
             const data = doc.data();
             const messageElement = document.createElement('div');
-            messageElement.innerHTML = `<img src="${data.avatar}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;"> <strong>${data.username}</strong>: ${data.message}`;
+            if (data && data.avatar && data.username && data.message) {
+    messageElement.innerHTML = `
+        <img src="${data.avatar}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;">
+        <strong>${data.username}</strong>: ${data.message}
+    `
+} else {
+    console.error('Message data is incomplete:', data);
+}
             messagesDiv.appendChild(messageElement);
         });
 
