@@ -18,6 +18,20 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+// Function to generate a color from a string (user's email)
+function stringToColor(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    let color = '#';
+    for (let i = 0; i < 3; i++) {
+        let value = (hash >> (i * 8)) & 0xFF;
+        color += ('00' + value.toString(16)).substr(-2);
+    }
+    return color;
+}
+
 window.onload = () => {
     const loginBtn = document.getElementById('loginBtn');
     const registerBtn = document.getElementById('registerBtn');
@@ -47,7 +61,8 @@ window.onload = () => {
         messagesSnapshot.forEach(doc => {
             const data = doc.data();
             const messageElement = document.createElement('div');
-            messageElement.innerHTML = `<img src="${data.avatar}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;"> <strong>${data.username}</strong>: ${data.message}`;
+            const messageColor = stringToColor(data.username); // Generate color based on username (email)
+            messageElement.innerHTML = `<img src="${data.avatar}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;"> <strong style="color:${messageColor}">${data.username}</strong>: <span style="color:${messageColor}">${data.message}</span>`;
             messagesDiv.appendChild(messageElement);
         });
 
