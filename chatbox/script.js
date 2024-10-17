@@ -1,4 +1,4 @@
-        // Firebase configuration
+// Firebase configuration (using Firebase v8)
 const firebaseConfig = {
     apiKey: "AIzaSyBTuGFhq5j6V9Q5gufyKIZCCa4fa9_pMmA",
     authDomain: "chatbox-53db3.firebaseapp.com",
@@ -8,170 +8,155 @@ const firebaseConfig = {
     appId: "1:561320100817:web:b611951f3787155df016f0",
 };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const storage = firebase.storage();
 
-        // Ensure the DOM is fully loaded before accessing elements
-        window.onload = () => {
-            const loginBtn = document.getElementById('loginBtn');
-            const registerBtn = document.getElementById('registerBtn');
-            const sendMessage = document.getElementById('sendMessage');
-            const logoutBtn = document.getElementById('logoutBtn');
-            const chatContainer = document.getElementById('chat-container');
-            const authContainer = document.getElementById('auth-container');
-            const avatarInput = document.getElementById('avatarInput');
-            const uploadAvatarBtn = document.getElementById('uploadAvatarBtn');
+// Ensure the DOM is fully loaded before accessing elements
+window.onload = () => {
+    const loginBtn = document.getElementById('loginBtn');
+    const registerBtn = document.getElementById('registerBtn');
+    const sendMessage = document.getElementById('sendMessage');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const chatContainer = document.getElementById('chat-container');
+    const authContainer = document.getElementById('auth-container');
+    const avatarInput = document.getElementById('avatarInput');
+    const uploadAvatarBtn = document.getElementById('uploadAvatarBtn');
 
-            const validateEmail = (email) => {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return re.test(String(email).toLowerCase());
-            };
+    const validateEmail = (email) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    };
 
-            const showAlert = (message) => {
-                alert(message);
-            };
+    const showAlert = (message) => {
+        alert(message);
+    };
 
-            const loadMessages = async () => {
-                const messagesRef = collection(db, 'messages');
-                const messagesQuery = query(messagesRef, orderBy('timestamp', 'desc'));
-                const messagesSnapshot = await getDocs(messagesQuery);
-                const messagesDiv = document.getElementById('messages');
-                messagesDiv.innerHTML = ''; // Clear the chat before loading new messages
+    const loadMessages = async () => {
+        const messagesSnapshot = await db.collection('messages').orderBy('timestamp', 'asc').get();
+        const messagesDiv = document.getElementById('messages');
+        messagesDiv.innerHTML = ''; // Clear previous messages
 
-                messagesSnapshot.forEach(doc => {
-                    const data = doc.data();
-                    const messageElement = document.createElement('div');
-                    messageElement.innerHTML = `<img src="${data.avatar}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;"> <strong>${data.username}</strong>: ${data.message}`;
-                    messagesDiv.appendChild(messageElement);
-                });
+        messagesSnapshot.forEach(doc => {
+            const data = doc.data();
+            const messageElement = document.createElement('div');
+            messageElement.innerHTML = `<img src="${data.avatar}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;"> <strong>${data.username}</strong>: ${data.message}`;
+            messagesDiv.appendChild(messageElement);
+        });
 
-                // Scroll to the bottom of the messages
-                messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            };
+        messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the bottom
+    };
 
-            // On login button click
-            loginBtn.onclick = async () => {
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
+    loginBtn.onclick = async () => {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
-                if (!email || !password) {
-                    showAlert("Please fill in both email and password.");
-                    return;
-                }
+        if (!email || !password) {
+            showAlert("Please fill in both email and password.");
+            return;
+        }
 
-                if (!validateEmail(email)) {
-                    showAlert("Please enter a valid email address.");
-                    return;
-                }
+        if (!validateEmail(email)) {
+            showAlert("Please enter a valid email address.");
+            return;
+        }
 
-                try {
-                    await signInWithEmailAndPassword(auth, email, password);
-                    authContainer.style.display = 'none';
-                    chatContainer.style.display = 'block';
-                    loadMessages(); // Load messages after login
-                    document.getElementById('email').value = '';  // Clear fields
-                    document.getElementById('password').value = '';
-                } catch (error) {
-                    showAlert(error.message);
-                }
-            };
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+            authContainer.style.display = 'none';
+            chatContainer.style.display = 'block';
+            loadMessages(); // Load messages after login
+        } catch (error) {
+            showAlert(error.message);
+        }
+    };
 
-            // On register button click
-            registerBtn.onclick = async () => {
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
+    registerBtn.onclick = async () => {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
-                if (!email || !password) {
-                    showAlert("Please fill in both email and password.");
-                    return;
-                }
+        if (!email || !password) {
+            showAlert("Please fill in both email and password.");
+            return;
+        }
 
-                if (!validateEmail(email)) {
-                    showAlert("Please enter a valid email address.");
-                    return;
-                }
+        if (password.length < 6) {
+            showAlert("Password must be at least 6 characters.");
+            return;
+        }
 
-                if (password.length < 6) {
-                    showAlert("Password must be at least 6 characters long.");
-                    return;
-                }
+        try {
+            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+            const user = userCredential.user;
 
-                try {
-                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                    const user = userCredential.user;
+            await db.collection('users').doc(user.uid).set({
+                email: user.email,
+                avatar: ''
+            });
 
-                    await setDoc(doc(db, 'users', user.uid), {
-                        email: user.email,
-                        avatar: ''
-                    });
+            showAlert("User registered successfully!");
+            document.getElementById('avatarForm').style.display = 'block'; // Show avatar form
+        } catch (error) {
+            showAlert(error.message);
+        }
+    };
 
-                    showAlert('User registered successfully! Now upload your avatar.');
-                    document.getElementById('avatarForm').style.display = 'block'; // Show avatar upload form after registration
+    uploadAvatarBtn.onclick = async () => {
+        const file = avatarInput.files[0];
+        if (!file) {
+            showAlert("Please select an avatar image.");
+            return;
+        }
 
-                } catch (error) {
-                    showAlert(error.message);
-                }
-            };
+        const user = auth.currentUser;
+        if (!user) {
+            showAlert("You need to be logged in to upload an avatar.");
+            return;
+        }
 
-            // Avatar Upload Handler
-            uploadAvatarBtn.onclick = async () => {
-                const file = avatarInput.files[0];
-                if (!file) {
-                    showAlert("Please select an avatar image.");
-                    return;
-                }
-                const user = auth.currentUser;
-                if (!user) {
-                    showAlert("You need to be logged in to upload an avatar.");
-                    return;
-                }
+        const storageRef = storage.ref(`avatars/${user.uid}`);
+        try {
+            const snapshot = await storageRef.put(file);
+            const avatarUrl = await snapshot.ref.getDownloadURL();
 
-                const storageRef = firebase.storage().ref(`avatars/${user.uid}`);
-                try {
-                    const snapshot = await storageRef.put(file);
-                    const avatarUrl = await snapshot.ref.getDownloadURL();
+            await db.collection('users').doc(user.uid).update({
+                avatar: avatarUrl
+            });
 
-                    await updateDoc(doc(db, 'users', user.uid), {
-                        avatar: avatarUrl
-                    });
+            showAlert("Avatar uploaded successfully!");
+        } catch (error) {
+            showAlert("Error uploading avatar: " + error.message);
+        }
+    };
 
-                    showAlert("Avatar uploaded successfully!");
+    sendMessage.onclick = async () => {
+        const msg = document.getElementById('messageInput').value;
+        const user = auth.currentUser;
 
-                } catch (error) {
-                    showAlert("Error uploading avatar: " + error.message);
-                }
-            };
+        if (user && msg.trim()) {
+            const userProfile = await db.collection('users').doc(user.uid).get();
+            const avatarUrl = userProfile.data().avatar || "https://example.com/default-avatar.png";
 
-            // On send message button click
-            sendMessage.onclick = async () => {
-                const msg = document.getElementById('messageInput').value;
-                const user = auth.currentUser;
+            await db.collection('messages').add({
+                username: user.email,
+                avatar: avatarUrl,
+                message: msg,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
 
-                if (user && msg.trim()) {
-                    const userProfile = await getDoc(doc(db, 'users', user.uid));
-                    const avatarUrl = userProfile.data().avatar || "https://example.com/default-avatar.png"; // Fallback URL
+            document.getElementById('messageInput').value = ''; // Clear the input field
+            loadMessages(); // Reload messages after sending
+        } else {
+            showAlert("Please enter a message.");
+        }
+    };
 
-                    await addDoc(collection(db, 'messages'), {
-                        username: user.email,
-                        avatar: avatarUrl,  // Include avatar in message
-                        message: msg,
-                        timestamp: serverTimestamp()
-                    });
-
-                    document.getElementById('messageInput').value = ''; // Clear the input field after sending message
-                    loadMessages(); // Optionally reload messages after sending
-                } else {
-                    showAlert("Please enter a message to send.");
-                }
-            };
-
-            // On logout button click
-            logoutBtn.onclick = async () => {
-                await signOut(auth);
-                authContainer.style.display = 'block';
-                chatContainer.style.display = 'none';
-                showAlert("Logged out successfully.");
-            };
-        };
+    logoutBtn.onclick = async () => {
+        await auth.signOut();
+        authContainer.style.display = 'block';
+        chatContainer.style.display = 'none';
+        showAlert("Logged out successfully.");
+    };
+};
