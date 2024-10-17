@@ -1,16 +1,12 @@
-// Initialize Firebase in the module script
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
-        import { getFirestore, collection, addDoc, getDoc, updateDoc, orderBy, query, getDocs, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyBTuGFhq5j6V9Q5gufyKIZCCa4fa9_pMmA",
-            authDomain: "chatbox-53db3.firebaseapp.com",
-            projectId: "chatbox-53db3",
-            storageBucket: "chatbox-53db3.appspot.com",
-            messagingSenderId: "561320100817",
-            appId: "1:561320100817:web:b611951f3787155df016f0",
-        };
+        // Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBTuGFhq5j6V9Q5gufyKIZCCa4fa9_pMmA",
+    authDomain: "chatbox-53db3.firebaseapp.com",
+    projectId: "chatbox-53db3",
+    storageBucket: "chatbox-53db3.appspot.com",
+    messagingSenderId: "561320100817",
+    appId: "1:561320100817:web:b611951f3787155df016f0",
+};
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
