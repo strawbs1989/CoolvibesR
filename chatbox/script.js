@@ -1,4 +1,10 @@
-// Firebase configuration (using Firebase v8)
+// Import the Firebase functions you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js";
+import { getFirestore, collection, addDoc, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-storage.js";
+
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBTuGFhq5j6V9Q5gufyKIZCCa4fa9_pMmA",
     authDomain: "chatbox-53db3.firebaseapp.com",
@@ -9,19 +15,21 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
-const storage = firebase.storage();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
-// Ensure the DOM is fully loaded before accessing elements
-window.onload = () => {
-    const loginBtn = document.getElementById('loginBtn');
-    const registerBtn = document.getElementById('registerBtn');
-    const sendMessage = document.getElementById('sendMessage');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const chatContainer = document.getElementById('chat-container');
-    const authContainer = document.getElementById('auth-container');
+// DOM elements for chatbox functionality
+const loginBtn = document.getElementById('loginBtn');
+const registerBtn = document.getElementById('registerBtn');
+const sendMessage = document.getElementById('sendMessage');
+const logoutBtn = document.getElementById('logoutBtn');
+const chatContainer = document.getElementById('chat-container');
+const authContainer = document.getElementById('auth-container');
+
+// Other functions and event listeners (login, register, chat, etc.) follow here...
+
     const avatarInput = document.getElementById('avatarInput');
     const uploadAvatarBtn = document.getElementById('uploadAvatarBtn');
 
