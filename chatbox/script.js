@@ -1,181 +1,160 @@
-        const firebaseConfig = {
-            apiKey: "AIzaSyBTuGFhq5j6V9Q5gufyKIZCCa4fa9_pMmA",
-            authDomain: "chatbox-53db3.firebaseapp.com",
-            projectId: "chatbox-53db3",
-            storageBucket: "chatbox-53db3.appspot.com",
-            messagingSenderId: "561320100817",
-            appId: "1:561320100817:web:b611951f3787155df016f0",
-        };
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBTuGFhq5j6V9Q5gufyKIZCCa4fa9_pMmA",
+    authDomain: "chatbox-53db3.firebaseapp.com",
+    projectId: "chatbox-53db3",
+    storageBucket: "chatbox-53db3.appspot.com",
+    messagingSenderId: "561320100817",
+    appId: "1:561320100817:web:b611951f3787155df016f0",
+};
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
 
-        // Ensure the DOM is fully loaded before accessing elements
-        window.onload = () => {
-            const loginBtn = document.getElementById('loginBtn');
-            const registerBtn = document.getElementById('registerBtn');
-            const sendMessage = document.getElementById('sendMessage');
-            const logoutBtn = document.getElementById('logoutBtn');
-            const chatContainer = document.getElementById('chat-container');
-            const authContainer = document.getElementById('auth-container');
-            const avatarInput = document.getElementById('avatarInput');
-            const uploadAvatarBtn = document.getElementById('uploadAvatarBtn');
+// Ensure the DOM is fully loaded before accessing elements
+window.onload = () => {
+    // Select buttons and containers
+    const loginBtn = document.getElementById('loginBtn');
+    const registerBtn = document.getElementById('registerBtn');
+    const sendMessage = document.getElementById('sendMessage');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const chatContainer = document.getElementById('chat-container');
+    const authContainer = document.getElementById('auth-container');
 
-            const validateEmail = (email) => {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return re.test(String(email).toLowerCase());
-            };
+    // Function to validate email format
+    const validateEmail = (email) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    };
 
-            const showAlert = (message) => {
-                alert(message);
-            };
+    // Function to display alert for validation issues
+    const showAlert = (message) => {
+        alert(message);
+    };
 
-            const loadMessages = async () => {
-                const messagesRef = collection(db, 'messages');
-                const messagesSnapshot = await getDocs(query(messagesRef, orderBy('timestamp', 'desc')));
-                const messagesDiv = document.getElementById('messages');
-                messagesDiv.innerHTML = ''; // Clear the chat before loading new messages
+    // On login button click
+    loginBtn.onclick = async () => {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
-                messagesSnapshot.forEach(doc => {
-                    const data = doc.data();
-                    const messageElement = document.createElement('div');
-                    messageElement.innerHTML = `<img src="${data.avatar}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;"> <strong>${data.username}</strong>: ${data.message}`;
-                    messagesDiv.appendChild(messageElement);
-                });
+        if (!email || !password) {
+            showAlert("Please fill in both email and password.");
+            return;
+        }
 
-                // Scroll to the bottom of the messages
-                messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            };
+        if (!validateEmail(email)) {
+            showAlert("Please enter a valid email address.");
+            return;
+        }
 
-            // On login button click
-            loginBtn.onclick = async () => {
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+            authContainer.style.display = 'none';
+            chatContainer.style.display = 'block';
+            loadMessages(); // Load messages after login
+            document.getElementById('email').value = '';  // Clear fields
+            document.getElementById('password').value = '';
+        } catch (error) {
+            showAlert(error.message);
+        }
+    };
 
-                if (!email || !password) {
-                    showAlert("Please fill in both email and password.");
-                    return;
-                }
+    // On register button click
+    registerBtn.onclick = async () => {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
-                if (!validateEmail(email)) {
-                    showAlert("Please enter a valid email address.");
-                    return;
-                }
+        if (!email || !password) {
+            showAlert("Please fill in both email and password.");
+            return;
+        }
 
-                try {
-                    await signInWithEmailAndPassword(auth, email, password);
-                    authContainer.style.display = 'none';
-                    chatContainer.style.display = 'block';
-                    loadMessages(); // Load messages after login
-                    document.getElementById('email').value = '';  // Clear fields
-                    document.getElementById('password').value = '';
-                } catch (error) {
-                    showAlert(error.message);
-                }
-            };
+        if (!validateEmail(email)) {
+            showAlert("Please enter a valid email address.");
+            return;
+        }
 
-            // On register button click
-            registerBtn.onclick = async () => {
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
+        if (password.length < 6) {
+            showAlert("Password must be at least 6 characters long.");
+            return;
+        }
 
-                if (!email || !password) {
-                    showAlert("Please fill in both email and password.");
-                    return;
-                }
+        try {
+            // Register user
+            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+            const user = userCredential.user;
 
-                if (!validateEmail(email)) {
-                    showAlert("Please enter a valid email address.");
-                    return;
-                }
+            // Add an empty avatar URL initially
+            await db.collection('users').doc(user.uid).set({
+                email: user.email,
+                avatar: ''
+            });
 
-                if (password.length < 6) {
-                    showAlert("Password must be at least 6 characters long.");
-                    return;
-                }
+            showAlert('User registered successfully! Now upload your avatar.');
+            document.getElementById('avatarForm').style.display = 'block'; // Show avatar upload form after registration
 
-                try {
-                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                    const user = userCredential.user;
+        } catch (error) {
+            showAlert(error.message);
+        }
+    };
 
-                    await setDoc(doc(db, 'users', user.uid), {
-                        email: user.email,
-                        avatar: ''
-                    });
+    // Avatar Upload Handler
+    uploadAvatarBtn.onclick = async () => {
+        const file = avatarInput.files[0];
+        if (!file) {
+            showAlert("Please select an avatar image.");
+            return;
+        }
+        const user = auth.currentUser;
+        if (!user) {
+            showAlert("You need to be logged in to upload an avatar.");
+            return;
+        }
 
-                    showAlert('User registered successfully! Now upload your avatar.');
-                    document.getElementById('avatarForm').style.display = 'block'; // Show avatar upload form after registration
+        // Create a storage reference
+        const storageRef = firebase.storage().ref(`avatars/${user.uid}`);
 
-                } catch (error) {
-                    showAlert(error.message);
-                }
-            };
+        try {
+            // Upload the file to Firebase Storage
+            const snapshot = await storageRef.put(file);
 
-            // Avatar Upload Handler
-            uploadAvatarBtn.onclick = async () => {
-                const file = avatarInput.files[0];
-                if (!file) {
-                    showAlert("Please select an avatar image.");
-                    return;
-                }
-                const user = auth.currentUser;
-                if (!user) {
-                    showAlert("You need to be logged in to upload an avatar.");
-                    return;
-                }
+            // Get the download URL of the uploaded image
+            const avatarUrl = await snapshot.ref.getDownloadURL();
 
-                // Create a storage reference
-                const storageRef = firebase.storage().ref(`avatars/${user.uid}`);
+            // Save the avatar URL to Firestore
+            await db.collection('users').doc(user.uid).update({
+                avatar: avatarUrl
+            });
 
-                try {
-                    // Upload the file to Firebase Storage
-                    const snapshot = await storageRef.put(file);
+            showAlert("Avatar uploaded successfully!");
 
-                    // Get the download URL of the uploaded image
-                    const avatarUrl = await snapshot.ref.getDownloadURL();
+        } catch (error) {
+            showAlert("Error uploading avatar: " + error.message);
+        }
+    };
 
-                    // Save the avatar URL to Firestore
-                    await updateDoc(doc(db, 'users', user.uid), {
-                        avatar: avatarUrl
-                    });
+    // On send message button click
+    sendMessage.onclick = async () => {
+        const msg = document.getElementById('messageInput').value;
+        const user = auth.currentUser;
 
-                    showAlert("Avatar uploaded successfully!");
+        if (user && msg.trim()) {
+            // Fetch avatar from the user's profile in Firestore
+            const userProfile = await db.collection('users').doc(user.uid).get();
+            const avatarUrl = userProfile.data().avatar || "https://example.com/default-avatar.png"; // Fallback URL
 
-                } catch (error) {
-                    showAlert("Error uploading avatar: " + error.message);
-                }
-            };
+            await db.collection('messages').add({
+                username: user.email,
+                avatar: avatarUrl,  // Include avatar in message
+                message: msg,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
 
-            // On send message button click
-            sendMessage.onclick = async () => {
-                const msg = document.getElementById('messageInput').value;
-                const user = auth.currentUser;
-
-                if (user && msg.trim()) {
-                    const userProfile = await getDoc(doc(db, 'users', user.uid));
-                    const avatarUrl = userProfile.data().avatar || "https://example.com/default-avatar.png"; // Fallback URL
-
-                    await addDoc(collection(db, 'messages'), {
-                        username: user.email,
-                        avatar: avatarUrl,  // Include avatar in message
-                        message: msg,
-                        timestamp: serverTimestamp()
-                    });
-
-                    document.getElementById('messageInput').value = ''; // Clear the input field after sending message
-                    loadMessages(); // Optionally reload messages after sending
-                } else {
-                    showAlert("Please enter a message to send.");
-                }
-            };
-
-            // On logout button click
-            logoutBtn.onclick = async () => {
-                await signOut(auth);
-                authContainer.style.display = 'block';
-                chatContainer.style.display = 'none';
-                showAlert("Logged out successfully.");
-            };
-        };
+            document.getElementById('messageInput').value = ''; // Clear the input field after sending message
+        } else {
+            showAlert("Please enter a message to send.");
+        }
+    };
+};
