@@ -8,11 +8,10 @@ const firebaseConfig = {
     appId: "1:561320100817:web:b611951f3787155df016f0",
 };
 
-// Initialize Firebase (v8 syntax)
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
-const storage = firebase.storage();
 
 // DOM elements for chatbox functionality
 const loginBtn = document.getElementById('loginBtn');
