@@ -13,43 +13,28 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// DOM elements for chatbox functionality
-const loginBtn = document.getElementById('loginBtn');
-const registerBtn = document.getElementById('registerBtn');
-const sendMessage = document.getElementById('sendMessage');
-const logoutBtn = document.getElementById('logoutBtn');
-const chatContainer = document.getElementById('chat-container');
-const authContainer = document.getElementById('auth-container');
+// Ensure the DOM is fully loaded before accessing elements
+window.onload = () => {
+    // Select buttons and containers
+    const loginBtn = document.getElementById('loginBtn');
+    const registerBtn = document.getElementById('registerBtn');
+    const sendMessage = document.getElementById('sendMessage');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const chatContainer = document.getElementById('chat-container');
+    const authContainer = document.getElementById('auth-container');
 
-// Other functions and event listeners (login, register, chat, etc.) follow here...
-
-    const avatarInput = document.getElementById('avatarInput');
-    const uploadAvatarBtn = document.getElementById('uploadAvatarBtn');
-
+    // Function to validate email format
     const validateEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
     };
 
+    // Function to display alert for validation issues
     const showAlert = (message) => {
         alert(message);
     };
 
-    const loadMessages = async () => {
-        const messagesSnapshot = await db.collection('messages').orderBy('timestamp', 'asc').get();
-        const messagesDiv = document.getElementById('messages');
-        messagesDiv.innerHTML = ''; // Clear previous messages
-
-        messagesSnapshot.forEach(doc => {
-            const data = doc.data();
-            const messageElement = document.createElement('div');
-            messageElement.innerHTML = `<img src="${data.avatar}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;"> <strong>${data.username}</strong>: ${data.message}`;
-            messagesDiv.appendChild(messageElement);
-        });
-
-        messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the bottom
-    };
-
+    // On login button click
     loginBtn.onclick = async () => {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
@@ -69,11 +54,14 @@ const authContainer = document.getElementById('auth-container');
             authContainer.style.display = 'none';
             chatContainer.style.display = 'block';
             loadMessages(); // Load messages after login
+            document.getElementById('email').value = '';  // Clear fields
+            document.getElementById('password').value = '';
         } catch (error) {
             showAlert(error.message);
         }
     };
 
+    // On register button click
     registerBtn.onclick = async () => {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
@@ -83,80 +71,90 @@ const authContainer = document.getElementById('auth-container');
             return;
         }
 
+        if (!validateEmail(email)) {
+            showAlert("Please enter a valid email address.");
+            return;
+        }
+
         if (password.length < 6) {
-            showAlert("Password must be at least 6 characters.");
+            showAlert("Password must be at least 6 characters long.");
             return;
         }
 
         try {
+            // Register user
             const userCredential = await auth.createUserWithEmailAndPassword(email, password);
             const user = userCredential.user;
 
+            // Add an empty avatar URL initially
             await db.collection('users').doc(user.uid).set({
                 email: user.email,
                 avatar: ''
             });
 
-            showAlert("User registered successfully!");
-            document.getElementById('avatarForm').style.display = 'block'; // Show avatar form
+            showAlert('User registered successfully! Now upload your avatar.');
+            document.getElementById('avatarForm').style.display = 'block'; // Show avatar upload form after registration
+
         } catch (error) {
             showAlert(error.message);
         }
     };
 
+    // Avatar Upload Handler
     uploadAvatarBtn.onclick = async () => {
         const file = avatarInput.files[0];
         if (!file) {
             showAlert("Please select an avatar image.");
             return;
         }
-
         const user = auth.currentUser;
         if (!user) {
             showAlert("You need to be logged in to upload an avatar.");
             return;
         }
 
-        const storageRef = storage.ref(`avatars/${user.uid}`);
+        // Create a storage reference
+        const storageRef = firebase.storage().ref(`avatars/${user.uid}`);
+
         try {
+            // Upload the file to Firebase Storage
             const snapshot = await storageRef.put(file);
+
+            // Get the download URL of the uploaded image
             const avatarUrl = await snapshot.ref.getDownloadURL();
 
+            // Save the avatar URL to Firestore
             await db.collection('users').doc(user.uid).update({
                 avatar: avatarUrl
             });
 
             showAlert("Avatar uploaded successfully!");
+
         } catch (error) {
             showAlert("Error uploading avatar: " + error.message);
         }
     };
 
+    // On send message button click
     sendMessage.onclick = async () => {
         const msg = document.getElementById('messageInput').value;
         const user = auth.currentUser;
 
         if (user && msg.trim()) {
+            // Fetch avatar from the user's profile in Firestore
             const userProfile = await db.collection('users').doc(user.uid).get();
-            const avatarUrl = userProfile.data().avatar || "https://example.com/default-avatar.png";
+            const avatarUrl = userProfile.data().avatar || "https://example.com/default-avatar.png"; // Fallback URL
 
             await db.collection('messages').add({
                 username: user.email,
-                avatar: avatarUrl,
+                avatar: avatarUrl,  // Include avatar in message
                 message: msg,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
             });
 
-            document.getElementById('messageInput').value = ''; // Clear the input field
-            loadMessages(); // Reload messages after sending
+            document.getElementById('messageInput').value = ''; // Clear the input field after sending message
         } else {
-            showAlert("Please enter a message.");
+            showAlert("Please enter a message to send.");
         }
     };
-
-    logoutBtn.onclick = async () => {
-        await auth.signOut();
-        authContainer.style.display = 'block';
-        chatContainer.style.display = 'none';
-        showAlert("Logged out successfully.");
-    };
+};
