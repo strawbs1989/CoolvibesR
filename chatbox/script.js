@@ -22,26 +22,37 @@ window.onload = () => {
     const logoutBtn = document.getElementById('logoutBtn');
     const chatContainer = document.getElementById('chat-container');
     const authContainer = document.getElementById('auth-container');
-    const avatarInput = document.getElementById('avatarInput'); // Define avatar input here
-    const uploadAvatarBtn = document.getElementById('uploadAvatarBtn'); // Define upload avatar button here
+    const avatarInput = document.getElementById('avatarInput');
+    const uploadAvatarBtn = document.getElementById('uploadAvatarBtn');
+
+    // Function to validate email format
+    const validateEmail = (email) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    };
+
+    // Function to display alert for validation issues
+    const showAlert = (message) => {
+        alert(message);
+    };
 
     // Function to load messages from Firestore
-const loadMessages = async () => {
-    const messagesRef = db.collection('messages').orderBy('timestamp', 'desc');
-    const snapshot = await messagesRef.get();
-    const messagesDiv = document.getElementById('messages');
-    messagesDiv.innerHTML = ''; // Clear the chat before loading new messages
+    const loadMessages = async () => {
+        const messagesRef = db.collection('messages').orderBy('timestamp', 'desc');
+        const snapshot = await messagesRef.get();
+        const messagesDiv = document.getElementById('messages');
+        messagesDiv.innerHTML = ''; // Clear the chat before loading new messages
 
-    snapshot.forEach(doc => {
-        const data = doc.data();
-        const messageElement = document.createElement('div');
-        messageElement.innerHTML = `<img src="${data.avatar}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;"> <strong>${data.username}</strong>: ${data.message}`;
-        messagesDiv.appendChild(messageElement);
-    });
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            const messageElement = document.createElement('div');
+            messageElement.innerHTML = `<img src="${data.avatar}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;"> <strong>${data.username}</strong>: ${data.message}`;
+            messagesDiv.appendChild(messageElement);
+        });
 
-    // Scroll to the bottom of the messages
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-};
+        // Scroll to the bottom of the messages
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    };
 
     // On login button click
     loginBtn.onclick = async () => {
@@ -162,8 +173,17 @@ const loadMessages = async () => {
             });
 
             document.getElementById('messageInput').value = ''; // Clear the input field after sending message
+            loadMessages(); // Optionally reload messages after sending
         } else {
             showAlert("Please enter a message to send.");
         }
+    };
+
+    // On logout button click
+    logoutBtn.onclick = async () => {
+        await auth.signOut();
+        authContainer.style.display = 'block';
+        chatContainer.style.display = 'none';
+        showAlert("Logged out successfully.");
     };
 };
