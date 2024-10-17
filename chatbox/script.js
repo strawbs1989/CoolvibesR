@@ -82,12 +82,56 @@ window.onload = () => {
         }
 
         try {
-            await auth.createUserWithEmailAndPassword(email, password);
-            showAlert('User registered successfully!');
-            document.getElementById('email').value = '';  // Clear fields
-            document.getElementById('password').value = '';
+            // Register user
+            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+            const user = userCredential.user;
+
+            // Add an empty avatar URL initially
+            await db.collection('users').doc(user.uid).set({
+                email: user.email,
+                avatar: ''
+            });
+
+            showAlert('User registered successfully! Now upload your avatar.');
+            document.getElementById('avatarForm').style.display = 'block'; // Show avatar upload form after registration
+
         } catch (error) {
             showAlert(error.message);
+        }
+    };
+
+    // Avatar Upload Handler
+    uploadAvatarBtn.onclick = async () => {
+        const file = avatarInput.files[0];
+        if (!file) {
+            showAlert("Please select an avatar image.");
+            return;
+        }
+        const user = auth.currentUser;
+        if (!user) {
+            showAlert("You need to be logged in to upload an avatar.");
+            return;
+        }
+
+        // Create a storage reference
+        const storageRef = firebase.storage().ref(`avatars/${user.uid}`);
+
+        try {
+            // Upload the file to Firebase Storage
+            const snapshot = await storageRef.put(file);
+
+            // Get the download URL of the uploaded image
+            const avatarUrl = await snapshot.ref.getDownloadURL();
+
+            // Save the avatar URL to Firestore
+            await db.collection('users').doc(user.uid).update({
+                avatar: avatarUrl
+            });
+
+            showAlert("Avatar uploaded successfully!");
+
+        } catch (error) {
+            showAlert("Error uploading avatar: " + error.message);
         }
     };
 
@@ -95,47 +139,22 @@ window.onload = () => {
     sendMessage.onclick = async () => {
         const msg = document.getElementById('messageInput').value;
         const user = auth.currentUser;
+
         if (user && msg.trim()) {
+            // Fetch avatar from the user's profile in Firestore
+            const userProfile = await db.collection('users').doc(user.uid).get();
+            const avatarUrl = userProfile.data().avatar || "https://example.com/default-avatar.png"; // Fallback URL
+
             await db.collection('messages').add({
                 username: user.email,
+                avatar: avatarUrl,  // Include avatar in message
                 message: msg,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
             });
+
             document.getElementById('messageInput').value = ''; // Clear the input field after sending message
         } else {
             showAlert("Please enter a message to send.");
         }
     };
-
-    // On logout button click
-    logoutBtn.onclick = () => {
-        auth.signOut();
-        authContainer.style.display = 'block';
-        chatContainer.style.display = 'none';
-    };
-
-    // Load and display messages from Firestore
-    const loadMessages = () => {
-        db.collection('messages').orderBy('timestamp').onSnapshot(snapshot => {
-            const messagesDiv = document.getElementById('messages');
-            messagesDiv.innerHTML = ''; // Clear messages before loading new ones
-            snapshot.forEach(doc => {
-                const data = doc.data();
-                messagesDiv.innerHTML += `<p><strong>${data.username}:</strong> ${data.message}</p>`;
-            });
-            messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the bottom
-        });
-    };
-
-    // Handle auth state changes (user login/logout)
-    auth.onAuthStateChanged(user => {
-        if (user) {
-            authContainer.style.display = 'none';
-            chatContainer.style.display = 'block';
-            loadMessages(); // Load messages if user is logged in
-        } else {
-            authContainer.style.display = 'block';
-            chatContainer.style.display = 'none';
-        }
-    });
 };
