@@ -22,16 +22,25 @@ window.onload = () => {
     const logoutBtn = document.getElementById('logoutBtn');
     const chatContainer = document.getElementById('chat-container');
     const authContainer = document.getElementById('auth-container');
+    const avatarInput = document.getElementById('avatarInput'); // Define avatar input here
+    const uploadAvatarBtn = document.getElementById('uploadAvatarBtn'); // Define upload avatar button here
 
-    // Function to validate email format
-    const validateEmail = (email) => {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(String(email).toLowerCase());
-    };
+    // Function to load messages from Firestore
+    const loadMessages = async () => {
+        const messagesRef = db.collection('messages').orderBy('timestamp', 'desc');
+        const snapshot = await messagesRef.get();
+        const messagesDiv = document.getElementById('messages');
+        messagesDiv.innerHTML = ''; // Clear the chat before loading new messages
 
-    // Function to display alert for validation issues
-    const showAlert = (message) => {
-        alert(message);
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            const messageElement = document.createElement('div');
+            messageElement.innerHTML = `<img src="${data.avatar}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;"> <strong>${data.username}</strong>: ${data.message}`;
+            messagesDiv.appendChild(messageElement);
+        });
+
+        // Scroll to the bottom of the messages
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
     };
 
     // On login button click
