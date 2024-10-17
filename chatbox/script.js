@@ -161,4 +161,3 @@ const authContainer = document.getElementById('auth-container');
         chatContainer.style.display = 'none';
         showAlert("Logged out successfully.");
     };
-};
