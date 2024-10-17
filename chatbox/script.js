@@ -2,6 +2,8 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
 import { getFirestore, collection, addDoc, getDoc, updateDoc, orderBy, query, getDocs, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js';
+
 
 // Firebase configuration
 const firebaseConfig = {
@@ -135,32 +137,37 @@ window.onload = () => {
 
     // Avatar Upload Handler
     uploadAvatarBtn.onclick = async () => {
-        const file = avatarInput.files[0];
-        if (!file) {
-            showAlert("Please select an avatar image.");
-            return;
-        }
-        const user = auth.currentUser;
-        if (!user) {
-            showAlert("You need to be logged in to upload an avatar.");
-            return;
-        }
+    const file = avatarInput.files[0]; // Get the selected file
+    if (!file) {
+        showAlert("Please select an avatar image.");
+        return;
+    }
 
-        const storageRef = firebase.storage().ref(`avatars/${user.uid}`);
-        try {
-            const snapshot = await storageRef.put(file);
-            const avatarUrl = await snapshot.ref.getDownloadURL();
+    const user = auth.currentUser; // Get the current user
+    if (!user) {
+        showAlert("You need to be logged in to upload an avatar.");
+        return;
+    }
 
-            await updateDoc(doc(db, 'users', user.uid), {
-                avatar: avatarUrl
-            });
+    const storage = getStorage(app); // Initialize Firebase Storage
+    const storageRef = ref(storage, `avatars/${user.uid}`); // Reference to the storage location for the user's avatar
 
-            showAlert("Avatar uploaded successfully!");
+    try {
+        // Upload the file to Firebase Storage
+        const snapshot = await uploadBytes(storageRef, file);
+        const avatarUrl = await getDownloadURL(snapshot.ref); // Get the download URL of the uploaded file
 
-        } catch (error) {
-            showAlert("Error uploading avatar: " + error.message);
-        }
-    };
+        // Update the user's profile with the avatar URL in Firestore
+        await updateDoc(doc(db, 'users', user.uid), {
+            avatar: avatarUrl
+        });
+
+        showAlert("Avatar uploaded successfully!");
+
+    } catch (error) {
+        showAlert("Error uploading avatar: " + error.message);
+    }
+};
 
     // On send message button click
     sendMessage.onclick = async () => {
