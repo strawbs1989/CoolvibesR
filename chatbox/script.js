@@ -34,6 +34,22 @@ function stringToColor(str) {
     return color;
 }
 
+// List of predefined avatars
+const avatars = [
+    "https://example.com/avatar1.png",
+    "https://example.com/avatar2.png",
+    "https://example.com/avatar3.png",
+    "https://example.com/avatar4.png",
+    "https://example.com/avatar5.png"
+];
+
+// Function to assign an avatar based on the email
+function getAvatar(email) {
+    const index = email.charCodeAt(0) % avatars.length; // Assign avatar based on the first letter of the email
+    return avatars[index];
+}
+
+
 window.onload = () => {
     const loginBtn = document.getElementById('loginBtn');
     const registerBtn = document.getElementById('registerBtn');
@@ -41,8 +57,6 @@ window.onload = () => {
     const logoutBtn = document.getElementById('logoutBtn');
     const chatContainer = document.getElementById('chat-container');
     const authContainer = document.getElementById('auth-container');
-    const avatarInput = document.getElementById('avatarInput');
-    const uploadAvatarBtn = document.getElementById('uploadAvatarBtn');
 
     const validateEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -53,6 +67,7 @@ window.onload = () => {
         alert(message);
     };
 
+    // Function to load messages with avatars
     const loadMessages = async () => {
         const messagesRef = collection(db, 'messages');
         const messagesQuery = query(messagesRef, orderBy('timestamp', 'desc'));
@@ -63,8 +78,7 @@ window.onload = () => {
         messagesSnapshot.forEach(doc => {
             const data = doc.data();
             const messageElement = document.createElement('div');
-            const messageColor = stringToColor(data.username); // Generate color based on username (email)
-            messageElement.innerHTML = `<img src="${data.avatar}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;"> <strong style="color:${messageColor}">${data.username}</strong>: <span style="color:${messageColor}">${data.message}</span>`;
+            messageElement.innerHTML = `<img src="${data.avatar}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;"> <strong>${data.username}</strong>: ${data.message}`;
             messagesDiv.appendChild(messageElement);
         });
 
@@ -123,51 +137,22 @@ window.onload = () => {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            await addDoc(collection(db, 'users', user.uid), {
+            const avatarUrl = getAvatar(user.email); // Automatically assign an avatar
+
+            // Save user details, including the assigned avatar, to Firestore
+            await setDoc(doc(db, 'users', user.uid), {
                 email: user.email,
-                avatar: ''
+                avatar: avatarUrl
             });
 
-            showAlert('User registered successfully! Now upload your avatar.');
-            document.getElementById('avatarForm').style.display = 'block'; // Show avatar upload form after registration
+            showAlert('User registered successfully!');
+            document.getElementById('email').value = '';  // Clear fields
+            document.getElementById('password').value = '';
+
         } catch (error) {
             showAlert(error.message);
         }
     };
-
-    // Avatar Upload Handler
-    uploadAvatarBtn.onclick = async () => {
-    const file = avatarInput.files[0]; // Get the selected file
-    if (!file) {
-        showAlert("Please select an avatar image.");
-        return;
-    }
-
-    const user = auth.currentUser; // Get the current user
-    if (!user) {
-        showAlert("You need to be logged in to upload an avatar.");
-        return;
-    }
-
-    const storage = getStorage(app); // Initialize Firebase Storage
-    const storageRef = ref(storage, `avatars/${user.uid}`); // Reference to the storage location for the user's avatar
-
-    try {
-        // Upload the file to Firebase Storage
-        const snapshot = await uploadBytes(storageRef, file);
-        const avatarUrl = await getDownloadURL(snapshot.ref); // Get the download URL of the uploaded file
-
-        // Update the user's profile with the avatar URL in Firestore
-        await updateDoc(doc(db, 'users', user.uid), {
-            avatar: avatarUrl
-        });
-
-        showAlert("Avatar uploaded successfully!");
-
-    } catch (error) {
-        showAlert("Error uploading avatar: " + error.message);
-    }
-};
 
     // On send message button click
     sendMessage.onclick = async () => {
@@ -176,17 +161,17 @@ window.onload = () => {
 
         if (user && msg.trim()) {
             const userProfile = await getDoc(doc(db, 'users', user.uid));
-            const avatarUrl = userProfile.data().avatar || "https://example.com/default-avatar.png"; // Fallback URL
+            const avatarUrl = userProfile.data().avatar || "https://example.com/default-avatar.png"; // Fallback avatar
 
             await addDoc(collection(db, 'messages'), {
                 username: user.email,
-                avatar: avatarUrl,  // Include avatar in message
+                avatar: avatarUrl,  // Use predefined avatar
                 message: msg,
                 timestamp: serverTimestamp()
             });
 
             document.getElementById('messageInput').value = ''; // Clear the input field after sending message
-            loadMessages(); // Optionally reload messages after sending
+            loadMessages(); // Reload messages after sending
         } else {
             showAlert("Please enter a message to send.");
         }
