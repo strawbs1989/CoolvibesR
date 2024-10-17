@@ -1,8 +1,3 @@
-// Initialize Firebase in the module script
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
-        import { getFirestore, collection, addDoc, getDoc, updateDoc, orderBy, getDocs, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
-        
         const firebaseConfig = {
             apiKey: "AIzaSyBTuGFhq5j6V9Q5gufyKIZCCa4fa9_pMmA",
             authDomain: "chatbox-53db3.firebaseapp.com",
