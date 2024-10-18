@@ -155,14 +155,16 @@ window.onload = () => {
     };
 
     // Send message with avatar
-    sendMessage.onclick = async () => {
-        const msg = document.getElementById('messageInput').value;
-        const user = auth.currentUser;
+sendMessage.onclick = async () => {
+    const msg = document.getElementById('messageInput').value;
+    const user = auth.currentUser;
 
-        if (user && msg.trim()) {
-            try {
-                const userProfile = await getDoc(doc(db, 'users', user.uid));
-                const avatarUrl = userProfile.data().avatar || avatars[0]; // Fallback avatar if not found
+    if (user && msg.trim()) {
+        try {
+            const userProfileDoc = await getDoc(doc(db, 'users', user.uid));
+
+            if (userProfileDoc.exists()) { // Check if the document exists
+                const avatarUrl = userProfileDoc.data().avatar || avatars[0]; // Fallback avatar if not found
 
                 await addDoc(collection(db, 'messages'), {
                     username: user.email,
@@ -173,13 +175,16 @@ window.onload = () => {
 
                 document.getElementById('messageInput').value = ''; // Clear the input field after sending message
                 loadMessages(); // Reload messages after sending
-            } catch (error) {
-                showAlert("Failed to send message: " + error.message);
+            } else {
+                showAlert("User profile does not exist."); // Handle case where user profile doesn't exist
             }
-        } else {
-            showAlert("Please enter a message to send.");
+        } catch (error) {
+            showAlert("Failed to send message: " + error.message);
         }
-    };
+    } else {
+        showAlert("Please enter a message to send.");
+    }
+};
 
     // On logout button click
     logoutBtn.onclick = async () => {
