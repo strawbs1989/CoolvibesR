@@ -48,17 +48,6 @@ function getAvatar(email) {
     return avatars[index];
 }
 
-// Function to show alerts
-function showAlert(message) {
-    alert(message);
-}
-
-// Function to validate email
-function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
-}
-
 window.onload = () => {
     const loginBtn = document.getElementById('loginBtn');
     const registerBtn = document.getElementById('registerBtn');
@@ -66,13 +55,21 @@ window.onload = () => {
     const logoutBtn = document.getElementById('logoutBtn');
     const chatContainer = document.getElementById('chat-container');
     const authContainer = document.getElementById('auth-container');
-    const messagesDiv = document.getElementById('messages');
 
-    // Function to load messages with avatars
+    const validateEmail = (email) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    };
+
+    const showAlert = (message) => {
+        alert(message);
+    };
+
     const loadMessages = async () => {
         const messagesRef = collection(db, 'messages');
         const messagesQuery = query(messagesRef, orderBy('timestamp', 'desc'));
         const messagesSnapshot = await getDocs(messagesQuery);
+        const messagesDiv = document.getElementById('messages');
         messagesDiv.innerHTML = ''; // Clear the chat before loading new messages
 
         messagesSnapshot.forEach(doc => {
@@ -154,20 +151,18 @@ window.onload = () => {
         }
     };
 
-    // On send message button click
+    // Send message with avatar
     sendMessage.onclick = async () => {
         const msg = document.getElementById('messageInput').value;
         const user = auth.currentUser;
 
         if (user && msg.trim()) {
-            // Fetch the user's profile from Firestore
             const userProfile = await getDoc(doc(db, 'users', user.uid));
-            const avatarUrl = userProfile.data().avatar || avatars[0]; // Fallback avatar
+            const avatarUrl = userProfile.data().avatar || avatars[0]; // Fallback avatar if not found
 
-            // Add the message to Firestore with the user's avatar
             await addDoc(collection(db, 'messages'), {
                 username: user.email,
-                avatar: avatarUrl,  // Use predefined avatar
+                avatar: avatarUrl,  // Use assigned avatar
                 message: msg,
                 timestamp: serverTimestamp()
             });
