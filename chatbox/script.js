@@ -49,7 +49,6 @@ function getAvatar(email) {
     return avatars[index];
 }
 
-
 window.onload = () => {
     const loginBtn = document.getElementById('loginBtn');
     const registerBtn = document.getElementById('registerBtn');
@@ -160,9 +159,11 @@ window.onload = () => {
         const user = auth.currentUser;
 
         if (user && msg.trim()) {
+            // Fetch the user's profile from Firestore
             const userProfile = await getDoc(doc(db, 'users', user.uid));
             const avatarUrl = userProfile.data().avatar || "https://example.com/default-avatar.png"; // Fallback avatar
 
+            // Add the message to Firestore with the user's avatar
             await addDoc(collection(db, 'messages'), {
                 username: user.email,
                 avatar: avatarUrl,  // Use predefined avatar
