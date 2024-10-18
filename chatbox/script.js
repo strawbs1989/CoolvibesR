@@ -65,21 +65,25 @@ window.onload = () => {
     };
 
     const loadMessages = async () => {
-        const messagesRef = collection(db, 'messages');
-        const messagesQuery = query(messagesRef, orderBy('timestamp', 'desc'));
-        const messagesSnapshot = await getDocs(messagesQuery);
-        const messagesDiv = document.getElementById('messages');
-        messagesDiv.innerHTML = ''; // Clear the chat before loading new messages
+        try {
+            const messagesRef = collection(db, 'messages');
+            const messagesQuery = query(messagesRef, orderBy('timestamp', 'desc'));
+            const messagesSnapshot = await getDocs(messagesQuery);
+            const messagesDiv = document.getElementById('messages');
+            messagesDiv.innerHTML = ''; // Clear the chat before loading new messages
 
-        messagesSnapshot.forEach(doc => {
-            const data = doc.data();
-            const messageElement = document.createElement('div');
-            messageElement.innerHTML = `<img src="${data.avatar}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;"> <strong>${data.username}</strong>: ${data.message}`;
-            messagesDiv.appendChild(messageElement);
-        });
+            messagesSnapshot.forEach(doc => {
+                const data = doc.data();
+                const messageElement = document.createElement('div');
+                messageElement.innerHTML = `<img src="${data.avatar}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;"> <strong>${data.username}</strong>: ${data.message}`;
+                messagesDiv.appendChild(messageElement);
+            });
 
-        // Scroll to the bottom of the messages
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            // Scroll to the bottom of the messages
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        } catch (error) {
+            showAlert("Failed to load messages: " + error.message);
+        }
     };
 
     // On login button click
@@ -156,18 +160,22 @@ window.onload = () => {
         const user = auth.currentUser;
 
         if (user && msg.trim()) {
-            const userProfile = await getDoc(doc(db, 'users', user.uid));
-            const avatarUrl = userProfile.data().avatar || avatars[0]; // Fallback avatar if not found
+            try {
+                const userProfile = await getDoc(doc(db, 'users', user.uid));
+                const avatarUrl = userProfile.data().avatar || avatars[0]; // Fallback avatar if not found
 
-            await addDoc(collection(db, 'messages'), {
-                username: user.email,
-                avatar: avatarUrl,  // Use assigned avatar
-                message: msg,
-                timestamp: serverTimestamp()
-            });
+                await addDoc(collection(db, 'messages'), {
+                    username: user.email,
+                    avatar: avatarUrl,  // Use assigned avatar
+                    message: msg,
+                    timestamp: serverTimestamp()
+                });
 
-            document.getElementById('messageInput').value = ''; // Clear the input field after sending message
-            loadMessages(); // Reload messages after sending
+                document.getElementById('messageInput').value = ''; // Clear the input field after sending message
+                loadMessages(); // Reload messages after sending
+            } catch (error) {
+                showAlert("Failed to send message: " + error.message);
+            }
         } else {
             showAlert("Please enter a message to send.");
         }
@@ -175,9 +183,13 @@ window.onload = () => {
 
     // On logout button click
     logoutBtn.onclick = async () => {
-        await signOut(auth);
-        authContainer.style.display = 'block';
-        chatContainer.style.display = 'none';
-        showAlert("Logged out successfully.");
+        try {
+            await signOut(auth);
+            authContainer.style.display = 'block';
+            chatContainer.style.display = 'none';
+            showAlert("Logged out successfully.");
+        } catch (error) {
+            showAlert("Failed to log out: " + error.message);
+        }
     };
 };
