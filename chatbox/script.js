@@ -38,7 +38,7 @@ const avatars = [
     "https://coolvibes-reloaded.com/chatbox/avatars/avataaars2.png",
     "https://coolvibes-reloaded.com/chatbox/avatars/avataaars3.png",
     "https://coolvibes-reloaded.com/chatbox/avatars/avataaars4.png",
-    "https://coolvibes-reloaded.com/chatbox/avatars/avataaars.png"
+    "https://coolvibes-reloaded.com/chatbox/avatars/avataaars.png",
 ];
 
 // Function to assign an avatar based on the email
