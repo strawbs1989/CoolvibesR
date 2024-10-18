@@ -36,6 +36,7 @@ function getAvatar(email) {
 }
 
 window.onload = () => {
+    // Make sure all DOM elements are properly loaded
     const loginBtn = document.getElementById('loginBtn');
     const registerBtn = document.getElementById('registerBtn');
     const sendMessage = document.getElementById('sendMessage');
@@ -44,6 +45,12 @@ window.onload = () => {
     const authContainer = document.getElementById('auth-container');
     const fileInput = document.getElementById('fileInput');
     const messagesDiv = document.getElementById('messages');
+
+    // Check if these elements exist to prevent further issues
+    if (!loginBtn || !registerBtn || !sendMessage || !logoutBtn || !fileInput || !messagesDiv) {
+        console.error('One or more DOM elements are missing!');
+        return;
+    }
 
     // Validate email function
     const validateEmail = (email) => {
@@ -158,7 +165,9 @@ window.onload = () => {
 
         if (user && msg.trim()) {
             const userProfile = await getDoc(doc(db, 'users', user.uid));
-            const avatarUrl = userProfile.data().avatar || avatars[0];
+
+            // Make sure the avatar is not undefined, use a fallback
+            const avatarUrl = userProfile.exists() ? (userProfile.data().avatar || avatars[0]) : avatars[0];
 
             await addDoc(collection(db, 'messages'), {
                 username: user.email,
