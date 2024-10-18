@@ -1,39 +1,27 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Chatbox</title>
-    <link rel="stylesheet" href="https://coolvibes-reloaded.com/chatbox/style.css">
-
-    <!-- Firebase JS SDKs loaded inside the external script.js -->
-    <script type="module" src="https://coolvibes-reloaded.com/chatbox/script.js"></script>
+    <title>Chat Application</title>
+	<!-- style -->
+	<link rel="stylesheet" href="https://coolvibes-reloaded.com/chatbox/style.css">
 </head>
 <body>
-    <center>
     <div id="auth-container">
-        <form>
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button id="loginBtn" type="button">Login</button>
-            <button id="registerBtn" type="button">Register</button>
-        </form>
+        <input type="email" id="email" placeholder="Email" />
+        <input type="password" id="password" placeholder="Password" />
+        <button id="loginBtn">Login</button>
+        <button id="registerBtn">Register</button>
     </div>
-    <div id="chat-container" style="display:none;">
-        <div id="messages" style="height: 300px; overflow-y: scroll;"></div>
-        
-        <!-- Avatar Upload Form -->
-        <form id="avatarForm">
-            <input type="file" id="avatarInput" accept="image/*">
-            <button id="uploadAvatarBtn" type="button">Upload Avatar</button>
-        </form>
-        
-        <!-- Chat message input -->
-        <input type="text" id="messageInput" placeholder="Type a message...">
-        <button id="sendMessage" type="button">Send</button>
-        
-        <button id="logoutBtn" type="button">Logout</button>
+
+    <div id="chat-container" style="display: none;">
+        <div id="messages"></div>
+        <input type="text" id="messageInput" placeholder="Type a message" />
+        <button id="sendMessage">Send</button>
+        <button id="logoutBtn">Logout</button>
+        <input type="file" id="fileInput" />
     </div>
-    </center>
+
+    <script type="module" src="https://coolvibes-reloaded.com/chatbox/script.js"></script>
 </body>
 </html>
