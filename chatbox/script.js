@@ -18,7 +18,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const storage = getStorage(app);
+
 
 // List of predefined avatars
 const avatars = [
@@ -35,8 +35,9 @@ function getAvatar(email) {
     return avatars[index];
 }
 
+// Wait until the DOM is fully loaded
 window.onload = () => {
-    // Make sure all DOM elements are properly loaded
+    // Get DOM elements
     const loginBtn = document.getElementById('loginBtn');
     const registerBtn = document.getElementById('registerBtn');
     const sendMessage = document.getElementById('sendMessage');
@@ -46,30 +47,30 @@ window.onload = () => {
     const fileInput = document.getElementById('fileInput');
     const messagesDiv = document.getElementById('messages');
 
-    // Check if these elements exist to prevent further issues
+    // Ensure all necessary DOM elements exist
     if (!loginBtn || !registerBtn || !sendMessage || !logoutBtn || !fileInput || !messagesDiv) {
         console.error('One or more DOM elements are missing!');
         return;
     }
 
-    // Validate email function
+    // Email validation function
     const validateEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
     };
 
-    // Show alert function
+    // Alert helper
     const showAlert = (message) => {
         alert(message);
     };
 
-    // Load messages and display them
+    // Load and display chat messages
     const loadMessages = async () => {
         const messagesRef = collection(db, 'messages');
         const messagesQuery = query(messagesRef, orderBy('timestamp', 'desc'));
         const messagesSnapshot = await getDocs(messagesQuery);
 
-        messagesDiv.innerHTML = ''; // Clear the chat before loading new messages
+        messagesDiv.innerHTML = ''; // Clear previous messages
 
         messagesSnapshot.forEach(doc => {
             const data = doc.data();
@@ -81,7 +82,7 @@ window.onload = () => {
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
     };
 
-    // Monitor Auth state and load messages if a user is logged in
+    // Monitor authentication state
     onAuthStateChanged(auth, (user) => {
         if (user) {
             authContainer.style.display = 'none';
@@ -93,7 +94,7 @@ window.onload = () => {
         }
     });
 
-    // On login button click
+    // Login event
     loginBtn.onclick = async () => {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
@@ -111,14 +112,14 @@ window.onload = () => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             loadMessages();
-            document.getElementById('email').value = '';  // Clear fields
+            document.getElementById('email').value = ''; // Clear input
             document.getElementById('password').value = '';
         } catch (error) {
             showAlert(error.message);
         }
     };
 
-    // On register button click
+    // Register event
     registerBtn.onclick = async () => {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
@@ -141,32 +142,29 @@ window.onload = () => {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
-
             const avatarUrl = getAvatar(user.email);
 
-            // Save user details, including the assigned avatar, to Firestore
+            // Save user details to Firestore
             await setDoc(doc(db, 'users', user.uid), {
                 email: user.email,
                 avatar: avatarUrl
             });
 
             showAlert('User registered successfully!');
-            document.getElementById('email').value = '';  // Clear fields
+            document.getElementById('email').value = ''; // Clear input
             document.getElementById('password').value = '';
         } catch (error) {
             showAlert(error.message);
         }
     };
 
-    // Send message with avatar
+    // Send message event
     sendMessage.onclick = async () => {
         const msg = document.getElementById('messageInput').value;
         const user = auth.currentUser;
 
         if (user && msg.trim()) {
             const userProfile = await getDoc(doc(db, 'users', user.uid));
-
-            // Make sure the avatar is not undefined, use a fallback
             const avatarUrl = userProfile.exists() ? (userProfile.data().avatar || avatars[0]) : avatars[0];
 
             await addDoc(collection(db, 'messages'), {
@@ -176,14 +174,14 @@ window.onload = () => {
                 timestamp: serverTimestamp()
             });
 
-            document.getElementById('messageInput').value = ''; // Clear input field after sending message
-            loadMessages(); // Reload messages after sending
+            document.getElementById('messageInput').value = ''; // Clear input
+            loadMessages(); // Reload messages
         } else {
             showAlert("Please enter a message to send.");
         }
     };
 
-    // File input change event for avatar upload
+    // File input change event (for avatar upload)
     fileInput.addEventListener('change', async (event) => {
         const file = event.target.files[0];
         const user = auth.currentUser;
@@ -194,19 +192,20 @@ window.onload = () => {
                 const uploadResult = await uploadBytes(storageRef, file);
                 const downloadURL = await getDownloadURL(uploadResult.ref);
 
-                // Update user's avatar in Firestore
-                await setDoc(doc(db, 'users', user.uid), { avatar: downloadURL }, { merge: true });
+                // Update avatar URL in Firestore
+                await setDoc(doc(db, 'users', user.uid), {
+                    avatar: downloadURL
+                }, { merge: true });
+
+                showAlert("Avatar updated successfully!");
             } catch (error) {
-                console.error('Avatar upload failed:', error);
+                console.error("Error uploading file:", error);
             }
         }
     });
 
-    // On logout button click
+    // Logout event
     logoutBtn.onclick = async () => {
         await signOut(auth);
-        showAlert("Logged out successfully.");
-        authContainer.style.display = 'block';
-        chatContainer.style.display = 'none';
     };
 };
