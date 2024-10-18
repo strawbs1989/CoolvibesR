@@ -1,9 +1,7 @@
-// Firebase imports
+// Import Firebase functions
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
-import { getFirestore, collection, addDoc, getDoc, updateDoc, orderBy, query, getDocs, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js';
-import { doc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+import { getFirestore, doc, setDoc, getDoc, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
 
 
 // Firebase configuration
@@ -50,6 +48,17 @@ function getAvatar(email) {
     return avatars[index];
 }
 
+// Function to show alerts
+function showAlert(message) {
+    alert(message);
+}
+
+// Function to validate email
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+}
+
 window.onload = () => {
     const loginBtn = document.getElementById('loginBtn');
     const registerBtn = document.getElementById('registerBtn');
@@ -57,22 +66,13 @@ window.onload = () => {
     const logoutBtn = document.getElementById('logoutBtn');
     const chatContainer = document.getElementById('chat-container');
     const authContainer = document.getElementById('auth-container');
-
-    const validateEmail = (email) => {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(String(email).toLowerCase());
-    };
-
-    const showAlert = (message) => {
-        alert(message);
-    };
+    const messagesDiv = document.getElementById('messages');
 
     // Function to load messages with avatars
     const loadMessages = async () => {
         const messagesRef = collection(db, 'messages');
         const messagesQuery = query(messagesRef, orderBy('timestamp', 'desc'));
         const messagesSnapshot = await getDocs(messagesQuery);
-        const messagesDiv = document.getElementById('messages');
         messagesDiv.innerHTML = ''; // Clear the chat before loading new messages
 
         messagesSnapshot.forEach(doc => {
@@ -162,7 +162,7 @@ window.onload = () => {
         if (user && msg.trim()) {
             // Fetch the user's profile from Firestore
             const userProfile = await getDoc(doc(db, 'users', user.uid));
-            const avatarUrl = userProfile.data().avatar || "https://example.com/default-avatar.png"; // Fallback avatar
+            const avatarUrl = userProfile.data().avatar || avatars[0]; // Fallback avatar
 
             // Add the message to Firestore with the user's avatar
             await addDoc(collection(db, 'messages'), {
