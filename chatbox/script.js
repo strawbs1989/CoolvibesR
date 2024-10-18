@@ -36,11 +36,11 @@ function stringToColor(str) {
 
 // List of predefined avatars
 const avatars = [
-    "https://example.com/avatar1.png",
-    "https://example.com/avatar2.png",
-    "https://example.com/avatar3.png",
-    "https://example.com/avatar4.png",
-    "https://example.com/avatar5.png"
+    "https://coolvibes-reloaded.com/chatbox/avatars/avataaars1.png",
+    "https://coolvibes-reloaded.com/chatbox/avatars/avataaars2.png",
+    "https://coolvibes-reloaded.com/chatbox/avatars/avataaars3.png",
+    "https://coolvibes-reloaded.com/chatbox/avatars/avataaars4.png",
+    "https://coolvibes-reloaded.com/chatbox/avatars/avataaars.png"
 ];
 
 // Function to assign an avatar based on the email
