@@ -46,13 +46,19 @@ window.onload = () => {
     const authContainer = document.getElementById('auth-container');
     const fileInput = document.getElementById('fileInput');
     const messagesDiv = document.getElementById('messages');
+	const uploadBtn = document.getElementById('uploadBtn'); // Add the new upload button
 
     // Ensure all necessary DOM elements exist
-    if (!loginBtn || !registerBtn || !sendMessage || !logoutBtn || !fileInput || !messagesDiv) {
+    if (!loginBtn || !registerBtn || !sendMessage || !logoutBtn || !fileInput || !messagesDiv || !uploadBtn) {
         console.error('One or more DOM elements are missing!');
         return;
     }
-
+	
+// Add event listener to the upload button
+    uploadBtn.addEventListener('click', () => {
+        fileInput.click(); // Trigger file input when upload button is clicked
+    });
+	
     // Email validation function
     const validateEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
