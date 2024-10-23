@@ -1,4 +1,4 @@
-import * as functions from 'firebase-functions';
+import * as functions from 'firebase-functions';  // Use Firebase Functions v1
 import * as admin from 'firebase-admin';
 import * as nodemailer from 'nodemailer';
 
@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'coolvibes1989@gmail.com',  // Replace with your actual Gmail
-        pass: 'LauraMary1998'    // Replace with your actual password
+        pass: 'LauraMary1998'    // Replace with your actual password or app-specific password
     }
 });
 
