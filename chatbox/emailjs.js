@@ -1,6 +1,6 @@
 // Initialize EmailJS with your user ID
 (function(){
-    emailjs.init("service_tyw0opp");  // Replace with your EmailJS user ID
+    emailjs.init("coolvibes1989@gmail.com");  // Replace with your EmailJS user ID
 })();
 
 // Send email when a new message is posted
