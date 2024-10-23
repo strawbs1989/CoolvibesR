@@ -1,18 +1,42 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
+import * as nodemailer from 'nodemailer';
 
+// Initialize Firebase Admin SDK
+admin.initializeApp();
 
+// Nodemailer transporter setup
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'coolvibes1989@gmail.com',  // Replace with your actual Gmail
+        pass: 'LauraMary1998'    // Replace with your actual password
+    }
+});
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
+// Cloud Function to send an email when a new message is created in Firestore
+exports.sendEmailNotification = functions.firestore.document('messages/{messageId}')
+    .onCreate((snap: FirebaseFirestore.DocumentSnapshot, context: functions.EventContext) => {
+        const newMessage = snap.data(); // Get the new message data
 
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+        if (!newMessage) {
+            console.log('No message data found');
+            return null;
+        }
+
+        const mailOptions = {
+            from: 'your-email@gmail.com',   // Sender address
+            to: 'recipient@example.com',    // Recipient address
+            subject: `New message from ${newMessage.username}`,  // Subject line
+            text: newMessage.message        // Email message content
+        };
+
+        // Send email using Nodemailer
+        return transporter.sendMail(mailOptions, (error: Error | null, info: nodemailer.SentMessageInfo) => {
+            if (error) {
+                console.error('Error sending email:', error);
+                return;
+            }
+            console.log('Email sent successfully:', info.response);
+        });
+    });
